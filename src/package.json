@@ -1,0 +1,26 @@
+{
+  "name": "media-bits",
+  "version": "0.1.1",
+  "description": "Record, Stream, Edit, Share and Broadcast",
+  "main": "main.js",
+  "scripts": {
+    "test": "npm run start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danroyal001/media-bits.git"
+  },
+  "keywords": [
+    "Media",
+    "Stream",
+    "Video",
+    "Broadcast",
+    "Edit"
+  ],
+  "author": "Danroyal001",
+  "license": "SEE LICENSE IN README.md",
+  "bugs": {
+    "url": "https://github.com/danroyal001/media-bits/issues"
+  },
+  "homepage": "https://github.com/danroyal001/media-bits#readme"
+}
