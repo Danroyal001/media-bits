@@ -23,6 +23,8 @@
     <li><a href="javascript:void()">EDITOR</a></li>
     <li><a href="javascript:void()">SUBSCRIBTION</a></li>
   </ul>
+  
+  <router-view />
 
   </div>
 </template>
