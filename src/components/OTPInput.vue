@@ -3,8 +3,9 @@
 <!-- Begin OTP -->
     <span class="otp-label">{{ title }}</span>
     <div class="otp-input-row">
-        <input title="required" pattern="\d{1}" v-for="x in length" @input="switchActiveInput($event)" :id="'otp-input-field' + x" :key="x" class="white center teal-text otp-input" maxlength="1" min="0" max="9" required>
-        <button title="cancel" class="otp-cancel-button" type="button">&times;</button>
+        <input title="required" data-otp-input pattern="\d{1}" v-for="x of length" @input="switchActiveInput($event)" :id="'otp-input-field' + x" :key="x" class="white center teal-text otp-input" maxlength="1" min="0" max="9" required>
+
+        <button data-otp-cancel-button @click="clear" title="cancel" class="otp-cancel-button" type="button">&times;</button>
     </div>
 <!-- End OTP -->
 </div>
@@ -31,6 +32,10 @@ export default {
         }
     },
     methods: {
+        clear(){
+            this.value = '';
+            document.querySelectorAll('[data-otp-input]').forEach(i => i.value = '');
+        },
         switchActiveInput($event){
             const $this = this;
 
@@ -45,7 +50,7 @@ export default {
                     if((nextElem !== null) && (nextElem !== undefined) && nextElem.classList.contains('otp-input')){
                         nextElem.focus();
                     } else if(nextElem.classList.contains('otp-cancel-button')) {
-                        $this.$emit('change', $this.value);
+                        $this.$emit('value', parseInt($this.value, 10));
                         $this.value = '';
                     }
                 } else if ("number" !== typeof parseInt(value, 10)){

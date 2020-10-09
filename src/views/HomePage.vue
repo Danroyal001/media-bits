@@ -21,13 +21,13 @@
       <img src="@/assets/img/3.jpg">
     </div>
 
-    <div class="carousel-item">
+    <!-- <div class="carousel-item">
       <img src="@/assets/img/4.jpg">
     </div>
 
     <div class="carousel-item">
       <img src="@/assets/img/5.jpg">
-    </div>
+    </div> -->
 
   </div>
   <!-- End Carousel -->

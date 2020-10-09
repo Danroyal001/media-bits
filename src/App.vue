@@ -6,7 +6,7 @@
         <div class="nav-wrapper">
           <a href="#" class="brand-logo">
             <img src="@/assets/logo.png" style="height: 50px; padding-top: 21px;">
-            MEDIA-BITS
+            <span class="hide-on-med-and-down">MEDIA-BITS</span>
           </a>
           <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
