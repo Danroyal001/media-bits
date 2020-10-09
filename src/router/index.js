@@ -5,14 +5,14 @@ const routes = [
   {
     path: '/',
     alias: '/home',
-    name: 'Home',
+    name: 'home',
     component: Home
   },
   {
-    path: '/about',
-    name: 'About',
+    path: '/editor',
+    name: 'editor',
     component: () => ({
-      component: import('@/views/About.vue'),
+      component: import('@/views/Editor.vue'),
       delay: 1
     })
   }
@@ -20,7 +20,10 @@ const routes = [
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes
+  routes,
+  afterEach(){
+    window.M.AutoInit();
+  }
 })
 
 export default router

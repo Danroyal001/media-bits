@@ -31,13 +31,21 @@
 
 <style src="@/assets/css/materialize.css"></style>
 
+<style>
+.position-absolute{
+  position: absolute !important;
+}
+</style>
+
 <script>
 import * as M from '@/assets/js/materialize.js';
+
+window.M = M;
 
 export default {
   name: 'App',
   mounted(){
-    return M.AutoInit();
+    return window.M.AutoInit();
   }
 }
 </script>
