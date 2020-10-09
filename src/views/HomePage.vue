@@ -6,30 +6,9 @@
     <div class="carousel-fixed-item center">
       <a class="btn waves-effect waves-light teal white-text">GET STARTED</a>
     </div>
-
-    <div class="carousel-item" style="background: url(@/assets/img/2.jpg) !important">
-      <h2>Panel</h2>
-      <p>This is a panel 1</p>
-    </div>
-
-    <div class="carousel-item">
-      <h2>Panel</h2>
-      <p>This is a panel 2</p>
-    </div>
-
-    <div class="carousel-item">
-      <h2>Panel</h2>
-      <p>This is a panel</p>
-    </div>
-
-    <div class="carousel-item">
-      <h2>Panel</h2>
-      <p>This is a panel</p>
-    </div>
-
-    <div class="carousel-item">
-      <h2>Panel</h2>
-      <p>This is a panel</p>
+<!-- bookmark -->
+    <div id="carouselItem1" class="carousel-item">
+      <img src="@/assets/img/1.jpg">
     </div>
 
   </div>
@@ -53,10 +32,14 @@ export default {
   },
   mounted(){
     // return M.AutoInit();
+    // document.querySelector('#carouselItem1').style.background = 'url(@/assets/img/2.jpg)';
+
     var elems = document.querySelectorAll('.carousel');
      this.carouselInstance = M.Carousel.init(elems, {
        fullWidth:true,
-       indicators:true
+       indicators:true,
+       dist: -100,
+      //  numVisible: 3
      });
 
      setInterval(() => this.carouselInstance[0].next(), 5000);
@@ -65,4 +48,7 @@ export default {
 </script>
 
 <style>
+.position-absolute{
+  position: absolute !important;
+}
 </style>
