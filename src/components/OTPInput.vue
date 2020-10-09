@@ -37,15 +37,17 @@ export default {
             const value = $event.target.value
             if((value !== null) && (value !== undefined)){
                 if("number" === typeof parseInt(value, 10)){
-                    this.value += value
-                    const nextElem = $event.target.nextElementSibling
+                    this.value += value;
+                    console.log(this.value);
+
+                    const nextElem = $event.target.nextElementSibling;
+                    
                     if((nextElem !== null) && (nextElem !== undefined) && nextElem.classList.contains('otp-input')){
                         nextElem.focus();
                     } else if(nextElem.classList.contains('otp-cancel-button')) {
                         $this.$emit('change', $this.value);
                         $this.value = '';
                     }
-                    console.log(this.value);
                 } else if ("number" !== typeof parseInt(value, 10)){
                     $event.target.value = '';
                 }
