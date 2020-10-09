@@ -1,11 +1,12 @@
 <template>
 <div class="otp-button-wrapper">
-<!-- Begin Root -->
+<!-- Begin OTP -->
     <span class="otp-label">{{ title }}</span>
     <div class="otp-input-row">
-        <input pattern="\d+" type="number" v-for="x in inputCount" @input="switchActiveInput($event)" :id="'otp-input-field' + x" :key="x" class="white center teal-text otp-input" maxlength="1" required>
+        <input title="required" pattern="\d{1}" v-for="x in length" @input="switchActiveInput($event)" :id="'otp-input-field' + x" :key="x" class="white center teal-text otp-input" maxlength="1" min="0" max="9" required>
+        <button title="cancel" class="otp-cancel-button" type="button">&times;</button>
     </div>
-<!-- End Root -->
+<!-- End OTP -->
 </div>
 </template>
 
@@ -13,7 +14,7 @@
 export default {
     name: 'OTPInput',
     props: {
-        inputCount: {
+        length: {
             type: Number,
             default: 4,
             required: false
@@ -31,9 +32,23 @@ export default {
     },
     methods: {
         switchActiveInput($event){
+            const $this = this;
+
             const value = $event.target.value
             if((value !== null) && (value !== undefined)){
-                console.log(value);
+                if("number" === typeof parseInt(value, 10)){
+                    this.value += value
+                    const nextElem = $event.target.nextElementSibling
+                    if((nextElem !== null) && (nextElem !== undefined) && nextElem.classList.contains('otp-input')){
+                        nextElem.focus();
+                    } else if(nextElem.classList.contains('otp-cancel-button')) {
+                        $this.$emit('change', $this.value);
+                        $this.value = '';
+                    }
+                    console.log(this.value);
+                } else if ("number" !== typeof parseInt(value, 10)){
+                    $event.target.value = '';
+                }
             }
         }
     }
@@ -67,6 +82,16 @@ export default {
     border-radius: 5px;
     border: thin solid teal;
     caret-color: teal !important;
+}
+.otp-input-row > button{
+    color: white;
+    background: teal;
+    font-weight: bold;
+    /* border: thin solid teal; */
+    height: 40px;
+    width: 40px;
+    border-radius: 5px;
+    cursor: pointer;
 }
 .teal{
     background-color: teal !important;
