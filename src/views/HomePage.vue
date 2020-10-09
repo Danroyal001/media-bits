@@ -34,19 +34,19 @@
 
   <div class="container">
     <br />
-    <OTPButton />
+    <OTPInput />
   </div>
 <!-- Root -->
 </div>
 </template>
 
 <script>
-import OTPButton from '@/components/OTPButton.vue';
+import OTPInput from '@/components/OTPInput.vue';
 
 export default {
   name: 'HomePage',
   components: {
-    OTPButton
+    OTPInput
   },
   data(){
     return {
