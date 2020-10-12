@@ -1,7 +1,22 @@
 import { createStore } from 'vuex'
 
-export default createStore({
+const $store = createStore({
   state: {
+    appName: 'Media-Bits',
+    primaryHyperlinks: [
+      {
+        name: 'HOME',
+        href: '/home'
+      },
+      {
+        name: 'EDITOR',
+        href: '/editor'
+      },
+      {
+        name: 'SUBSRIBTION',
+        href: '/subscribtion'
+      }
+    ]
   },
   mutations: {
   },
@@ -9,4 +24,8 @@ export default createStore({
   },
   modules: {
   }
-})
+});
+
+window.$store = $store;
+
+export default $store;

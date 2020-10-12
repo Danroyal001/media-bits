@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class='home-page-root'>
 <!-- Root -->
 
 <!-- Begin carousel -->
@@ -9,44 +9,23 @@
       <router-link to="/editor" class="btn waves-effect waves-light teal white-text">GET STARTED</router-link>
     </div>
 
-    <div class="carousel-item">
-      <img src="@/assets/img/1.jpg">
+    <div v-for="x in 4" :key="x" class="carousel-item">
+      <img src="@/assets/img/1.png">
     </div>
-
-    <div class="carousel-item">
-      <img src="@/assets/img/2.jpg">
-    </div>
-
-    <div class="carousel-item">
-      <img src="@/assets/img/3.jpg">
-    </div>
-
-    <!-- <div class="carousel-item">
-      <img src="@/assets/img/4.jpg">
-    </div>
-
-    <div class="carousel-item">
-      <img src="@/assets/img/5.jpg">
-    </div> -->
 
   </div>
   <!-- End Carousel -->
-
-  <div class="container">
-    <br />
-    <OTPInput />
-  </div>
 <!-- Root -->
 </div>
 </template>
 
 <script>
-import OTPInput from '@/components/OTPInput.vue';
-
 export default {
   name: 'HomePage',
-  components: {
-    OTPInput
+  methods: {
+    logData($event){
+      console.log($event);
+    }
   },
   data(){
     return {

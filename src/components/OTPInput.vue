@@ -3,9 +3,9 @@
 <!-- Begin OTP -->
     <span class="otp-label">{{ title }}</span>
     <div class="otp-input-row">
-        <input title="required" data-otp-input pattern="\d{1}" v-for="x of length" @input="switchActiveInput($event)" :id="'otp-input-field' + x" :key="x" class="white center teal-text otp-input" maxlength="1" min="0" max="9" required>
+        <input type="number" title="required" data-otp-input pattern="\d{1}" v-for="x in parseInt(length)" @input="switchActiveInput($event)" :id="'otp-input-field' + x" :key="x" class="white center teal-text otp-input" maxlength="1" min="0" max="9" required>
 
-        <button data-otp-cancel-button @click="clear" title="cancel" class="otp-cancel-button" type="button">&times;</button>
+        <button data-otp-cancel-button @click="clear($event)" title="cancel" class="otp-cancel-button" type="button">&times;</button>
     </div>
 <!-- End OTP -->
 </div>
@@ -16,7 +16,6 @@ export default {
     name: 'OTPInput',
     props: {
         length: {
-            type: Number,
             default: 4,
             required: false
         },
@@ -32,9 +31,10 @@ export default {
         }
     },
     methods: {
-        clear(){
+        clear($event){
             this.value = '';
             document.querySelectorAll('[data-otp-input]').forEach(i => i.value = '');
+            $event.target.parentElement.firstElementChild.focus();
         },
         switchActiveInput($event){
             const $this = this;

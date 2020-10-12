@@ -1,27 +1,23 @@
 <template>
-  <div style="width: 100%; height:100%; margin: 0; padding: 0;">
+  <div style="width: 100% !important; height:100% !important; margin: 0; padding: 0;">
   <div class="navbar-fixed">
     <nav class="teal">
       <div class="container">
         <div class="nav-wrapper">
           <a href="#" class="brand-logo">
             <img src="@/assets/logo.png" style="height: 50px; padding-top: 21px;">
-            <span class="hide-on-med-and-down">MEDIA-BITS</span>
+            <span class="hide-on-small-only">{{ $store.state.appName }}</span>
           </a>
-          <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+          <a href="#" data-target="sidenav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="javascript:void()">HOME</a></li>
-            <li><a href="javascript:void()">EDITOR</a></li>
-            <li><a href="javascript:void()">SUBSCRIBTION</a></li>
+            <li v-for="link in $store.state.primaryHyperlinks" :key="link.name"><router-link :to="link.href">{{ link.name }}</router-link></li>
           </ul>
         </div>
       </div>
     </nav>
   </div>
-  <ul class="sidenav" id="mobile-demo">
-    <li><a href="javascript:void()">HOME</a></li>
-    <li><a href="javascript:void()">EDITOR</a></li>
-    <li><a href="javascript:void()">SUBSCRIBTION</a></li>
+  <ul class="sidenav" id="sidenav">
+    <li v-for="link in $store.state.primaryHyperlinks" :key="link.name"><router-link :to="link.href">{{ link.name }}</router-link></li>
   </ul>
   
   <router-view />
@@ -38,7 +34,7 @@
 </style>
 
 <script>
-import * as M from '@/assets/js/materialize.js';
+import * as M from '@/assets/js/materialize.min.js';
 
 window.M = M;
 

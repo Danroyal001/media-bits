@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import Home from '@/views/HomePage.vue'
+// import NetworkError from '@/components/NetworkError.vue';
 
 const routes = [
   {
@@ -11,10 +12,12 @@ const routes = [
   {
     path: '/editor',
     name: 'editor',
-    component: () => ({
-      component: import('@/views/Editor.vue'),
-      delay: 1
-    })
+    component: () => import('@/views/Editor.vue')
+  },
+  {
+    path: '/subscribtion',
+    name: 'subscribtion',
+    component: () => import('@/views/Subscribtion.vue')
   }
 ]
 
