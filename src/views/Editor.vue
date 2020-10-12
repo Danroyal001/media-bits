@@ -2,8 +2,14 @@
 <div class="editor-root">
 <!-- Start Editor Root -->
 <div class="row top-section">
-    <div class="col s12 m12 l6 x6"></div>
-    <div class="col s12 m12 l6 x6"></div>
+    <div class="col s12 m12 l6 x6">
+        <div class="teal white-text top-section-header">PREVIEW</div>
+        <canvas id="preview" class="top-section-view black"></canvas>
+    </div>
+    <div class="col s12 m12 l6 x6">
+        <div class="teal white-text top-section-header">LIVE</div>
+        <video id="live" class="top-section-view black" autoplay></video>
+    </div>
 </div>
 <div class="row"></div>
 <!-- End Editor Root -->
@@ -35,6 +41,21 @@ export default {
     height: 100% !important;
     border-right: thin solid teal;
     border-left: thin solid teal;
+}
+.top-section-header{
+    width: 100%;
+    height: 15px;
+    display: flex;
+    align-items: center;
+    margin: 0px;
+    padding: 0px;
+    justify-content: center;
+    text-align: center;
+    font-size: 13px;
+}
+.top-section-view{
+    width: 100%;
+    height: calc(100% - 15px);
 }
 
 @media only screen and (min-width: 600px) and (max-width: 992px) {
