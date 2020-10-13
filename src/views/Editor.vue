@@ -1,6 +1,8 @@
     <template>
 <div class="editor-root">
 <!-- Start Editor Root -->
+
+<!-- Start Top Section -->
 <div class="row top-section">
     <div class="col s12 m12 l6 x6">
         <div class="teal white-text top-section-header">PREVIEW</div>
@@ -11,7 +13,18 @@
         <video id="live" class="top-section-view black" autoplay></video>
     </div>
 </div>
-<div class="row"></div>
+<!-- End Top Section -->
+
+<!-- Start Middle Section -->
+<div class="teal middle-section row">
+    &nbsp;
+</div>
+<!-- End Middle section -->
+
+<div class="horizontal-slide black">
+    &nbsp;
+</div>
+
 <!-- End Editor Root -->
 </div>
 </template>
@@ -56,6 +69,10 @@ export default {
 .top-section-view{
     width: 100%;
     height: calc(100% - 15px);
+}
+.middle-section{
+    width: 100% !important;
+    margin: 0px;
 }
 
 @media only screen and (min-width: 600px) and (max-width: 992px) {
