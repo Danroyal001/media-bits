@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <!-- <link ref="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> -->
     <title><%= htmlWebpackPlugin.options.title %></title>
     <style>
       *{
@@ -27,6 +28,13 @@
       <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
     <div style="width: 100% !important; height: 100% !important;" id="app"></div>
+    <script>
+//       if ('serviceWorker' in navigator){
+// navigator.serviceWorker.register('./service-worker.js', {scope: './'})
+//   .then(function(reg){console.log('registered service worker scoped to ' + reg.scope)},
+//         function(err){console.log(err)})
+//  }
+    </script>
     <!-- built files will be auto injected -->
   </body>
 </html>

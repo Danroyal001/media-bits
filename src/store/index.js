@@ -16,6 +16,26 @@ const $store = createStore({
         name: 'SUBSRIBTION',
         href: '/subscribtion'
       }
+    ],
+    editorBtns: [
+      {
+          title: "OPEN FILE"
+      },
+      {
+          title: "SAVE"
+      }
+    ],
+    inputSources: [
+      {
+        name: 'Aud 1100',
+        type: 'audio',
+        position: 1
+      },
+      {
+        name: 'Vid 1100',
+        type: 'video',
+        position: 2
+      },
     ]
   },
   mutations: {

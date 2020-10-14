@@ -1,0 +1,28 @@
+{
+    "short_name": "media",
+    "name": "MEDIA-BITS",
+    "description": "Edit, share and do a lot of stuff with multimedia",
+    "icons": [
+      {
+        "src": "../img/192.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      },
+      {
+        "src": "../img/go4groceries-logo.png",
+        "type": "image/png",
+        "sizes": "441x441"
+      },
+      {
+        "src": "../img/512.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      }
+    ],
+    "start_url": "../../",
+    "background_color": "#009688",
+    "display": "standalone",
+    "scope": "../../",
+    "orientation": "portrait",
+    "theme_color": "#009688"
+  }
