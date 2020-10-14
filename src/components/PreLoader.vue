@@ -1,5 +1,6 @@
 <template>
-<div style="width: 100% !important; height: 100% !important;" class="preloader-wrapper big active">
+  <div style="width: 100% !important; height: 100% !important;">
+    <div class="preloader-wrapper big active">
       <div class="spinner-layer spinner-blue">
         <div class="circle-clipper left">
           <div class="circle"></div>
@@ -40,6 +41,7 @@
         </div>
       </div>
     </div>
+  </div>
 </template>
 
 <script>

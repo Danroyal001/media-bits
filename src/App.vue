@@ -9,7 +9,7 @@
             <span class="hide-on-small-only">{{ $store.state.appName }}</span>
           </a>
           <a href="#" data-target="sidenav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-          <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <ul id="nav-mobile" class="right hide-on-med-and-down"  v-if="$route.name === 'home'">
             <li v-for="link in $store.state.primaryHyperlinks" :key="link.name"><router-link :to="link.href">{{ link.name }}</router-link></li>
           </ul>
         </div>
@@ -20,7 +20,11 @@
     <li v-for="link in $store.state.primaryHyperlinks" :key="link.name"><router-link :to="link.href">{{ link.name }}</router-link></li>
   </ul>
   
-  <router-view />
+  <transition name="view-pager">
+    <keep-alive>
+      <router-view />
+    </keep-alive>
+  </transition>
 
   </div>
 </template>

@@ -16,13 +16,11 @@
 <!-- End Top Section -->
 
 <!-- Start Middle Section -->
-<div class="teal middle-section row">
-    &nbsp;
-</div>
+<div class="teal middle-section row"></div>
 <!-- End Middle section -->
 
-<div class="horizontal-slide black">
-    &nbsp;
+<div class="horizontal-scroll black" style="overflow-y: hidden;">
+    <div v-for="x in 10" :key="x" class="horizontal-scroll-child input-source"></div>
 </div>
 
 <!-- End Editor Root -->
@@ -38,7 +36,8 @@ export default {
 <style>
 .editor-root{
     width: 100% !important;
-    height: calc(100% - 56px);
+    /* height: calc(100% - 56px); */
+    overflow: hidden;
     background-color: #ecedef;
 }
 .top-section{
@@ -57,7 +56,7 @@ export default {
 }
 .top-section-header{
     width: 100%;
-    height: 15px;
+    height: 17px;
     display: flex;
     align-items: center;
     margin: 0px;
@@ -73,6 +72,18 @@ export default {
 .middle-section{
     width: 100% !important;
     margin: 0px;
+    height: 20px !important;
+}
+.horizontal-scroll{
+    white-space: nowrap;
+    height: calc(50% - 22px);
+    overflow-x: auto;
+}
+.horizontal-scroll-child{
+    display: inline-block;
+    width: 300px;
+    height: 100%;
+    border-right: thin solid teal;
 }
 
 @media only screen and (min-width: 600px) and (max-width: 992px) {
