@@ -18,7 +18,9 @@
 <!-- End Top Section -->
 
 <!-- Start Middle Section -->
-<div class="teal middle-section row"></div>
+<div class="teal middle-section row">
+    <button v-for="btn in middleSectionBtns" :key="btn" @click="btn.action" class="btn-small waves-effect waves-light">{{ btn.label }}</button>
+</div>
 <!-- End Middle section -->
 
 <div v-if="$store.state.inputSources.length > 0" class="horizontal-scroll black bottom-section">
@@ -34,6 +36,11 @@ import InputSource from '@/components/InputSource.vue';
 
 export default {
     name: 'Editor',
+    data(){
+        return {
+            middleSectionBtns: []
+        };
+    },
     components: {
         InputSource
   },

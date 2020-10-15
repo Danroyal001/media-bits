@@ -7,9 +7,9 @@
         &nbsp;
     </div>
     <div class="footer black">
-        <div class="btn-small">NAME: {{ source.name || 'undefined' }}</div>
-        <div class="btn-small">TYPE: {{ source.type || 'undefined' }}</div>
-        <div class="btn-small">POSITION: </div>
+        <div class="btn-small teal">NAME: {{ source.name || '----|----' }}</div>
+        <div class="btn-small teal">TYPE: {{ source.type || '----|----' }}</div>
+        <div class="btn-small waves-effect waves-light">CONFIG <i class="fas fa-wrench"></i></div>
     </div>
 </div>
 </template>
@@ -62,7 +62,9 @@ export default {
     justify-content: flex-end;
     flex-wrap: wrap-reverse;
 }
-.footer > .btn-small{
-    height: 24px;
+.footer > .btn-small, footer > div{
+    /* height: 24px; */
+    height: 33.333%;
+    font-size: 11px;
 }
 </style>
