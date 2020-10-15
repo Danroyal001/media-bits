@@ -7,8 +7,8 @@
         &nbsp;
     </div>
     <div class="footer black">
-        <div class="btn-small">NAME: {{ source.name }}</div>
-        <div class="btn-small">TYPE: {{ source.type }}</div>
+        <div class="btn-small">NAME: {{ source.name || 'undefined' }}</div>
+        <div class="btn-small">TYPE: {{ source.type || 'undefined' }}</div>
         <div class="btn-small">POSITION: </div>
     </div>
 </div>

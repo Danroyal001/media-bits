@@ -7,11 +7,11 @@
     <div class="horizontal-scroll-child" style="width: 100%; height: 100%; padding: 0px !important; margin: 0px !important;">
         <div class="col s12 m12 l6 x6" style="padding: 0px !important; margin: 0px !important; border-right: thin solid teal;">
             <div class="teal white-text top-section-header">PREVIEW</div>
-            <video class="top-section-view black" autoplay></video>
+            <canvas class="top-section-view black"></canvas>
         </div>
         <div v-for="(output, index) in 5" :key="index" class="col s12 m12 l6 x6" style="padding: 0px !important; margin: 0px !important; border-right: thin solid teal;">
             <div class="teal white-text top-section-header">OUTPUT {{ index+1 }}</div>
-            <canvas class="top-section-view black"></canvas>
+            <video class="top-section-view black" controls autoplay></video>
         </div>
     </div>
 </div>
