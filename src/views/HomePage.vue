@@ -6,7 +6,7 @@
   <div class="carousel carousel-slider center black-text">
 
     <div class="carousel-fixed-item center">
-      <router-link to="/editor" class="btn waves-effect waves-light teal white-text">GET STARTED</router-link>
+      <router-link to="/subscribtion" class="btn waves-effect waves-light teal white-text">GET STARTED</router-link>
     </div>
 
     <div v-for="x in 4" :key="x" class="carousel-item">

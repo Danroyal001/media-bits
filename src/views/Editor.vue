@@ -3,16 +3,13 @@
 <!-- Start Editor Root -->
 
 <!-- Start Top Section -->
-<div class="row top-section horizontal-scroll" style="padding: 0px !important; margin: 0px !important;">
-    <div class="horizontal-scroll-child" style="width: 100%; height: 100%; padding: 0px !important; margin: 0px !important;">
-        <div class="col s12 m12 l6 x6" style="padding: 0px !important; margin: 0px !important; border-right: thin solid teal;">
+<div class="row top-section horizontal-scroll">
+    <div class="horizontal-scroll-child" style="/*width: 100%; */height: 100%; padding: 0px !important; margin: 0px !important;">
+        <div class="col s12 m12 l6 x6 top-section-block">
             <div class="teal white-text top-section-header">PREVIEW</div>
             <canvas class="top-section-view black"></canvas>
         </div>
-        <div v-for="(output, index) in 5" :key="index" class="col s12 m12 l6 x6" style="padding: 0px !important; margin: 0px !important; border-right: thin solid teal;">
-            <div class="teal white-text top-section-header">OUTPUT {{ index+1 }}</div>
-            <video class="top-section-view black" controls autoplay></video>
-        </div>
+        <OutputDestination v-for="(output, index) in 3" :key="index" :id="output.id" :index="index" />
     </div>
 </div>
 <!-- End Top Section -->
@@ -26,13 +23,16 @@
 <div v-if="$store.state.inputSources.length > 0" class="horizontal-scroll black bottom-section">
     <InputSource v-for="(source, index) in $store.state.inputSources" :key="index" :source="source" :count="(index + 1)"></InputSource>
 </div>
+<EditorBottomNoInput v-else />
 
 <!-- End Editor Root -->
 </div>
 </template>
 
 <script>
+import OutputDestination from '@/components/OutputDestination.vue';
 import InputSource from '@/components/InputSource.vue';
+import EditorBottomNoInput from '@/components/EditorBottomNoInput.vue';
 
 export default {
     name: 'Editor',
@@ -42,7 +42,9 @@ export default {
         };
     },
     components: {
-        InputSource
+        InputSource,
+        OutputDestination,
+        EditorBottomNoInput
   },
 }
 </script>
@@ -69,6 +71,8 @@ export default {
 }
 .top-section{
     height: 100% !important;
+    padding: 0px !important;
+    margin: 0px !important;
     border-bottom: thin solid teal;
     border-top: thin solid teal;
     margin: 0px !important;
@@ -94,7 +98,7 @@ export default {
 }
 .top-section-view{
     width: 100%;
-    height: calc(100% - 15px);
+    height: calc(100% - 18px);
 }
 .horizontal-scroll{
     white-space: nowrap;
@@ -102,6 +106,14 @@ export default {
 }
 .horizontal-scroll-child{
     display: inline-block;
+}
+.top-section-block{
+    padding: 0px !important;
+    margin: 0px !important;
+    height: 100%;
+    border-right: thin solid teal;
+    border-radius: 5px;
+    overflow: hidden;
 }
 
 @media only screen and (min-width: 600px) and (max-width: 992px) {

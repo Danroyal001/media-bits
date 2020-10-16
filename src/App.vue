@@ -12,9 +12,7 @@
           <ul id="nav-mobile" class="right hide-on-med-and-down"  v-if="$route.name !== 'editor'">
             <li v-for="link in $store.state.primaryHyperlinks" :key="link.name"><router-link :to="link.href">{{ link.name }}</router-link></li>
           </ul>
-          <ul id="nav-mobile" class="right hide-on-med-and-down"  v-else-if="$route.name === 'editor'">
-            <li v-for="(btn, i) in $store.state.editorBtns" :key="i"><a class="btn-small waves-effect waves-light">{{ btn.title }}</a></li>
-          </ul>
+          <EditorMenu v-else-if="$route.name === 'editor'" />
         </div>
       </div>
     </nav>
@@ -50,7 +48,7 @@
 }
 
 ::-webkit-scrollbar-button{
-  background-color: #009688 !important;
+  background-color: #008688 !important;
   content: initial;
 }
 
@@ -88,6 +86,7 @@
 </style>
 
 <script>
+import EditorMenu from '@/components/EditorMenu.vue';
 import * as M from '@/assets/js/materialize.min.js';
 
 window.M = M;
@@ -96,6 +95,9 @@ export default {
   name: 'App',
   mounted(){
     return window.M.AutoInit();
+  },
+  components: {
+    EditorMenu
   }
 }
 </script>

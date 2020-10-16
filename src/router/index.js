@@ -48,6 +48,25 @@ const routes = [
     })
   },
   {
+    path: '/contact',
+    name: 'contact',
+    component: defineAsyncComponent({
+      loader: () => import('@/views/Contact.vue'),
+      loadingComponent: PreLoader,
+      errorComponent: NetworkError,
+      delay: 1,
+      timeout: 60000,
+      suspensible: false,
+      onError(error, retry, fail, attempts) {
+        if (error.message.match(/fetch/) && attempts <= 3) {
+          retry()
+        } else {
+          fail()
+        }
+      },
+    })
+  },
+  {
     path: '/subscribtion',
     name: 'subscribtion',
     component: defineAsyncComponent({
@@ -75,5 +94,7 @@ const router = createRouter({
     window.M.AutoInit();
   }
 })
+
+window.$router = router;
 
 export default router
