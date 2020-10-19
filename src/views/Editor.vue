@@ -4,7 +4,7 @@
 
 <!-- Start Top Section -->
 <div class="row top-section horizontal-scroll">
-    <div class="horizontal-scroll-child" style="/*width: 100%; */height: 100%; padding: 0px !important; margin: 0px !important;">
+    <div class="horizontal-scroll-child" style="width: 100%;height: 100%; padding: 0px !important; margin: 0px !important;">
         <div class="col s12 m12 l6 x6 top-section-block">
             <div class="teal white-text top-section-header">PREVIEW</div>
             <canvas class="top-section-view black"></canvas>
