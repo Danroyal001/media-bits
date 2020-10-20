@@ -30,7 +30,7 @@
     <div class="modal-content">
       <h4>Select Microphone <i class="fa fa-microphone"></i></h4>
       <select autofocus class="validate">
-          <option v-for="mic in microphones" :key="mic" @chaged="selectedMic = mic" class="teal-text">{{ mic.label }}1</option>
+          <option v-for="mic in microphones" :key="mic" @change="selectedMic = mic" class="teal-text">{{ mic.label }}1</option>
       </select>
     </div>
     <div class="modal-footer">
