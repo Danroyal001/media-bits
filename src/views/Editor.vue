@@ -25,6 +25,34 @@
 </div>
 <EditorBottomNoInput v-else />
 
+<!-- Begin select microphone modal -->
+<div id="select-microphone-modal" class="modal">
+    <div class="modal-content">
+      <h4>Select Microphone <i class="fa fa-microphone"></i></h4>
+      <select autofocus class="validate">
+          <option v-for="mic in microphones" :key="mic" @chaged="selectedMic = mic" class="teal-text">{{ mic.label }}1</option>
+      </select>
+    </div>
+    <div class="modal-footer">
+      <a class="modal-close waves-effect waves-green btn-flat">Add</a>
+    </div>
+</div>
+<!-- End select microphone modal -->
+
+<!-- Begin select camera modal -->
+<div id="select-camera-modal" class="modal">
+    <div class="modal-content">
+      <h4>Select Camera <i class="fa fa-camera"></i></h4>
+      <select autofocus class="validate">
+          <option v-for="camera in cameras" :key="camera" @changed="selectedCamera = camera" class="teal-text">{{ camera.label }}</option>
+      </select>
+    </div>
+    <div class="modal-footer">
+      <a class="modal-close waves-effect waves-green btn-flat">Add</a>
+    </div>
+</div>
+<!-- End select camera modal -->
+
 <!-- End Editor Root -->
 </div>
 </template>
@@ -38,8 +66,21 @@ export default {
     name: 'Editor',
     data(){
         return {
-            middleSectionBtns: []
+            middleSectionBtns: [],
+            microphones: [],
+            cameras: [],
+            selectedCamera: {},
+            selectedMic: {}
         };
+    },
+    mounted(){
+        const _$this = this;
+        setInterval(() => {
+           window.navigator.mediaDevices.enumerateDevices().then(devices => {
+                _$this.cameras = devices.filter(device => device.kind === 'videoinput');
+                _$this.microphones = devices.filter(device => device.kind === 'audioinput');
+           });
+        }, 1000);
     },
     components: {
         InputSource,

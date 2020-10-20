@@ -1,13 +1,14 @@
 <template>
 <div class="horizontal-scroll-child input-source">
     <div class="header teal">
-        <span class="white-text">Input Source {{ count }}</span>
+        <span class="white-text">Input Source {{ count }} &nbsp; <i @click="$store.commit('removeInputSource', source.id)" class="btn-small red white-text waves-effect waves-light close-btn">&times;</i></span>
     </div>
     <div class="body black">
         &nbsp;
     </div>
     <div class="footer black">
-        <div class="btn-small teal">NAME: {{ source.name || '----|----' }}</div>
+        <!-- <div class="btn-small teal truncate">NAME: {{ source.name.substring(0, 24) + '...' || '----|----' }}</div> -->
+        <marquee speed="2" class="btn-small teal truncate">NAME: {{ source.name || '----|----' }}</marquee>
         <div class="btn-small teal">TYPE: {{ source.type || '----|----' }}</div>
         <div class="btn-small waves-effect waves-light">CONFIG <i class="fas fa-wrench"></i></div>
     </div>
@@ -27,7 +28,7 @@ export default {
         },
         source: {
             type: Object,
-            required: false
+            required: true
         }
     }
 }
@@ -66,5 +67,8 @@ export default {
     /* height: 24px; */
     height: 33.333%;
     font-size: 11px;
+}
+.close-btn{
+    color: #f00;
 }
 </style>

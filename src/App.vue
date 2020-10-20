@@ -73,16 +73,43 @@
 }
 
 .view-pager-enter-active{
-  position:relative;animation:viewPagerEnter 0.4s
+  position:relative;
+  animation:viewPagerEnter 1.2s;
 }
-
-@keyframes viewPagerEnter{from{right:-300px;opacity:0} to{right:0;opacity:1}}
-
 .view-pager-leave-active{
-  position:relative;animation:viewPagerLeave 0.4s;
+  position:relative;
+  /* animation:viewPagerLeave 0.4s; */
+  animation: viewPagerEnter reverse .6s;
 }
-
-@keyframes viewPagerLeave{from{left:0;opacity:1} to{left:300px;opacity:0}}
+@keyframes viewPagerEnter{
+  from{
+    right:-300px;
+    perspective: 900;
+    opacity:0;
+    transform: translateZ(1);
+    -webkit-transform: translateZ(1);
+    -moz-transform: translateZ(1);
+    -ms-transform: translateZ(1);
+    -o-transform: translateZ(1);
+    }
+  to{
+    right:0;
+    perspective: 1000;
+    opacity:1;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(1);
+    -moz-transform: translateZ(1);
+    -ms-transform: translateZ(1);
+    -o-transform: translateZ(1);
+    }
+  }
+/* @keyframes viewPagerLeave{
+  from{left:0;opacity:1}
+  to{left:300px;opacity:0}
+  } */
+  *{
+    transition: all;
+  }
 </style>
 
 <script>

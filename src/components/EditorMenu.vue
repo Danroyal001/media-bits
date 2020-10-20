@@ -12,7 +12,7 @@ import AddInputDropdown from '@/components/AddInputDropdown.vue';
 import FileSubmenuDropdown from '@/components/FileSubmenuDropdown.vue';
 
 const doTheNeedful = () => {
-    window.M.Dropdown.init(document.querySelectorAll('.dropdown-trigger'));
+    window.M.AutoInit();
 };
 
 export default {

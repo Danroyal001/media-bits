@@ -6,15 +6,23 @@
   <div class="carousel carousel-slider center black-text">
 
     <div class="carousel-fixed-item center">
-      <router-link to="/subscribtion" class="btn waves-effect waves-light teal white-text">GET STARTED</router-link>
+      <router-link to="/editor" class="btn waves-effect waves-light teal white-text">GET STARTED</router-link>
     </div>
 
     <div v-for="x in 4" :key="x" class="carousel-item">
       <img src="@/assets/img/1.png">
     </div>
 
+    
   </div>
   <!-- End Carousel -->
+
+  <!-- Begin post-carousel block -->
+  <div class="row">
+      Daniel
+    </div>
+  <!-- End Post-carousel block -->
+
 <!-- Root -->
 </div>
 </template>

@@ -28,7 +28,8 @@ const $store = createStore({
           window.$store.dispatch('loadFile', {
             fileType: 'text/mb',
             multiple: false,
-            callback: null
+            callback: null,
+            isText: true
           }).then(file => {
             file = JSON.parse(`[${file}]`);
             file = new Uint8Array(file);
@@ -75,16 +76,13 @@ const $store = createStore({
       }
     ],
     inputSources: [
-      {
-        name: 'Aud 1100',
-        type: 'audio',
-        position: 1
-      },
-      {
-        name: 'Vid 1100',
-        type: 'video',
-        position: 2
-      }
+      // {
+      //   name: 'Aud 1100',
+      //   type: 'audio file',
+      //   position: 1,
+      //   data: null,
+      //   id: Math.random()
+      // }
     ],
     outputDestinations: []
   },
@@ -94,10 +92,17 @@ const $store = createStore({
     },
     setOutputDestinations(state, destinations){
       state.outputDestinations = destinations;
+    },
+    addInputSource(state, source){
+      state.inputSources.push(source);
+    },
+    removeInputSource(state, id){
+      const ind = state.inputSources.findIndex(source => source.id === id);
+      state.inputSources.splice(ind, 1);
     }
   },
   actions: {
-    loadFile(context, {fileType, allowMultiple, callback}){
+    loadFile(context, {fileType, allowMultiple, callback, isText}){
       return new Promise((resolve) => {
         const fileInput = document.createElement('input');
       fileInput.type = 'file';
@@ -120,7 +125,14 @@ const $store = createStore({
         fr.onprogress = function(){
           console.log(fr.readyState);
         }
-        fr.readAsText(file);
+        if(isText){
+          fr.readAsText(file);
+        }else{
+          // fr.readAsBinaryString(file);
+          if(callback){
+            callback(file);
+          } else return resolve(file);
+        }
       };
       fileInput.click();
       })
@@ -130,6 +142,7 @@ const $store = createStore({
   }
 });
 
+// begin video file input
 window.VideoFileInput = class VideoFileInput {
   constructor(file) {
     if (!(this instanceof VideoFileInput)) {
@@ -138,8 +151,38 @@ window.VideoFileInput = class VideoFileInput {
     this.file = file;
     return this;
   }
-  toString() { return "(Protected) [Object VideoFileInput]"; }
+  toString() {
+    return "(Protected) [Object VideoFileInput]";
+  }
+  toJSON(){
+    const $this = this;
+    return {
+      file: $this.file
+    }
+  }
 }
+// end video file input
+
+// Begin Audio file Input
+window.AudioFileInput = class AudioFileInput {
+  constructor(file) {
+    if (!(this instanceof AudioFileInput)) {
+      return new AudioFileInput(file);
+    }
+    this.file = file;
+    return this;
+  }
+  toString() {
+    return "(Protected) [Object AudioFileInput]";
+  }
+  toJSON(){
+    const $this = this;
+    return {
+      file: $this.file
+    }
+  }
+}
+// End Audio File Input
 
 window.$store = $store;
 
