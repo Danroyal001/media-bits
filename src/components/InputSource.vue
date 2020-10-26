@@ -4,7 +4,7 @@
         <span class="white-text">Input Source {{ count }} &nbsp; <i @click="$store.commit('removeInputSource', source.id)" class="btn-small red white-text waves-effect waves-light close-btn">&times;</i></span>
     </div>
     <div class="body black">
-        &nbsp;
+        <video :id="'inputVisual' + count" muted controls :title="source.title" class="fill-parent"></video>
     </div>
     <div class="footer black">
         <!-- <div class="btn-small teal truncate">NAME: {{ source.name.substring(0, 24) + '...' || '----|----' }}</div> -->
@@ -18,6 +18,42 @@
 <script>
 export default {
     name: 'InputSource',
+    mounted(){
+        let _$this = this;
+        switch(_$this.source.type.toLowerCase()){
+            case 'audio file':
+                (() => {
+                    console.log(_$this.source.data);
+                    window.document.querySelector('#inputVisual' + _$this.count).src = _$this.source.data;
+                })();
+                break;
+            case 'video file':
+                (() => {
+                    console.log(_$this.source.data);
+                    window.document.querySelector('#inputVisual' + _$this.count).src = _$this.source.data;
+                })();
+                break;
+            case 'live audio input':
+                (() => {})();
+                break;
+            case 'live video input':
+                (() => {})();
+                break;
+            case 'remote video input':
+                (() => {})();
+                break;
+            case 'remote audio input':
+                (() => {})();
+                break;
+            default:
+                return;
+        }
+    },
+    data(){
+        return {
+            refinedData: ''
+        }
+    },
     props:{
         count:{
             type: Number,
@@ -35,6 +71,10 @@ export default {
 </script>
 
 <style scoped>
+.fill-parent{
+    width: 100%;
+    height: 100%;
+}
 .input-source{
     width: 250px;
     height: 100%;

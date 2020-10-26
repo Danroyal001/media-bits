@@ -17,13 +17,19 @@ export default {
                             fileType: 'video/*',
                             isText: false
                         }).then(file => {
-                            window.$store.commit('addInputSource', {
+                            const fr = new window.FileReader();
+                            fr.onload = () => {
+                                let refinedFile = fr.result;
+                                window.$store.commit('addInputSource', {
                                 name: file.name,
                                 id: Math.random(),
                                 type: 'video file',
-                                data: file,
+                                file,
+                                data: refinedFile,
                                 position: 0
                             })
+                            }
+                            fr.readAsDataURL(file);
                         }).catch(e => alert(e))
                     }
                 },
@@ -34,14 +40,19 @@ export default {
                             fileType: 'audio/*',
                             isText: false
                         }).then(file => {
-                            window.$store.commit('addInputSource', {
+                            const fr = new window.FileReader();
+                            fr.onload = () => {
+                                let refinedFile = fr.result;
+                                window.$store.commit('addInputSource', {
                                 name: file.name,
                                 id: Math.random(),
-                                type: 'audio file',
-                                data: file,
-                                // URL.createObjectURL(file)
+                                type: 'video file',
+                                file,
+                                data: refinedFile,
                                 position: 0
                             })
+                            }
+                            fr.readAsDataURL(file);
                         }).catch(e => alert(e))
                     }
                 },
@@ -58,14 +69,14 @@ export default {
                     href: '#select-microphone-modal',
                     class: 'modal-trigger'
                 },
-                // {
-                //     label: 'Remote Video Input',
-                //     onclick(){}
-                // },
-                // {
-                //     label: 'Remote Audio input',
-                //     onclick(){}
-                // }
+                {
+                    label: 'Remote Video Input',
+                    onclick(){}
+                },
+                {
+                    label: 'Remote Audio input',
+                    onclick(){}
+                }
             ]
         };
     }
