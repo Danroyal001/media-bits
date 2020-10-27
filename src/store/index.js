@@ -37,33 +37,53 @@ const $store = createStore({
             file = JSON.parse(file);
             window.$store.commit('setInputSources', file.inputSources);
             window.$store.commit('setOutputDestinations', file.outputDestinations);
-          }).catch(err => alert(`Unable to process file because it has invalid content:\n${err}`));
+          }).catch(err => window.M.toast({
+            html: `Unable to process file because it has invalid content:  <br /> ${err}`,
+            classes: 'red rounded'
+          }));
         }
     },
     {
         title: "Save / download",
         onclick(){
-          let file = {
-            inputSources: window.$store.state.inputSources,
-            outputDestinations: window.$store.state.outputDestinations
-          };
-          file = JSON.stringify(file);
-          file = (new TextEncoder('utf-8')).encode(file);
-          file = file.toString();
-          let fileName = 'Test-File.mb';
-          let blob = new Blob([file], {
-            type: 'text/plain'
-          });
-          blob = URL.createObjectURL(blob);
-          let a = document.createElement('a');
-          a.href = blob;
-          a.download = fileName;
-          document.body.appendChild(a);
-          a.click();
-          URL.revokeObjectURL(a.href);
-          const successString = `file saved with name: ${fileName}`;
-          alert(successString);
-          console.info(successString);
+          if (window.$store.state.inputSources.length < 1){
+            window.M.toast({
+              html: 'nothing to save',
+              classes: 'teal rounded'
+            });
+          } else {
+            let file = {
+              inputSources: window.$store.state.inputSources,
+              outputDestinations: window.$store.state.outputDestinations
+            };
+            file = JSON.stringify(file);
+            file = (new TextEncoder('utf-8')).encode(file);
+            file = file.toString();
+            const d = new Date();
+            const day = d.getDay();
+            const month = d.getMonth();
+            const year = d.getFullYear();
+            const hour = d.getHours();
+            const minutes = d.getMinutes();
+            const seconds = d.getSeconds();
+            const fileName = `${year}-${month}-${day}_${hour > 12 ? hour - 12 : hour}:${minutes}:${seconds}${hour > 12 ? 'pm' : 'am'}.mb`;
+            let blob = new Blob([file], {
+              type: 'text/plain'
+            });
+            blob = URL.createObjectURL(blob);
+            let a = document.createElement('a');
+            a.href = blob;
+            a.download = fileName;
+            document.body.appendChild(a);
+            a.click();
+            URL.revokeObjectURL(a.href);
+            const successString = `file saved with name: ${fileName}`;
+            window.M.toast({
+              html: successString,
+              classes: 'teal z-depth-4 rounded'
+            })
+            console.info(successString);
+          }
         }
     }
     ],
@@ -114,7 +134,6 @@ const $store = createStore({
       document.body.appendChild(window.fileInput);
       fileInput.onchange = function(event){
         const file = event.target.files[0];
-        // console.log(file);
         const fr = new FileReader();
         fr.onload = function(){
           console.info(`${file.name} opened successfully`);

@@ -30,14 +30,17 @@ export default {
                             })
                             }
                             fr.readAsDataURL(file);
-                        }).catch(e => alert(e))
+                        }).catch(e => window.M.toast({
+              html: e,
+              classes: 'red rounded'
+            }))
                     }
                 },
                 {
                     label: 'Audio File',
                     onclick(){
                         window.$store.dispatch('loadFile', {
-                            fileType: 'audio/*',
+                            fileType: 'audio/*, video/*',
                             isText: false
                         }).then(file => {
                             const fr = new window.FileReader();
@@ -46,14 +49,17 @@ export default {
                                 window.$store.commit('addInputSource', {
                                 name: file.name,
                                 id: Math.random(),
-                                type: 'video file',
+                                type: 'audio file',
                                 file,
                                 data: refinedFile,
                                 position: 0
                             })
                             }
                             fr.readAsDataURL(file);
-                        }).catch(e => alert(e))
+                        }).catch(e => window.M.toast({
+              html: e,
+              classes: 'red rounded'
+            }))
                     }
                 },
                 {

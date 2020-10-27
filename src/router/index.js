@@ -24,8 +24,8 @@ const routes = [
       // Delay before showing the loading component. Default: 200ms.
       delay: 1,
       // The error component will be displayed if a timeout is
-      // provided and exceeded. Default: Infinity.
-      timeout: 60000,
+      // provided and exceeded. Default: 120000.
+      timeout: 120000,
       // Defining if component is suspensible. Default: true.
       suspensible: false,
       /**
@@ -55,7 +55,7 @@ const routes = [
       loadingComponent: PreLoader,
       errorComponent: NetworkError,
       delay: 1,
-      timeout: 60000,
+      timeout: 120000,
       suspensible: false,
       onError(error, retry, fail, attempts) {
         if (error.message.match(/fetch/) && attempts <= 3) {
@@ -74,7 +74,7 @@ const routes = [
       loadingComponent: PreLoader,
       errorComponent: NetworkError,
       delay: 1,
-      timeout: 60000,
+      timeout: 120000,
       suspensible: false,
       onError(error, retry, fail, attempts) {
         if (error.message.match(/fetch/) && attempts <= 3) {

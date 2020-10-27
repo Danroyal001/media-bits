@@ -4,13 +4,14 @@
         <span class="white-text">Input Source {{ count }} &nbsp; <i @click="$store.commit('removeInputSource', source.id)" class="btn-small red white-text waves-effect waves-light close-btn">&times;</i></span>
     </div>
     <div class="body black">
-        <video :id="'inputVisual' + count" muted controls :title="source.title" class="fill-parent"></video>
+        <video v-if="source.type.includes('video')" :id="'inputVisual' + count" :muted="source.type.includes('video') ? true : false" autoplay controls :title="source.title" class="fill-parent"></video>
+        <audio v-else-if="source.type.includes('audio')" :id="'inputVisual' + count" :muted="source.type.includes('video') ? true : false" autoplay controls :title="source.title" class="fill-parent"></audio>
     </div>
     <div class="footer black">
         <!-- <div class="btn-small teal truncate">NAME: {{ source.name.substring(0, 24) + '...' || '----|----' }}</div> -->
         <marquee speed="2" class="btn-small teal truncate">NAME: {{ source.name || '----|----' }}</marquee>
         <div class="btn-small teal">TYPE: {{ source.type || '----|----' }}</div>
-        <div class="btn-small waves-effect waves-light">CONFIG <i class="fas fa-wrench"></i></div>
+        <div class="btn-small waves-effect waves-light">CONFIGURATION <i class="fas fa-wrench"></i></div>
     </div>
 </div>
 </template>
@@ -23,14 +24,20 @@ export default {
         switch(_$this.source.type.toLowerCase()){
             case 'audio file':
                 (() => {
-                    console.log(_$this.source.data);
-                    window.document.querySelector('#inputVisual' + _$this.count).src = _$this.source.data;
+                    if ('object' == typeof _$this.source.data){
+                        window.document.querySelector('#inputVisual' + _$this.count).srcObject = _$this.source.data;
+                    } else if ('string' == typeof _$this.source.data) {
+                        window.document.querySelector('#inputVisual' + _$this.count).src = _$this.source.data;
+                    }
                 })();
                 break;
             case 'video file':
                 (() => {
-                    console.log(_$this.source.data);
-                    window.document.querySelector('#inputVisual' + _$this.count).src = _$this.source.data;
+                    if ('object' == typeof _$this.source.data){
+                        window.document.querySelector('#inputVisual' + _$this.count).srcObject = _$this.source.data;
+                    } else {
+                        window.document.querySelector('#inputVisual' + _$this.count).src = _$this.source.data;
+                    }
                 })();
                 break;
             case 'live audio input':

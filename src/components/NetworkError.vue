@@ -1,6 +1,6 @@
 <template>
-<div>
-    <span class="red-text">Network Error</span>
+<div class="div">
+    <h3 class="red-text">Network Error</h3>
 </div>
 </template>
 
@@ -10,6 +10,15 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.div{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.red-text{
+    font-weight: bold;
+}
 </style>
