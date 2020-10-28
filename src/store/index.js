@@ -1,6 +1,11 @@
 import { createStore } from 'vuex'
 
+const vuexLocal = require('./vuexLocal.js');
+
+console.log(vuexLocal.default.plugin);
+
 const $store = createStore({
+  plugins: [vuexLocal.default.plugin],
   state: {
     appName: 'Media-Bits',
     primaryHyperlinks: [
@@ -39,7 +44,7 @@ const $store = createStore({
             window.$store.commit('setOutputDestinations', file.outputDestinations);
           }).catch(err => window.M.toast({
             html: `Unable to process file because it has invalid content:  <br /> ${err}`,
-            classes: 'red rounded'
+            classes: 'bold red rounded'
           }));
         }
     },
@@ -48,8 +53,8 @@ const $store = createStore({
         onclick(){
           if (window.$store.state.inputSources.length < 1){
             window.M.toast({
-              html: 'nothing to save',
-              classes: 'teal rounded'
+              html: 'Nothing to save!',
+              classes: 'bold red rounded'
             });
           } else {
             let file = {
@@ -80,8 +85,8 @@ const $store = createStore({
             const successString = `file saved with name: ${fileName}`;
             window.M.toast({
               html: successString,
-              classes: 'teal z-depth-4 rounded'
-            })
+              classes: 'bold teal z-depth-4 rounded'
+            });
             console.info(successString);
           }
         }
@@ -160,48 +165,6 @@ const $store = createStore({
   modules: {
   }
 });
-
-// begin video file input
-window.VideoFileInput = class VideoFileInput {
-  constructor(file) {
-    if (!(this instanceof VideoFileInput)) {
-      return new VideoFileInput(file);
-    }
-    this.file = file;
-    return this;
-  }
-  toString() {
-    return "(Protected) [Object VideoFileInput]";
-  }
-  toJSON(){
-    const $this = this;
-    return {
-      file: $this.file
-    }
-  }
-}
-// end video file input
-
-// Begin Audio file Input
-window.AudioFileInput = class AudioFileInput {
-  constructor(file) {
-    if (!(this instanceof AudioFileInput)) {
-      return new AudioFileInput(file);
-    }
-    this.file = file;
-    return this;
-  }
-  toString() {
-    return "(Protected) [Object AudioFileInput]";
-  }
-  toJSON(){
-    const $this = this;
-    return {
-      file: $this.file
-    }
-  }
-}
-// End Audio File Input
 
 window.$store = $store;
 

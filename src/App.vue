@@ -1,5 +1,5 @@
 <template>
-  <div style="width: 100% !important; height:100% !important; margin: 0; padding: 0;">
+  <div class="teal" style="width: 100% !important; height:100% !important; margin: 0; padding: 0;">
   <div class="navbar-fixed">
     <nav class="teal">
       <div class="container">
@@ -43,6 +43,10 @@
 <style src="@/assets/css/fontawesome.min.css"></style>
 
 <style>
+*{
+  transition: 1.2s all;
+}
+
 ::-webkit-scrollbar{
   width: 10px !important;
 }
@@ -86,7 +90,7 @@
     right:-300px;
     perspective: 900;
     opacity:0;
-    transform: translateZ(1);
+    transform: translateZ(1000);
     -webkit-transform: translateZ(1);
     -moz-transform: translateZ(1);
     -ms-transform: translateZ(1);
@@ -109,6 +113,10 @@
   } */
   *{
     transition: all;
+  }
+
+  .bold{
+    font-weight: 900;
   }
 </style>
 

@@ -32,7 +32,7 @@ export default {
                             fr.readAsDataURL(file);
                         }).catch(e => window.M.toast({
               html: e,
-              classes: 'red rounded'
+              classes: 'bold red rounded'
             }))
                     }
                 },
@@ -58,7 +58,7 @@ export default {
                             fr.readAsDataURL(file);
                         }).catch(e => window.M.toast({
               html: e,
-              classes: 'red rounded'
+              classes: 'bold red rounded'
             }))
                     }
                 },
