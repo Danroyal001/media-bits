@@ -1,5 +1,5 @@
 <template>
-  <div style="width: 100% !important; height:100% !important; margin: 0; padding: 0;">
+  <div class="white" style="width: 100% !important; height:100% !important; margin: 0; padding: 0;">
   <div class="navbar-fixed">
     <nav class="teal">
       <div class="container">
@@ -35,6 +35,15 @@
     </transition>
   </router-view>
 
+  <!-- Begin Global Loader Modal -->
+<div id="global-loader-modal" class="modal">
+    <div class="modal-content">
+      <h4>Loading</h4>
+      <span><PreLoader /></span>
+    </div>
+</div>
+<!-- End Global Loader Modal -->
+
   </div>
 </template>
 
@@ -68,6 +77,9 @@
 
 .position-absolute{
   position: absolute !important;
+}
+#global-loader-modal, #global-loader-modal *{
+  overflow: hidden;
 }
 
 .flex-center{
@@ -123,6 +135,7 @@
 <script>
 import EditorMenu from '@/components/EditorMenu.vue';
 import * as M from '@/assets/js/materialize.min.js';
+import PreLoader from '@/components/PreLoader.vue';
 
 const workerString = `
 postMessage("I'm working before postMessage('ali').");
@@ -141,15 +154,18 @@ window.myWorker = new Worker(URL.createObjectURL(workerBlob));
 const JSZip = require('jszip');
 window.JSZip = JSZip;
 
+
 window.M = M;
 
 export default {
   name: 'App',
   mounted(){
-    return window.M.AutoInit();
+    window.M.AutoInit();
+    document.querySelector('#global-loader-modal').M_Modal.options.dismissible = false
   },
   components: {
-    EditorMenu
+    EditorMenu,
+    PreLoader
   }
 }
 </script>

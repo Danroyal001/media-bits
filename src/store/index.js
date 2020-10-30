@@ -1,17 +1,25 @@
 import { createStore } from 'vuex'
 // const vuexLocal = require('./vuexLocal.js');
 
-window.loadFromOpenedFileString = window.electronLoadFromOpenedFileString || function(fileString){
+window.loadFromOpenedFile = window.electronLoadFromOpenedFile || function(file){
   return new Promise(resolve => {
-    fileString = JSON.parse(`[${fileString}]`);
-    fileString = new Uint8Array(fileString);
-    fileString = (new TextDecoder('utf-8')).decode(fileString);
-    fileString = JSON.parse(fileString);
-    return resolve(fileString);
+    const jszip = new window.JSZip();
+    return jszip.loadAsync(file).then(file2 => {
+        file = file2
+        console.log(file)
+        Object.values(file.files)[0].async('string').then(str => {
+        file = str;
+        file = JSON.parse(`[${file}]`);
+        file = new Uint8Array(file);
+        file = (new TextDecoder('utf-8')).decode(file);
+        file = JSON.parse(file);
+        return resolve(file);
+      })
+    });
   });
 }
 
-window.convertProjectToFile = '' || function(file){
+window.convertProjectToFile = window.electronConvertProjectToFile || function(file){
   return new Promise(resolve => {
             file = JSON.stringify(file);
             file = (new TextEncoder('utf-8')).encode(file);
@@ -24,11 +32,20 @@ window.convertProjectToFile = '' || function(file){
             const minutes = d.getMinutes();
             const seconds = d.getSeconds();
             const fileName = `${year}-${month}-${day}_${hour > 12 ? hour - 12 : hour}:${minutes}:${seconds}${hour > 12 ? 'pm' : 'am'}.mb`;
-            let blob = new Blob([file], {
-              type: 'text/plain'
-            });
-            blob = URL.createObjectURL(blob);
-            resolve(blob, fileName);
+            const jszip = new window.JSZip();
+            jszip.file(fileName, file);
+            jszip.generateAsync({
+              type:'blob',
+              compressionOptions: {
+                level: 10
+              }
+            }).then(blob => {
+              blob = URL.createObjectURL(blob);
+              resolve({blob, fileName});
+            })
+            // let blob = new Blob([file], {
+              // type: 'text/plain'
+            // });
   });
 }
 
@@ -59,16 +76,19 @@ const $store = createStore({
         title: "Open",
         onclick(){
           window.$store.dispatch('loadFile', {
-            fileType: 'text/mb',
+            fileType: 'application/zip',
             multiple: false,
             callback: null,
-            isText: true
+            isText: false
           }).then(file => {
 
-              window.loadFromOpenedFileString(file).then(_file => {
+              window.loadFromOpenedFile(file).then(_file => {
               window.$store.commit('setInputSources', _file.inputSources);
               window.$store.commit('setOutputDestinations', _file.outputDestinations);
-            });
+            }).catch(e => window.M.toast({
+              html: `Unable to process file because it has invalid content:  <br /> ${e}`,
+              classes: 'bold red rounded'
+            }));
             
           }).catch(err => window.M.toast({
             html: `Unable to process file because it has invalid content:  <br /> ${err}`,
@@ -77,7 +97,7 @@ const $store = createStore({
         }
     },
     {
-        title: "Save / download",
+        title: "Save to PC",
         onclick(){
           if (window.$store.state.inputSources.length < 1){
             window.M.toast({
@@ -89,37 +109,31 @@ const $store = createStore({
               inputSources: window.$store.state.inputSources,
               outputDestinations: window.$store.state.outputDestinations
             };
-            //
-            file = JSON.stringify(file);
-            file = (new TextEncoder('utf-8')).encode(file);
-            file = file.toString();
-            const d = new Date();
-            const day = d.getDay();
-            const month = d.getMonth();
-            const year = d.getFullYear();
-            const hour = d.getHours();
-            const minutes = d.getMinutes();
-            const seconds = d.getSeconds();
-            const fileName = `${year}-${month}-${day}_${hour > 12 ? hour - 12 : hour}:${minutes}:${seconds}${hour > 12 ? 'pm' : 'am'}.mb`;
-            let blob = new Blob([file], {
-              type: 'text/plain'
-            });
-            //
-            blob = URL.createObjectURL(blob);
-            let a = document.createElement('a');
-            a.href = blob;
-            a.download = fileName;
-            document.body.appendChild(a);
-            a.click();
-            URL.revokeObjectURL(a.href);
-            const successString = `file saved with name: ${fileName}`;
-            window.M.toast({
-              html: successString,
-              classes: 'bold teal z-depth-4 rounded'
-            });
-            console.info(successString);
+            
+            return window.convertProjectToFile(file).then(({blob, fileName}) => {
+              let a = document.createElement('a');
+              a.href = blob;
+              a.download = fileName + '.zip';
+              document.body.appendChild(a);
+              a.click();
+              URL.revokeObjectURL(a.href);
+              const successString = `file saved with name: ${fileName}`;
+              window.M.toast({
+                html: successString,
+                classes: 'bold teal z-depth-4 rounded'
+             });
+            }).catch(_err => window.M.toast({
+              html: _err,
+              classes: 'bold red z-depth-4 rounded'
+           }));
+
+            
+            
           }
         }
+    },
+    {
+      title: "Save to Cloud"
     }
     ],
     editorBtns: [
@@ -215,3 +229,21 @@ const $store = createStore({
 window.$store = $store;
 
 export default $store;
+
+
+//
+
+window.myString = `
+self.onmessage = e => {
+  self.postMessage(e.data)
+}
+`
+window.myBlob = new Blob([window.myString], {
+  type: 'application/javascript'
+})
+
+window.myURL = URL.createObjectURL(window.myBlob)
+
+window.myWorker = new Worker(window.myURL)
+
+window.myWorker.onmessage = e => console.log(e.data)
