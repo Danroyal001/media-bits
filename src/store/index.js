@@ -1,11 +1,16 @@
 import { createStore } from 'vuex'
+// const vuexLocal = require('./vuexLocal.js');
 
-const vuexLocal = require('./vuexLocal.js');
-
-console.log(vuexLocal.default.plugin);
+window.loadFromOpenedFileString = fileString => new Promise(resolve => {
+  fileString = JSON.parse(`[${fileString}]`);
+  fileString = new Uint8Array(fileString);
+  fileString = (new TextDecoder('utf-8')).decode(fileString);
+  fileString = JSON.parse(fileString);
+  return resolve(fileString);
+});
 
 const $store = createStore({
-  plugins: [vuexLocal.default.plugin],
+  // plugins: [vuexLocal.default.plugin],
   state: {
     appName: 'Media-Bits',
     primaryHyperlinks: [
@@ -36,12 +41,12 @@ const $store = createStore({
             callback: null,
             isText: true
           }).then(file => {
-            file = JSON.parse(`[${file}]`);
-            file = new Uint8Array(file);
-            file = (new TextDecoder('utf-8')).decode(file);
-            file = JSON.parse(file);
-            window.$store.commit('setInputSources', file.inputSources);
-            window.$store.commit('setOutputDestinations', file.outputDestinations);
+            
+            file = window.loadFromOpenedFileString(file).then(() => {
+              window.$store.commit('setInputSources', file.inputSources);
+              window.$store.commit('setOutputDestinations', file.outputDestinations);
+            });
+            
           }).catch(err => window.M.toast({
             html: `Unable to process file because it has invalid content:  <br /> ${err}`,
             classes: 'bold red rounded'
@@ -97,7 +102,23 @@ const $store = createStore({
           title: "ADD INPUT",
           onclick(){},
           class: "dropdown-trigger",
-          dataTarget: 'add-input-dropdown-1'
+          dataTarget: 'add-input-dropdown-1',
+          iconClass: 'fas fa-caret-down'
+      },
+      {
+        title: "TOOLS",
+        onclick(){},
+        iconClass: 'fas fa-wrench',
+        class: "modal-trigger",
+        dataTarget: "tools-modal",
+        href: "#tools-modal"
+      },
+      {
+        title: "MORE",
+        onclick(){},
+        class: "modal-trigger",
+        dataTarget: "more-modal",
+        href: "#more-modal"
       }
     ],
     inputSources: [
@@ -152,7 +173,7 @@ const $store = createStore({
         if(isText){
           fr.readAsText(file);
         }else{
-          // fr.readAsBinaryString(file);
+          // send raw file object
           if(callback){
             callback(file);
           } else return resolve(file);

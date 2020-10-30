@@ -21,9 +21,26 @@
 <!-- End Middle section -->
 
 <div v-if="$store.state.inputSources.length > 0" class="horizontal-scroll black bottom-section">
-    <InputSource v-for="(source, index) in $store.state.inputSources" :key="index" :source="source" :count="(index + 1)"></InputSource>
+    <InputSource v-for="(source, index) in $store.state.inputSources" :key="'input-source-' + (index + 1)" :source="source" :count="(index + 1)"></InputSource>
 </div>
 <EditorBottomNoInput v-else />
+
+<!-- Begin Tools Modal -->
+<div id="tools-modal" class="modal">
+    <div class="modal-content">
+      <h4>Tools <i class="fa fa-wrench"></i></h4>
+      <!-- <select v-model="selectedMic" autofocus class="validate">
+      <option v-for="mic in microphones" :key="mic" @change="selectedMic = mic" class="teal-text">{{ mic.label }}1</option>
+      </select>
+      <br />
+      <p>Nothing showing? click on <code>GRANT PERMISSION</code></p> -->
+    </div>
+    <div class="modal-footer">
+      <!-- <a @click="requestCameraPermission" class="modal-close waves-effect waves-light red btn">GRANT PERMISSION</a>
+      <a @click="addLiveAudio" class="modal-close waves-effect waves-green btn">Add</a> -->
+    </div>
+</div>
+<!-- End Tools Modal -->
 
 <!-- Begin select microphone modal -->
 <div id="select-microphone-modal" class="modal">

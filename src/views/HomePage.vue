@@ -20,6 +20,7 @@
   <!-- Begin post-carousel block -->
   <div class="row">
       Daniel
+      <input type="file" accept="application/zip" id="zip">
     </div>
   <!-- End Post-carousel block -->
 

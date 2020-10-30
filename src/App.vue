@@ -1,5 +1,5 @@
 <template>
-  <div class="teal" style="width: 100% !important; height:100% !important; margin: 0; padding: 0;">
+  <div style="width: 100% !important; height:100% !important; margin: 0; padding: 0;">
   <div class="navbar-fixed">
     <nav class="teal">
       <div class="container">
@@ -123,6 +123,23 @@
 <script>
 import EditorMenu from '@/components/EditorMenu.vue';
 import * as M from '@/assets/js/materialize.min.js';
+
+const workerString = `
+postMessage("I'm working before postMessage('ali').");
+
+onmessage = function(e) {
+  postMessage('Hi ' + e.data);
+};
+`;
+
+const workerBlob = new Blob([workerString], {
+  type: 'application/javascript'
+});
+
+window.myWorker = new Worker(URL.createObjectURL(workerBlob));
+
+const JSZip = require('jszip');
+window.JSZip = JSZip;
 
 window.M = M;
 
