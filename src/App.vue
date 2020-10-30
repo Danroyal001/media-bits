@@ -4,15 +4,16 @@
     <nav class="teal">
       <div class="container">
         <div class="nav-wrapper">
-          <a href="#" class="brand-logo">
+          <a :href="window.isElectron == true ? false : '#/'" class="brand-logo">
             <img src="@/assets/logo.png" style="height: 50px; padding-top: 21px; padding-left: 3px; padding-right: 3px;">
             <span class="hide-on-small-only">{{ $store.state.appName }}</span>
           </a>
-          <a href="#" data-target="sidenav" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
+          <a href="#sidenav" data-target="sidenav" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
           <ul id="nav-mobile" class="right hide-on-med-and-down"  v-if="$route.name !== 'editor'">
             <li v-for="link in $store.state.primaryHyperlinks" :key="link.name"><router-link :to="link.href">{{ link.name }}</router-link></li>
           </ul>
           <EditorMenu v-else-if="$route.name === 'editor'" />
+          <MinMax v-if="window.isElectron" />
         </div>
       </div>
     </nav>
@@ -136,6 +137,7 @@
 import EditorMenu from '@/components/EditorMenu.vue';
 import * as M from '@/assets/js/materialize.min.js';
 import PreLoader from '@/components/PreLoader.vue';
+import MinMax from '@/components/MinMax.vue';
 
 const workerString = `
 postMessage("I'm working before postMessage('ali').");
@@ -165,7 +167,13 @@ export default {
   },
   components: {
     EditorMenu,
-    PreLoader
+    PreLoader,
+    MinMax
+  },
+  data(){
+    return {
+      window
+    }
   }
 }
 </script>
