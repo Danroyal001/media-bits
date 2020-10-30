@@ -1,13 +1,36 @@
 import { createStore } from 'vuex'
 // const vuexLocal = require('./vuexLocal.js');
 
-window.loadFromOpenedFileString = fileString => new Promise(resolve => {
-  fileString = JSON.parse(`[${fileString}]`);
-  fileString = new Uint8Array(fileString);
-  fileString = (new TextDecoder('utf-8')).decode(fileString);
-  fileString = JSON.parse(fileString);
-  return resolve(fileString);
-});
+window.loadFromOpenedFileString = window.electronLoadFromOpenedFileString || function(fileString){
+  return new Promise(resolve => {
+    fileString = JSON.parse(`[${fileString}]`);
+    fileString = new Uint8Array(fileString);
+    fileString = (new TextDecoder('utf-8')).decode(fileString);
+    fileString = JSON.parse(fileString);
+    return resolve(fileString);
+  });
+}
+
+window.convertProjectToFile = '' || function(file){
+  return new Promise(resolve => {
+            file = JSON.stringify(file);
+            file = (new TextEncoder('utf-8')).encode(file);
+            file = file.toString();
+            const d = new Date();
+            const day = d.getDay();
+            const month = d.getMonth();
+            const year = d.getFullYear();
+            const hour = d.getHours();
+            const minutes = d.getMinutes();
+            const seconds = d.getSeconds();
+            const fileName = `${year}-${month}-${day}_${hour > 12 ? hour - 12 : hour}:${minutes}:${seconds}${hour > 12 ? 'pm' : 'am'}.mb`;
+            let blob = new Blob([file], {
+              type: 'text/plain'
+            });
+            blob = URL.createObjectURL(blob);
+            resolve(blob, fileName);
+  });
+}
 
 const $store = createStore({
   // plugins: [vuexLocal.default.plugin],
@@ -41,10 +64,10 @@ const $store = createStore({
             callback: null,
             isText: true
           }).then(file => {
-            
-            file = window.loadFromOpenedFileString(file).then(() => {
-              window.$store.commit('setInputSources', file.inputSources);
-              window.$store.commit('setOutputDestinations', file.outputDestinations);
+
+              window.loadFromOpenedFileString(file).then(_file => {
+              window.$store.commit('setInputSources', _file.inputSources);
+              window.$store.commit('setOutputDestinations', _file.outputDestinations);
             });
             
           }).catch(err => window.M.toast({
@@ -66,6 +89,7 @@ const $store = createStore({
               inputSources: window.$store.state.inputSources,
               outputDestinations: window.$store.state.outputDestinations
             };
+            //
             file = JSON.stringify(file);
             file = (new TextEncoder('utf-8')).encode(file);
             file = file.toString();
@@ -80,6 +104,7 @@ const $store = createStore({
             let blob = new Blob([file], {
               type: 'text/plain'
             });
+            //
             blob = URL.createObjectURL(blob);
             let a = document.createElement('a');
             a.href = blob;
