@@ -17,7 +17,7 @@ export default {
     /*display: inline;*/
     position: fixed !important;
     right: 0px !important;
-    top: -5px !important;
+    top: -10px !important;
     margin: 0px !important;
     padding: 0px !important;
     font-size: 11px !important;

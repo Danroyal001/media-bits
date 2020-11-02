@@ -1,10 +1,10 @@
 <template>
-  <div class="white" style="width: 100% !important; height:100% !important; margin: 0; padding: 0;">
+  <div class="white" style="width: 100% !important; min-height: 600px !important; min-width: 1000px !important; height:100% !important; margin: 0; padding: 0;">
   <div class="navbar-fixed">
     <nav class="teal">
       <div class="container">
         <div class="nav-wrapper">
-          <a :href="window.isElectron == true ? false : '#/'" class="brand-logo">
+          <a :href="window.isElectron == true ? 'javascript:window.electron.shell.openExternal(window.location.href)' : '#/'" class="brand-logo">
             <img src="@/assets/logo.png" style="height: 50px; padding-top: 21px; padding-left: 3px; padding-right: 3px;">
             <span class="hide-on-small-only">{{ $store.state.appName }}</span>
           </a>
