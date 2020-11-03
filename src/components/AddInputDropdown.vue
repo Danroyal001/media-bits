@@ -1,6 +1,6 @@
 <template>
 <ul id='add-input-dropdown-1' class='dropdown-content'>
-    <li v-for="(btn, index) in data" :key="index"><a :class="btn.class" :href="btn.href" @click="btn.onclick">{{ btn.label }}</a></li>
+    <li v-for="(btn, index) in data" :key="index"><a :class="btn.class" class="bold" :href="btn.href" @click="btn.onclick">{{ btn.label }}</a></li>
 </ul>
 </template>
 
@@ -81,6 +81,36 @@ export default {
                 },
                 {
                     label: 'Remote Audio input',
+                    onclick(){}
+                },
+                {
+                    label: 'Image File',
+                    onclick(){}
+                },
+                {
+                    label: 'Image from URL',
+                    onclick(){}
+                },
+                {
+                    label: 'Desktop Capture',
+                    onclick(){
+                        window.navigator.mediaDevices.getDisplayMedia({
+                            video: {
+                                cursor: 'motion'
+                            },
+                            audio: true
+                        })
+                        window.$store.commit('addInputSource', {
+                                name: 'Desktop Capture',
+                                id: Math.random(),
+                                type: 'desktop capture',
+                                data: '',
+                                position: 0
+                            })
+                    }
+                },
+                {
+                    label: 'Layout Template',
                     onclick(){}
                 }
             ]

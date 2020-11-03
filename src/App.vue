@@ -1,5 +1,5 @@
 <template>
-  <div class="white" style="width: 100% !important; min-height: 600px !important; min-width: 1000px !important; height:100% !important; margin: 0; padding: 0;">
+  <div class="white" style="width: 100% !important; height:100% !important; margin: 0; padding: 0;">
   <div class="navbar-fixed">
     <nav class="teal">
       <div class="container">
@@ -53,6 +53,13 @@
 <style src="@/assets/css/fontawesome.min.css"></style>
 
 <style>
+
+/* Facilitate dragging behavior in eleectron */
+.nav-wrapper {
+  -webkit-user-select: none;
+  -webkit-app-region: drag;
+}
+
 *{
   transition: 1.2s all;
 }

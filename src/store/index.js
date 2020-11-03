@@ -2,6 +2,7 @@ import { createStore } from 'vuex'
 // const vuexLocal = require('./vuexLocal.js');
 
 window.loadFromOpenedFile = window.electronLoadFromOpenedFile || function(file){
+  document
   return new Promise(resolve => {
     const jszip = new window.JSZip();
     return jszip.loadAsync(file).then(file2 => {
