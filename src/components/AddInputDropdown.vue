@@ -104,7 +104,7 @@ export default {
                             })
                         }
                         if (window.isElectron){
-                            window.electron.desktopCapturer.getSources({types: ['screen', 'window']}).then(console.log).catch(console.log);
+                            //
                         } else {
                             window.navigator.mediaDevices.getDisplayMedia({
                                 video: {

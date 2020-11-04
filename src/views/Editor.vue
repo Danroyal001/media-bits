@@ -76,6 +76,8 @@
 </div>
 <!-- End select camera modal -->
 
+<ElectronDesktopCaptureModal />
+
 <!-- End Editor Root -->
 </div>
 </template>
@@ -84,6 +86,7 @@
 import OutputDestination from '@/components/OutputDestination.vue';
 import InputSource from '@/components/InputSource.vue';
 import EditorBottomNoInput from '@/components/EditorBottomNoInput.vue';
+import ElectronDesktopCaptureModal from '@/components/ElectronDesktopCaptureModal.vue';
 
 export default {
     name: 'Editor',
@@ -143,7 +146,8 @@ export default {
     components: {
         InputSource,
         OutputDestination,
-        EditorBottomNoInput
+        EditorBottomNoInput,
+        ElectronDesktopCaptureModal
   },
 }
 </script>
