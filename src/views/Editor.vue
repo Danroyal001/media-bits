@@ -47,13 +47,13 @@
     <div class="modal-content">
       <h4>Select Microphone <i class="fa fa-microphone"></i></h4>
       <select v-model="selectedMic" autofocus class="validate">
-          <option v-for="mic in microphones" :key="mic" @change="selectedMic = mic" class="teal-text">{{ mic.label }}1</option>
+          <option v-for="mic in microphones" :key="mic" @change="selectedMic = mic" :value="mic.deviceId" class="teal-text">{{ mic.label }}1</option>
       </select>
       <br />
       <p>Nothing showing? click on <code>GRANT PERMISSION</code></p>
     </div>
     <div class="modal-footer">
-      <a @click="requestCameraPermission" class="modal-close waves-effect waves-light red btn">GRANT PERMISSION</a>
+      <a @click="requestCameraPermission" class="modal-close waves-effect waves-light btn">GRANT PERMISSION</a>
       <a @click="addLiveAudio" class="modal-close waves-effect waves-green btn">Add</a>
     </div>
 </div>
@@ -64,13 +64,13 @@
     <div class="modal-content">
       <h4>Select Camera <i class="fa fa-camera"></i></h4>
       <select v-model="selectedCamera" autofocus class="validate">
-          <option v-for="camera in cameras" :key="camera" @changed="selectedCamera = camera" class="teal-text">{{ camera.label }}</option>
+          <option v-for="camera in cameras" :key="camera" @changed="selectedCamera = camera" :value="camera.deviceId" class="teal-text">{{ camera.label }}</option>
       </select>
       <br />
       <p>Nothing showing? click on <code>GRANT PERMISSION</code></p>
     </div>
     <div class="modal-footer">
-      <a @click="requestCameraPermission" class="modal-close waves-effect waves-light red btn">GRANT PERMISSION</a>
+      <a @click="requestCameraPermission" class="modal-close waves-effect waves-light btn">GRANT PERMISSION</a>
       <a @click="addLiveVideo" class="modal-close waves-effect waves-green btn">Add</a>
     </div>
 </div>
@@ -92,18 +92,18 @@ export default {
             middleSectionBtns: [],
             microphones: [],
             cameras: [],
-            selectedCamera: '',
-            selectedMic: ''
+            selectedCamera: {},
+            selectedMic: {}
         };
     },
     mounted(){
         const _$this = this;
-        setInterval(() => {
+        //setInterval(() => {
            window.navigator.mediaDevices.enumerateDevices().then(devices => {
-                _$this.cameras = devices.filter(device => device.kind === 'videoinput');
-                _$this.microphones = devices.filter(device => device.kind === 'audioinput');
+                _$this.cameras = [...devices.filter(device => device.kind === 'videoinput').map(i=>i)];
+                _$this.microphones = [...devices.filter(device => device.kind === 'audioinput').map(i=>i)];
            });
-        }, 1000);
+        //}, 1000);
     },
     methods: {
         requestCameraPermission(){
@@ -126,7 +126,9 @@ export default {
         addLiveVideo(){
             window.navigator.mediaDevices.getUserMedia({
                 audio: false,
-                video: true
+                video: {
+                    torch: true
+                }
             }).then(stream => {
                 window.$store.commit('addInputSource', {
                                 name: 'Camera',

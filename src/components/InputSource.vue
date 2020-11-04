@@ -1,15 +1,16 @@
 <template>
 <div class="horizontal-scroll-child input-source">
     <div class="header teal">
-        <span class="white-text">Input Source {{ count }} &nbsp; <i @click="$store.commit('removeInputSource', source.id)" class="btn-small red white-text waves-effect waves-light close-btn">&times;</i></span>
+        <span class="white-text">Input Source {{ count }} &nbsp; <i @click="removeSource" class="btn-small red white-text waves-effect waves-light close-btn">&times;</i></span>
     </div>
     <div class="body black">
         <video v-if="source.type.includes('video')" :id="'inputVisual' + count" :muted="source.type.includes('video') ? true : false" autoplay controls :title="source.title" class="fill-parent"></video>
         <audio v-else-if="source.type.includes('audio')" :id="'inputVisual' + count" :muted="source.type.includes('video') ? true : false" autoplay controls :title="source.title" class="fill-parent"></audio>
+        <img v-else-if="source.type.includes('image')" :id="'inputVisual' + count" :title="source.title" class="fill-parent" />
     </div>
     <div class="footer black">
         <!-- <div class="btn-small teal truncate">NAME: {{ source.name.substring(0, 24) + '...' || '----|----' }}</div> -->
-        <marquee speed="2" class="btn-small teal truncate">NAME: {{ source.name || '----|----' }}</marquee>
+        <marquee scrollspeed="200" class="btn-small teal truncate">NAME: {{ source.name || '----|----' }}</marquee>
         <div class="btn-small teal">TYPE: {{ source.type || '----|----' }}</div>
         <div class="btn-small waves-effect waves-light">CONFIGURATION <i class="fas fa-wrench"></i></div>
     </div>
@@ -19,37 +20,41 @@
 <script>
 export default {
     name: 'InputSource',
+    methods: {
+        removeSource(){
+            const _$this = this;
+            return window.$store.commit('removeInputSource', _$this.source.id);
+        }
+    },
     mounted(){
         let _$this = this;
+        const _$elem = window.document.querySelector('#inputVisual' + _$this.count);
         switch(_$this.source.type.toLowerCase()){
             case 'audio file':
-                (() => {
-                    if ('object' == typeof _$this.source.data){
-                        window.document.querySelector('#inputVisual' + _$this.count).srcObject = _$this.source.data;
-                    } else if ('string' == typeof _$this.source.data) {
-                        window.document.querySelector('#inputVisual' + _$this.count).src = _$this.source.data;
-                    }
-                })();
+                (() => _$elem.src = _$this.source.data)();
                 break;
             case 'video file':
-                (() => {
-                    if ('object' == typeof _$this.source.data){
-                        window.document.querySelector('#inputVisual' + _$this.count).srcObject = _$this.source.data;
-                    } else {
-                        window.document.querySelector('#inputVisual' + _$this.count).src = _$this.source.data;
-                    }
-                })();
+                (() => _$elem.src = _$this.source.data)();
                 break;
             case 'live audio input':
-                (() => {})();
+                (() => _$elem.srcObject = _$this.source.data)();
                 break;
             case 'live video input':
-                (() => {})();
+                (() => _$elem.srcObject = _$this.source.data)();
                 break;
             case 'remote video input':
                 (() => {})();
                 break;
-            case 'remote audio input':
+            case 'image file':
+                (() => {})();
+                break;
+            case 'image from url':
+                (() => {})();
+                break;
+            case 'desktop capture (video)':
+                (() => _$elem.srcObject = _$this.source.data)();
+                break;
+            case 'layout template':
                 (() => {})();
                 break;
             default:

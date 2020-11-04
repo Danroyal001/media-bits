@@ -13,7 +13,7 @@
             <li v-for="link in $store.state.primaryHyperlinks" :key="link.name"><router-link :to="link.href">{{ link.name }}</router-link></li>
           </ul>
           <EditorMenu v-else-if="$route.name === 'editor'" />
-          <MinMax v-if="window.isElectron" />
+          <MinMax v-if="window.isElectron" /> 
         </div>
       </div>
     </nav>

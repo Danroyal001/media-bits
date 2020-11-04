@@ -92,21 +92,31 @@ export default {
                     onclick(){}
                 },
                 {
-                    label: 'Desktop Capture',
+                    label: 'Desktop Capture (Video)',
                     onclick(){
-                        window.navigator.mediaDevices.getDisplayMedia({
-                            video: {
-                                cursor: 'motion'
-                            },
-                            audio: true
-                        })
-                        window.$store.commit('addInputSource', {
-                                name: 'Desktop Capture',
+                        const addSource = stream => {
+                            window.$store.commit('addInputSource', {
+                                name: 'Desktop Capture (Video)',
                                 id: Math.random(),
-                                type: 'desktop capture',
-                                data: '',
+                                type: 'desktop capture (video)',
+                                data: stream,
                                 position: 0
                             })
+                        }
+                        if (window.isElectron){
+                            window.electron.desktopCapturer.getSources({types: ['screen', 'window']}).then(console.log).catch(console.log);
+                        } else {
+                            window.navigator.mediaDevices.getDisplayMedia({
+                                video: {
+                                    cursor: 'motion'
+                                },
+                                audio: false
+                            }).then(stream => addSource(stream)).catch(e => window.M.toast({
+                                    html: `${e}`,
+                                    classes: 'bold red rounded'
+                                }))
+                        }
+                        
                     }
                 },
                 {

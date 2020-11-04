@@ -9,7 +9,7 @@
       <router-link to="/editor" class="btn waves-effect waves-light teal white-text">GET STARTED</router-link>
     </div>
 
-    <div v-for="x in 4" :key="x" class="carousel-item">
+    <div v-for="x in 4" :key="x" :id="'homepage-carousel-item-' + x" class="carousel-item">
       <img src="@/assets/img/1.png">
     </div>
 
