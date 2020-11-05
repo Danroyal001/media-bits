@@ -11,3 +11,16 @@
 [info] https://accounts.google.com/o/oauth2/auth?client_id=563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com&scope=email%20openid%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloudplatformprojects.readonly%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Ffirebase%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform&response_type=code&state=392000026&redirect_uri=http%3A%2F%2Flocalhost%3A9005&login_hint=danroyaleffiong%40gmail.com
 [info] 
 [info] Waiting for authentication...
+[debug] [2020-11-05T11:29:33.979Z] ----------------------------------------------------------------------
+[debug] [2020-11-05T11:29:34.048Z] Command:       /usr/bin/node /usr/local/bin/firebase login --reauth
+[debug] [2020-11-05T11:29:34.060Z] CLI Version:   8.13.1
+[debug] [2020-11-05T11:29:34.069Z] Platform:      linux
+[debug] [2020-11-05T11:29:34.070Z] Node Version:  v10.19.0
+[debug] [2020-11-05T11:29:34.190Z] Time:          Thu Nov 05 2020 12:29:34 GMT+0100 (West Africa Standard Time)
+[debug] [2020-11-05T11:29:34.191Z] ----------------------------------------------------------------------
+[debug] [2020-11-05T11:29:34.192Z] 
+[info] 
+[info] Visit this URL on this device to log in:
+[info] https://accounts.google.com/o/oauth2/auth?client_id=563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com&scope=email%20openid%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloudplatformprojects.readonly%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Ffirebase%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform&response_type=code&state=730800775&redirect_uri=http%3A%2F%2Flocalhost%3A9005&login_hint=danroyaleffiong%40gmail.com
+[info] 
+[info] Waiting for authentication...

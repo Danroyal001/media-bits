@@ -34,15 +34,16 @@ export default {
     },
     //props: ['streamSources'],
     beforeCreate(){
-        window.electron.desktopCapturer.getSources({types: ['screen', 'window']}).then(sources => {
+        if(window.isElectron){
+            window.electron.desktopCapturer.getSources({types: ['screen', 'window']}).then(sources => {
             this.streamSources = sources
             this.mounted = true;
         }).catch(console.log);
+        }
     },
     methods: {
         resolve(){
             const selected = this.selectedStream;
-            this.$emit('data', selected);
             return window.navigator.mediaDevices.getUserMedia({
           audio: false,
           video: {
