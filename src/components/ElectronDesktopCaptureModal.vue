@@ -55,13 +55,16 @@ export default {
               maxHeight: 720
             }
           }
-        }).then(stream => window.$store.commit('addInputSource', {
+        }).then(stream => {
+            window.$store.commit('addInputSource', {
                                 name: 'Desktop Capture (Video)',
                                 id: Math.random(),
                                 type: 'desktop capture (video)',
                                 data: stream,
                                 position: 0
-                            })).catch(e => window.M.toast({
+                            });
+                            return setTimeout(window.focus, 1000);
+        }).catch(e => window.M.toast({
                                     html: `${e}`,
                                     classes: 'bold red rounded'
                                 }))

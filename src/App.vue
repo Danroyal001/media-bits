@@ -55,9 +55,12 @@
 <style>
 
 /* Facilitate dragging behavior in eleectron */
-.nav-wrapper {
+.brand-logo{
   -webkit-user-select: none;
   -webkit-app-region: drag;
+}
+nav, .minmax-group{
+  -webkit-app-reqion: no-drag !important;
 }
 
 *{
