@@ -41,8 +41,30 @@ export default {
     },
     methods: {
         resolve(){
-            this.$emit('data', this.selectedStream);
-            return window.navigator.mediaDevices.getUserMedia().then().catch(console.error.bind(console))
+            const selected = this.selectedStream;
+            this.$emit('data', selected);
+            return window.navigator.mediaDevices.getUserMedia({
+          audio: false,
+          video: {
+            mandatory: {
+              chromeMediaSource: 'desktop',
+              chromeMediaSourceId: selected,
+              minWidth: 1280,
+              maxWidth: 1280,
+              minHeight: 720,
+              maxHeight: 720
+            }
+          }
+        }).then(stream => window.$store.commit('addInputSource', {
+                                name: 'Desktop Capture (Video)',
+                                id: Math.random(),
+                                type: 'desktop capture (video)',
+                                data: stream,
+                                position: 0
+                            })).catch(e => window.M.toast({
+                                    html: `${e}`,
+                                    classes: 'bold red rounded'
+                                }))
         }
     }
 }
