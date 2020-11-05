@@ -1,4 +1,4 @@
-    <template>
+<template>
 <div class="editor-root">
 <!-- Start Editor Root -->
 
@@ -9,7 +9,7 @@
             <div class="teal white-text top-section-header">PREVIEW</div>
             <canvas class="top-section-view black"></canvas>
         </div>
-        <OutputDestination v-for="(output, index) in 3" :key="index" :id="output.id" :index="index" />
+        <OutputDestination v-for="(output, index) in 1" :key="index" :id="output.id" :index="index" />
     </div>
 </div>
 <!-- End Top Section -->

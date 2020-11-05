@@ -1,44 +1,13 @@
-[debug] [2020-11-04T09:50:17.228Z] ----------------------------------------------------------------------
-[debug] [2020-11-04T09:50:17.332Z] Command:       /usr/bin/node /usr/local/bin/firebase deploy --only hosting
-[debug] [2020-11-04T09:50:17.342Z] CLI Version:   8.13.1
-[debug] [2020-11-04T09:50:17.343Z] Platform:      linux
-[debug] [2020-11-04T09:50:17.344Z] Node Version:  v10.19.0
-[debug] [2020-11-04T09:50:17.361Z] Time:          Wed Nov 04 2020 10:50:17 GMT+0100 (West Africa Standard Time)
-[debug] [2020-11-04T09:50:17.362Z] ----------------------------------------------------------------------
-[debug] [2020-11-04T09:50:17.363Z] 
-[debug] [2020-11-04T09:50:17.547Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2020-11-04T09:50:17.550Z] > authorizing via signed-in user
-[debug] [2020-11-04T09:50:17.558Z] [iam] checking project media-bits for permissions ["firebase.projects.get","firebasehosting.sites.update"]
-[debug] [2020-11-04T09:50:17.594Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
-[debug] [2020-11-04T09:50:17.597Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
- <request body omitted>
-[debug] [2020-11-04T09:51:24.064Z] [iam] error while checking permissions, command may fail: FirebaseError: Authentication Error: Your credentials are no longer valid. Please run firebase login --reauth
-
-For CI servers and headless environments, generate a new token with firebase login:ci
-[debug] [2020-11-04T09:51:24.082Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
-[debug] [2020-11-04T09:51:24.086Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
- <request body omitted>
-[debug] [2020-11-04T09:51:44.136Z] Authentication Error: Your credentials are no longer valid. Please run firebase login --reauth
-
-For CI servers and headless environments, generate a new token with firebase login:ci
-[debug] [2020-11-04T09:51:44.165Z] FirebaseError: Authentication Error: Your credentials are no longer valid. Please run firebase login --reauth
-
-For CI servers and headless environments, generate a new token with firebase login:ci
-    at Object.<anonymous> (/usr/local/lib/node_modules/firebase-tools/lib/auth.js:23:32)
-    at Module._compile (internal/modules/cjs/loader.js:778:30)
-    at Object.Module._extensions..js (internal/modules/cjs/loader.js:789:10)
-    at Module.load (internal/modules/cjs/loader.js:653:32)
-    at tryModuleLoad (internal/modules/cjs/loader.js:593:12)
-    at Function.Module._load (internal/modules/cjs/loader.js:585:3)
-    at Module.require (internal/modules/cjs/loader.js:692:17)
-    at require (internal/modules/cjs/helpers.js:25:18)
-    at Object.<anonymous> (/usr/local/lib/node_modules/firebase-tools/lib/init/features/hosting/github.js:20:16)
-    at Module._compile (internal/modules/cjs/loader.js:778:30)
-    at Object.Module._extensions..js (internal/modules/cjs/loader.js:789:10)
-    at Module.load (internal/modules/cjs/loader.js:653:32)
-    at tryModuleLoad (internal/modules/cjs/loader.js:593:12)
-    at Function.Module._load (internal/modules/cjs/loader.js:585:3)
-    at Module.require (internal/modules/cjs/loader.js:692:17)
-    at require (internal/modules/cjs/helpers.js:25:18)
-[error] 
-[error] Error: Failed to get Firebase project media-bits. Please make sure the project exists and your account has permission to access it.
+[debug] [2020-11-05T08:47:27.017Z] ----------------------------------------------------------------------
+[debug] [2020-11-05T08:47:27.097Z] Command:       /usr/bin/node /usr/local/bin/firebase login --reauth
+[debug] [2020-11-05T08:47:27.136Z] CLI Version:   8.13.1
+[debug] [2020-11-05T08:47:27.137Z] Platform:      linux
+[debug] [2020-11-05T08:47:27.137Z] Node Version:  v10.19.0
+[debug] [2020-11-05T08:47:27.742Z] Time:          Thu Nov 05 2020 09:47:27 GMT+0100 (West Africa Standard Time)
+[debug] [2020-11-05T08:47:27.743Z] ----------------------------------------------------------------------
+[debug] [2020-11-05T08:47:27.743Z] 
+[info] 
+[info] Visit this URL on this device to log in:
+[info] https://accounts.google.com/o/oauth2/auth?client_id=563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com&scope=email%20openid%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloudplatformprojects.readonly%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Ffirebase%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform&response_type=code&state=392000026&redirect_uri=http%3A%2F%2Flocalhost%3A9005&login_hint=danroyaleffiong%40gmail.com
+[info] 
+[info] Waiting for authentication...

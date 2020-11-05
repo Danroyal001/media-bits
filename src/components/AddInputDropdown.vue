@@ -104,7 +104,7 @@ export default {
                             })
                         }
                         if (window.isElectron){
-                            //
+                            document.querySelector('#electron-desktop-capture-modal').M_Modal.open()
                         } else {
                             window.navigator.mediaDevices.getDisplayMedia({
                                 video: {
