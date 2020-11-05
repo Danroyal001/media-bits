@@ -36,8 +36,7 @@
       <p>Nothing showing? click on <code>GRANT PERMISSION</code></p> -->
     </div>
     <div class="modal-footer">
-      <!-- <a @click="requestCameraPermission" class="modal-close waves-effect waves-light red btn">GRANT PERMISSION</a>
-      <a @click="addLiveAudio" class="modal-close waves-effect waves-green btn">Add</a> -->
+      <button class="btn-small red waves-effect waves-light modal-close">CLOSE</button>
     </div>
 </div>
 <!-- End Tools Modal -->
@@ -53,6 +52,7 @@
       <p>Nothing showing? click on <code>GRANT PERMISSION</code></p>
     </div>
     <div class="modal-footer">
+      <button class="btn-small red waves-effect waves-light modal-close">CLOSE</button>
       <a @click="requestCameraPermission" class="modal-close waves-effect waves-light btn">GRANT PERMISSION</a>
       <a @click="addLiveAudio" class="modal-close waves-effect waves-green btn">Add</a>
     </div>
@@ -70,6 +70,7 @@
       <p>Nothing showing? click on <code>GRANT PERMISSION</code></p>
     </div>
     <div class="modal-footer">
+      <button class="btn-small red waves-effect waves-light modal-close">CLOSE</button>
       <a @click="requestCameraPermission" class="modal-close waves-effect waves-light btn">GRANT PERMISSION</a>
       <a @click="addLiveVideo" class="modal-close waves-effect waves-green btn">Add</a>
     </div>

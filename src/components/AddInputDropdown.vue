@@ -76,11 +76,11 @@ export default {
                     class: 'modal-trigger'
                 },
                 {
-                    label: 'Remote Video Input',
+                    label: 'Remote Input from URL',
                     onclick(){}
                 },
                 {
-                    label: 'Remote Audio input',
+                    label: 'Audio Input from URL',
                     onclick(){}
                 },
                 {

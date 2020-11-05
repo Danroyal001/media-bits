@@ -5,7 +5,7 @@
     </div>
     <div class="body black">
         <video v-if="source.type.includes('video')" :id="'inputVisual' + count" :muted="source.type.includes('video') ? true : false" autoplay controls :title="source.title" class="fill-parent"></video>
-        <audio v-else-if="source.type.includes('audio')" :id="'inputVisual' + count" :muted="source.type.includes('video') ? true : false" autoplay controls :title="source.title" class="fill-parent"></audio>
+        <audio v-else-if="source.type.includes('audio')" :id="'inputVisual' + count" autoplay controls :title="source.title" class="fill-parent"></audio>
         <img v-else-if="source.type.includes('image')" :id="'inputVisual' + count" :title="source.title" class="fill-parent" />
     </div>
     <div class="footer black">
