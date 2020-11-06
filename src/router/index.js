@@ -51,7 +51,26 @@ const routes = [
     path: '/contact',
     name: 'contact',
     component: defineAsyncComponent({
-      loader: () => import('@/views/Contact.vue'),
+      loader: () => import('@/views/ContactPage.vue'),
+      loadingComponent: PreLoader,
+      errorComponent: NetworkError,
+      delay: 1,
+      timeout: 120000,
+      suspensible: false,
+      onError(error, retry, fail, attempts) {
+        if (error.message.match(/fetch/) && attempts <= 3) {
+          retry()
+        } else {
+          fail()
+        }
+      },
+    })
+  },
+  {
+    path: '/download',
+    name: 'download',
+    component: defineAsyncComponent({
+      loader: () => import('@/views/DownloadPage.vue'),
       loadingComponent: PreLoader,
       errorComponent: NetworkError,
       delay: 1,

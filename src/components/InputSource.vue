@@ -4,8 +4,8 @@
         <span class="white-text">Input Source {{ count }} &nbsp; <i @click="removeSource" class="btn-small red white-text waves-effect waves-light close-btn">&times;</i></span>
     </div>
     <div class="body black">
-        <video v-if="source.type.includes('video')" :id="'inputVisual' + count" :muted="source.type.includes('video') ? true : false" autoplay controls :title="source.title" class="fill-parent"></video>
-        <audio v-else-if="source.type.includes('audio')" :id="'inputVisual' + count" autoplay controls :title="source.title" class="fill-parent"></audio>
+        <video v-if="source.type.includes('video')" :id="'inputVisual' + count" muted loop autoplay controls :title="source.title" class="fill-parent"></video>
+        <audio v-else-if="source.type.includes('audio')" :id="'inputVisual' + count" loop autoplay controls :title="source.title" class="fill-parent"></audio>
         <img v-else-if="source.type.includes('image')" :id="'inputVisual' + count" :title="source.title" class="fill-parent" />
     </div>
     <div class="footer black">
@@ -42,7 +42,10 @@ export default {
             case 'live video input':
                 (() => _$elem.srcObject = _$this.source.data)();
                 break;
-            case 'remote video input':
+            case 'video input from url':
+                (() => {})();
+                break;
+            case 'audio input from url':
                 (() => {})();
                 break;
             case 'image file':
@@ -51,7 +54,7 @@ export default {
             case 'image from url':
                 (() => {})();
                 break;
-            case 'desktop capture (video)':
+            case 'live desktop capture (video)':
                 (() => _$elem.srcObject = _$this.source.data)();
                 break;
             case 'layout template':

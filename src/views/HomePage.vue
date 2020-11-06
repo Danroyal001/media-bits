@@ -16,13 +16,156 @@
     
   </div>
   <!-- End Carousel -->
-
-  <!-- Begin post-carousel block -->
-  <div class="row">
-      Daniel
-      <input type="file" accept="application/zip" id="zip">
+  
+  <!-- after carousel -->
+  <div class="teal">
+    <br />
+    <div class="container center">
+      <a class="m-y-4 btn white black-text bold waves-effect waves-teal">Pricing</a> &nbsp;
+      <a class="m-y-4 btn white black-text bold waves-effect waves-teal">View Features</a> &nbsp;
+      <a class="m-y-4 btn white black-text bold waves-effect waves-teal">Watch demo video</a> &nbsp;    
     </div>
-  <!-- End Post-carousel block -->
+    <br />
+  </div>
+  <!-- end after carousel -->
+
+  <div class="row white-text">
+    <div class="col s12 m6 l4 grid-after-carousel center centered teal">
+      <br />
+      <span>Propriety Software - Daniel Effiong</span>
+      <br />
+      <br />
+      <a href="https://daniel-effiong.web.app" class="btn waves-effect wave-light white teal-text bold">Find out more</a>
+      <br />
+      <br />
+    </div>
+    <div class="col s12 m6 l4 grid-after-carousel center centered teal">
+      <br />
+      <span>Version 1.0 is out</span>
+      <br />
+      <br />
+      <router-link to="/download" class="btn waves-effect wave-light white teal-text bold">Download / view version history</router-link>
+      <br />
+      <br />
+    </div>
+    <div class="col s12 m12 l4 grid-after-carousel center centered teal">
+      <br />
+      <span>Watch tutorial videos</span>
+      <br />
+      <br />
+      <a href="https://daniel-effiong.web.app" class="btn waves-effect wave-light white teal-text bold">Watch now</a>
+      <br />
+      <br />
+    </div>
+  </div>
+
+  <div class="center">
+    <h2> <img src="@/assets/logo.png" height="50" alt="Media-Bits Logo"> Media-Bits</h2>
+  </div>
+
+  <div class="container">
+    <h5 class="center">Next generation multimedia streaming, editing, mixing, projection and <wbr />video-conferencing<wbr /> software</h5>
+    <br />
+    <p>Media-Bits is a live multimedia streaming, editing, switching, mixing, projection and <wbr />video-conferencing<wbr /> software that utilises the latest advances in computer software and hardware to provide advanced multimedia capabilities, a task previously only possible on expensive dedicated hardware.</p>
+    <p>Media-Bits also functions as live streaming software that allows you to publish your live productions directly to the Internet!.</p>
+    <p>Media-Bits runs on Windows 7, Windows 8, Windows 10, Linux, Mac OSX and in the Browser.</p>
+    <p>Media-Bits is a complete live video production software solution with features including <b>LIVE</b> mixing, switching, recording and streaming of SD, full HD and 4K video sources including cameras, video files, DVDs, images, verses Powerpoint and much much more.</p>
+    <p>Whether you are looking to produce big budget live concert productions, sporting events, Church services or small webcasts, then Media-Bits is for you.</p>
+    <p>For a full list of what is possible with Media-Bits, <a href="javascript:(() => document.querySelector('#features').scrollIntoView(true))()">click here</a> to view all features.</p>
+    <p><b>Download a trial today and use a fully functional version of Media-Bits for 14 days free of charge.</b></p>
+  </div>
+  <br />
+  <div class="center">
+    <router-link to="/download" class="btn teal waves-effect waves-light">DOWNLOAD</router-link>
+    <br />
+    OR
+    <br />
+    <router-link  to="/editor" class="btn teal waves-effect waves-light">Get started directly in your browser</router-link>
+  </div>
+
+  <br />
+  <br />
+  <br />
+
+  <div id="features" class="teal white-text">
+    <br />
+    <br />
+    <h3 class="center">Welcome to a world of possibilities!</h3>
+    <br />
+    <div class="center"><span style="font-size: 30px; padding: 16px; padding-top: 16px;" class="center white teal-text bold">Media-Bits Features</span></div>
+    <br />
+    <h1 class="center">...</h1>
+    <br />
+  </div>
+
+  <br />
+  <br />
+  <br />
+  <div class="center">
+    <a :target="window.isElectron ? false : '_blank'" :href="window.isElectron ? 'javascript:window.electron.shell.openExternal(\'https://daniel-effiong.web.app/#/projects\')' : 'https://daniel-effiong.web.app/#/projects'" class="btn teal waves-efect waves-light center">SEE MORE SOFTWARES FROM  DANIEL EFFIONG</a>
+  </div>
+  <br />
+  <br />
+  <br />
+
+  <br />
+  <br />
+
+  <div class="container">
+    <h3 class="center">Latest News</h3>
+    <!-- Begin Latest News carousel -->
+    <div class="carousel carousel-slider center black-text">
+      <div v-for="x in 4" :key="x" :id="'latest-news-carousel-item-' + x" class="carousel-item teal">
+        <img src="@/assets/img/1.png">
+      </div>
+    </div>
+    <!-- End Latest News Carousel -->
+  </div>
+
+  <br />
+  <br />
+  <br />
+
+  <div class="container row before-header">
+    <div class="col s12 m6 l6">
+      <span>Media-Bit Blog</span>
+      <br />
+      <router-link to="/blog" class="btn teal waves-effect waves-light">Visit our blog for more news</router-link>
+    </div>
+    <div class="col s12 m6 l6">
+      <span>Subscribe to our newsletter</span>
+      <br />
+      <input type="email" placeholder="john@doe.com">
+    </div>
+  </div>
+
+  <br />
+
+   <footer class="page-footer teal">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text"><img src="@/assets/logo.png" height="50px"> Media-BIts</h5>
+                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Links</h5>
+                <ul>
+                  <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+            &copy; {{ year }} Copyright - Media-Bits
+            <a class="grey-text text-lighten-4 right" :href="window.isElectron ? 'window.shell.openExternal(\'https://daniel-effiong.web.app\')' : 'https://daniel-effiong.web.app'">More Links</a>
+            </div>
+          </div>
+        </footer>
 
 <!-- Root -->
 </div>
@@ -38,7 +181,8 @@ export default {
   },
   data(){
     return {
-      carouselInstance: {}
+      carouselInstance: {},
+      window
     }
   },
   created(){
@@ -47,19 +191,36 @@ export default {
   },
   mounted(){
 
-    var elems = document.querySelectorAll('.carousel');
+    const fn = () => {
+      var elems = document.querySelectorAll('.carousel');
      this.carouselInstance = window.M.Carousel.init(elems, {
        fullWidth:true,
        indicators:true,
        dist: -100,
       //  numVisible: 3
      });
+    }
 
-     setInterval(() => this.carouselInstance[0].next(), 3500);
+    fn();
+
+    window.addEventListener('resize', fn);
+
+     setInterval(() => this.carouselInstance[0].next(), 5000);
   }
 }
 </script>
 
 <style>
-
+.grid-after-carousel{
+  border-top: thin solid white;
+  border-bottom: thin solid white;
+}
+.before-header span{
+  font-size: 30px;
+  font-weight: 900;
+}
+.before-header input[type=email]{
+  caret-color: #009688;
+  color: #009688;
+}
 </style>

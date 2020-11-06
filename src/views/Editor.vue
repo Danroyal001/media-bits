@@ -97,7 +97,8 @@ export default {
             microphones: [],
             cameras: [],
             selectedCamera: {},
-            selectedMic: {}
+            selectedMic: {},
+            hasGottenDevices: false
         };
     },
     mounted(){
@@ -106,12 +107,14 @@ export default {
            window.navigator.mediaDevices.enumerateDevices().then(devices => {
                 _$this.cameras = [...devices.filter(device => device.kind === 'videoinput').map(i=>i)];
                 _$this.microphones = [...devices.filter(device => device.kind === 'audioinput').map(i=>i)];
+                _$this.hasGottenDevices = true;
+                window.M.AutoInit();
            });
         //}, 1000);
     },
     methods: {
         requestCameraPermission(){
-            window/navigator.mediaDevices.getUserMedia({video:true,audio:true}).then(stream => stream.getTracks().forEach(track => track.stop()));
+            window.navigator.mediaDevices.getUserMedia({video:true,audio:true}).then(stream => stream.getTracks().forEach(track => track.stop()));
         },
         addLiveAudio(){
             window.navigator.mediaDevices.getUserMedia({

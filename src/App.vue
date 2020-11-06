@@ -1,5 +1,5 @@
 <template>
-  <div class="white" style="width: 100% !important; height:100% !important; margin: 0; padding: 0;">
+  <div class="white" style="width: 100% !important; height:100% !important; margin: 0; padding: 0; overflow-x: hidden;">
   <div class="navbar-fixed">
     <nav class="teal">
       <div class="container">
@@ -135,11 +135,15 @@ nav, .minmax-group{
   to{left:300px;opacity:0}
   } */
   *{
-    transition: all;
+    transition: all 1.2s;
+    scroll-behavior: smooth;
   }
-
   .bold{
     font-weight: 900;
+  }
+  .m-y-4{
+    margin-top: 4px;
+    margin-bottom: 4px;
   }
 </style>
 

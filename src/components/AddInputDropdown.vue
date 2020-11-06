@@ -76,7 +76,7 @@ export default {
                     class: 'modal-trigger'
                 },
                 {
-                    label: 'Remote Input from URL',
+                    label: 'Video Input from URL',
                     onclick(){}
                 },
                 {
@@ -92,13 +92,13 @@ export default {
                     onclick(){}
                 },
                 {
-                    label: 'Desktop Capture (Video)',
+                    label: 'Live Desktop Capture (Video)',
                     onclick(){
                         const addSource = stream => {
                             window.$store.commit('addInputSource', {
-                                name: 'Desktop Capture (Video)',
+                                name: 'Live Desktop Capture (Video)',
                                 id: Math.random(),
-                                type: 'desktop capture (video)',
+                                type: 'live desktop capture (video)',
                                 data: stream,
                                 position: 0
                             })

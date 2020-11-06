@@ -68,6 +68,10 @@ const $store = createStore({
         href: '/subscribtion'
       },
       {
+        name: 'DOWNLOAD',
+        href: '/download'
+      },
+      {
         name: 'CONTACT US',
         href: '/contact'
       }
