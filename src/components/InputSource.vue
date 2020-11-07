@@ -1,6 +1,6 @@
 <template>
 <div @click="setFocusedInputSource" class="horizontal-scroll-child input-source">
-    <div :class="['header', $store.state.focusedInputSource === count - 1 ? 'orange black-text' : 'teal']">
+    <div :class="['header', $store.state.focusedInputSource === count - 1 ? 'orange black-text' : 'teal white-text']">
         <span>Input Source {{ count }} &nbsp; <i @click="removeSource" class="btn-small red white-text waves-effect waves-light close-btn">&times;</i></span>
     </div> 
     <div class="body black">
@@ -31,8 +31,17 @@ export default {
         },
         setFocusedInputSource(){
             const count = this.count;
-            window.$store.commit('setFocusedInputSource', count - 1);
-            console.log(count - 1)
+            const src = this.source.type.toLowerCase();
+            const elem = window.document.querySelector('#inputVisual' + this.count);
+            const preview = window.document.querySelector('#preview');
+
+            if(src.includes('video file') || src.includes('audio file')){
+                preview.src = elem.src;
+            } else if (src.includes('image')){
+                preview.src = elem.src;
+            }
+
+            return window.$store.commit('setFocusedInputSource', count - 1);
         }
     },
     mounted(){

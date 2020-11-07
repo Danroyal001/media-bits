@@ -4,22 +4,18 @@
 
 <!-- Start Top Section -->
 <div class="top-section horizontal-scroll">
-    <!-- <div class="horizontal-scroll-child" style="width: 100%; height: 100%; padding: 0px !important; margin: 0px !important; overflow: hidden !important;">
-        <div class="col s12 m12 l6 x6 top-section-block">
-            <div class="teal white-text top-section-header">PREVIEW</div>
-            <canvas class="top-section-view black"></canvas>
-        </div>
-        <OutputDestination v-for="(output, index) in 0" :key="index" :id="output.id" :index="index" />
-    </div> -->
+    
     <div class="horizontal-scroll-child horizontal-scroll-child-1 white-text">
         <div v-if="$store.state.inputSources[$store.state.focusedInputSource]" class="black white-text fill" style="display: block !important;">
-            <video id="preview" muted loop v-if="($store.state.inputSources[$store.state.focusedInputSource]) && ($store.state.inputSources[$store.state.focusedInputSource].type.toLowerCase().includes('video'))" class="fill orange" nocontrols></video>
-            <audio id="preview" muted loop v-else-if="($store.state.inputSources[$store.state.focusedInputSource]) && ($store.state.inputSources[$store.state.focusedInputSource].type.toLowerCase().includes('audio'))" class="fill" controls="false"></audio>
-            <img id="preview" muted loop v-else-if="($store.state.inputSources[$store.state.focusedInputSource]) && ($store.state.inputSources[$store.state.focusedInputSource].type.toLowerCase().includes('image'))" class="fill" controls="false" />
+            <video id="preview" muted loop autoplay v-if="($store.state.inputSources[$store.state.focusedInputSource]) && ($store.state.inputSources[$store.state.focusedInputSource].type.toLowerCase().includes('video'))" class="fill" controls></video>
+            <audio id="preview" muted loop autoplay v-else-if="($store.state.inputSources[$store.state.focusedInputSource]) && ($store.state.inputSources[$store.state.focusedInputSource].type.toLowerCase().includes('audio'))" class="fill" controls></audio>
+            <img id="preview" v-else-if="($store.state.inputSources[$store.state.focusedInputSource]) && ($store.state.inputSources[$store.state.focusedInputSource].type.toLowerCase().includes('image'))" class="fill" />
         </div>
-    </div>
+    </div>  
     <div class="horizontal-scroll-child horizontal-scroll-child-2 teal">
-        <div v-for="x in 2" :key="x + 'cgg'" class="black white-text" style="display: block; width: calc(100% - 5px); height: calc(100% - 5px); margin: 2.5px;">Hi</div>
+        <div v-for="x in 1" :key="x + '.mb'" class="black white-text" style="display: block; width: calc(100% - 5px); height: calc(100% - 5px); margin: 2.5px;">
+            Output goes here
+        </div>
     </div>
 </div>
 <!-- End Top Section -->
@@ -39,11 +35,6 @@
 <div id="tools-modal" class="modal">
     <div class="modal-content">
       <h4>Tools <i class="fa fa-wrench"></i></h4>
-      <!-- <select v-model="selectedMic" autofocus class="validate">
-      <option v-for="mic in microphones" :key="mic" @change="selectedMic = mic" class="teal-text">{{ mic.label }}1</option>
-      </select>
-      <br />
-      <p>Nothing showing? click on <code>GRANT PERMISSION</code></p> -->
     </div>
     <div class="modal-footer">
       <button class="btn-small red waves-effect waves-light modal-close">CLOSE</button>
@@ -221,6 +212,9 @@ export default {
 .fill{
     width: 100% !important;
     height: 100% !important;
+}
+#preview{
+    object-fit: contain !important;
 }
 
 @media only screen and (min-width: 600px) and (max-width: 992px) {
