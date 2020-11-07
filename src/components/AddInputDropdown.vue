@@ -63,6 +63,32 @@ export default {
                     }
                 },
                 {
+                    label: 'Image File',
+                    onclick(){
+                        window.$store.dispatch('loadFile', {
+                            fileType: 'image/*',
+                            isText: false
+                        }).then(file => {
+                            const fr = new window.FileReader();
+                            fr.onload = () => {
+                                let refinedFile = fr.result;
+                                window.$store.commit('addInputSource', {
+                                name: file.name,
+                                id: Math.random(),
+                                type: 'image file',
+                                file,
+                                data: refinedFile,
+                                position: 0
+                            })
+                            }
+                            fr.readAsDataURL(file);
+                        }).catch(e => window.M.toast({
+              html: e,
+              classes: 'bold red rounded'
+            }))
+                    }
+                },
+                {
                     label: 'Live Video Input',
                     onclick(){
                     },
@@ -81,10 +107,6 @@ export default {
                 },
                 {
                     label: 'Audio Input from URL',
-                    onclick(){}
-                },
-                {
-                    label: 'Image File',
                     onclick(){}
                 },
                 {

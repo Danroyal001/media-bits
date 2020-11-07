@@ -12,12 +12,14 @@
         <OutputDestination v-for="(output, index) in 0" :key="index" :id="output.id" :index="index" />
     </div> -->
     <div class="horizontal-scroll-child horizontal-scroll-child-1 white-text">
-        <div v-if="$store.state.inputSources[$store.state.focusedInputSource]" class="black white-text" style="display: block; width: calc(100% - 20px); height: calc(100% - 20px); margin: 10px;">
-            Hi
+        <div v-if="$store.state.inputSources[$store.state.focusedInputSource]" class="black white-text fill" style="display: block !important;">
+            <video id="preview" muted loop v-if="($store.state.inputSources[$store.state.focusedInputSource]) && ($store.state.inputSources[$store.state.focusedInputSource].type.toLowerCase().includes('video'))" class="fill orange" nocontrols></video>
+            <audio id="preview" muted loop v-else-if="($store.state.inputSources[$store.state.focusedInputSource]) && ($store.state.inputSources[$store.state.focusedInputSource].type.toLowerCase().includes('audio'))" class="fill" controls="false"></audio>
+            <img id="preview" muted loop v-else-if="($store.state.inputSources[$store.state.focusedInputSource]) && ($store.state.inputSources[$store.state.focusedInputSource].type.toLowerCase().includes('image'))" class="fill" controls="false" />
         </div>
     </div>
-    <div class="horizontal-scroll-child horizontal-scroll-child-2 teal" style="overflow-y: auto !important;">
-        <div v-for="x in 4" :key="x + 'cgg'" class="black white-text" style="display: block; width: calc(100% - 20px); height: calc(100% - 20px); margin: 10px;">Hi</div>
+    <div class="horizontal-scroll-child horizontal-scroll-child-2 teal">
+        <div v-for="x in 2" :key="x + 'cgg'" class="black white-text" style="display: block; width: calc(100% - 5px); height: calc(100% - 5px); margin: 2.5px;">Hi</div>
     </div>
 </div>
 <!-- End Top Section -->
@@ -202,28 +204,6 @@ export default {
     margin: 0px !important;
     padding: 0px !important;
 }
-/*.top-section > div{
-    margin: 0px !important;
-    padding: 0px !important;
-    height: 100% !important;
-    border-right: thin solid teal;
-    border-left: thin solid teal;
-}
-.top-section-header{
-    width: 100%;
-    height: 17px;
-    display: flex;
-    align-items: center;
-    margin: 0px;
-    padding: 0px;
-    justify-content: center;
-    text-align: center;
-    font-size: 13px;
-}
-.top-section-view{
-    width: 100%;
-    height: calc(100% - 18px);
-}*/
 .horizontal-scroll{
     white-space: nowrap;
     overflow-x: auto;
@@ -236,15 +216,12 @@ export default {
     height: 100% !important;
     width: 50%;
     border: thin solid #009688;
+    overflow-y: auto !important;
 }
-/*.top-section-block{
-    padding: 0px !important;
-    margin: 0px !important;
-    height: 100%;
-    border-right: thin solid teal;
-    border-radius: 5px;
-    overflow: hidden;
-}*/
+.fill{
+    width: 100% !important;
+    height: 100% !important;
+}
 
 @media only screen and (min-width: 600px) and (max-width: 992px) {
 /* Medium Screen */
