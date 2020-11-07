@@ -12,7 +12,6 @@
     <div v-for="x in 4" :key="x" :id="'homepage-carousel-item-' + x" class="carousel-item">
       <img src="@/assets/img/1.png">
     </div>
-
     
   </div>
   <!-- End Carousel -->
@@ -21,9 +20,9 @@
   <div class="teal">
     <br />
     <div class="container center">
-      <a class="m-y-4 btn white black-text bold waves-effect waves-teal">Pricing</a> &nbsp;
+      <router-link to="/pricing" class="m-y-4 btn white black-text bold waves-effect waves-teal">Pricing</router-link> &nbsp;
       <a @click="viewFeatures" class="m-y-4 btn white black-text bold waves-effect waves-teal">View Features</a> &nbsp;
-      <a class="m-y-4 btn white black-text bold waves-effect waves-teal">Watch demo video</a> &nbsp;    
+      <router-link to="/demo-video" class="m-y-4 btn white black-text bold waves-effect waves-teal">Watch demo video</router-link> &nbsp;    
     </div>
     <br />
   </div>
@@ -60,7 +59,7 @@
   </div>
 
   <div class="center">
-    <h2> <img src="@/assets/logo.png" height="50" alt="Media-Bits Logo"> {{ $store.state.appName }}</h2>
+    <h2> <img src="@/assets/img/logo.png" height="50" alt="Media-Bits Logo"> {{ $store.state.appName }}</h2>
   </div>
 
   <div class="container">
@@ -92,9 +91,62 @@
     <br />
     <h3 class="center">Welcome to a world of possibilities!</h3>
     <br />
-    <div class="center"><span style="font-size: 30px; padding: 16px; padding-top: 16px;" class="center white teal-text bold">{{ $store.state.appName }} Features</span></div>
+    <div class="center"><span style="font-size: 30px; padding: 10px; maring-top: 16px;" class="center white teal-text bold">{{ $store.state.appName }} Features</span></div>
     <br />
-    <h1 class="center">...</h1>
+    <br />
+    <div class="row white-text">
+      <div class="col s12 m6 l4 center">
+        <div><img src="@/assets/img/logo.png" width="100"></div>
+        <h5>Video/Audio Streaming</h5>
+        <p>{{ $store.state.appName }} is capable of streaming HD video and audio from varying input sources to remote output destinations</p>
+      </div>
+
+      <div class="col s12 m6 l4 center">
+        <div><img src="@/assets/img/logo.png" width="100"></div>
+        <h5>Video/Audio Editing</h5>
+        <p>{{ $store.state.appName }} is a handy tool for quick video/audio editing and trimming</p>
+      </div>
+
+      <div class="col s12 m12 l4 center">
+        <div><img src="@/assets/img/logo.png" width="100"></div>
+        <h5>Audio Extraction</h5>
+        <p>{{ $store.state.appName }} proves itself very useful when it comes <br />to extracting audio tracks from a video</p>
+      </div>
+    </div>
+    <br />
+    <div class="row white-text">
+      <div class="col s12 m6 l4 center">
+        <div><img src="@/assets/img/logo.png" width="100"></div>
+        <h5>Video/Audio format conversion</h5>
+        <p>{{ $store.state.appName }} is a formindable video/audio file format <br />converter. Whether it's from webm to mp4 or wav to mp3, {{ $store.state.appName }} has you covered</p>
+      </div>
+
+      <div class="col s12 m6 l4 center">
+        <div><img src="@/assets/img/logo.png" width="100"></div>
+        <h5>Video Projection</h5>
+        <p>{{ $store.state.appName }} can project video output to wired and wireless secondary monitors/display</p>
+      </div>
+
+      <div class="col s12 m12 l4 center">
+        <div><img src="@/assets/img/logo.png" width="100"></div>
+        <h5>Noise filtering</h5>
+        <p>{{ $store.state.appName }} also proves to be a handy tool for <br />echo-cancellation and extraction of background noise from video and audio</p>
+      </div>
+    </div>
+    <br />
+    <div class="row white-text">
+      <div class="col s12 m6 l6 center">
+        <div><img src="@/assets/img/logo.png" width="100"></div>
+        <h5>Video conferencing</h5>
+        <p>Video Conferencing is made super-easy with <br />{{ $store.state.appName }}</p>
+      </div>
+
+      <div class="col s12 m6 l6 center">
+        <div><img src="@/assets/img/logo.png" width="100"></div>
+        <h5>Project Collaboration</h5>
+        <p>{{ $store.state.appName }} acknowledges the fact that we live in <br />the cloud computing era. For this reason, <br />{{ $store.state.appName }} makes it project collaboration possible</p>  
+      </div>
+    </div>
     <br />
   </div>
 
@@ -146,7 +198,7 @@
           <div class="container">
             <div class="row">
               <div class="col l3 m6 s12">
-                <h5 class="white-text"><img src="@/assets/logo.png" height="20">Media-Bits&trade;</h5>
+                <h5 class="white-text"><img src="@/assets/img/logo.png" height="20">Media-Bits&trade;</h5>
                 <ul>
                   <li><router-link class="grey-text text-lighten-3" to="/download">Download</router-link></li>
                   <li><a class="grey-text text-lighten-3" :target="window.isElectron ? false : '_blank'" :href="window.isElectron ? 'javascript:window.electron.shell.openExternal(\'https://daniel-effiong.web.app/#/projects\')' : 'https://daniel-effiong.web.app/#/projects'">Related softwares</a></li>
@@ -175,7 +227,7 @@
                   <li><a class="grey-text text-lighten-3"><i class="fa fa-instagram"></i>Instagram</a></li>
                   <li><a class="grey-text text-lighten-3"><i class="fa fa-youtube"></i>You Tube</a></li>
                   <br />
-                  <li><a class="grey-text text-lighten-3"><img src="@/assets/img/streamingmascots.png"></a></li>
+                  <li><a class="grey-text text-lighten-3" href="https://www.streamingmascotsalliance.com"><img src="@/assets/img/streamingmascots.png"></a></li>
                 </ul>
               </div>
             </div>
@@ -295,5 +347,9 @@ export default {
 .before-footer input[type=email]{
   caret-color: #009688;
   color: #009688;
+}
+#features .row .col{
+  margin-top: 16px;
+  margin-bottom: 26px;
 }
 </style>

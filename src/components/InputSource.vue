@@ -1,8 +1,8 @@
 <template>
 <div @click="setFocusedInputSource" class="horizontal-scroll-child input-source">
     <div :class="['header', $store.state.focusedInputSource === count - 1 ? 'orange black-text' : 'teal']">
-        <span class="white-text">Input Source {{ count }} &nbsp; <i @click="removeSource" class="btn-small red white-text waves-effect waves-light close-btn">&times;</i></span>
-    </div>
+        <span>Input Source {{ count }} &nbsp; <i @click="removeSource" class="btn-small red white-text waves-effect waves-light close-btn">&times;</i></span>
+    </div> 
     <div class="body black">
         <video v-if="source.type.includes('video')" :id="'inputVisual' + count" muted loop controls :title="source.title" class="fill-parent"></video>
         <audio v-else-if="source.type.includes('audio')" :id="'inputVisual' + count" loop controls :title="source.title" class="fill-parent"></audio>

@@ -71,10 +71,6 @@ const $store = createStore({
       {
         name: 'DOWNLOAD',
         href: '/download'
-      },
-      {
-        name: 'CONTACT US',
-        href: '/contact'
       }
     ],
     fileSubmenuDropdown: [
@@ -175,7 +171,8 @@ const $store = createStore({
       //   id: Math.random()
       // }
     ],
-    outputDestinations: []
+    outputDestinations: [],
+    editorIsReady: false,
   },
   mutations: {
     setInputSources(state, sources){
@@ -186,6 +183,9 @@ const $store = createStore({
     },
     setFocusedInputSource(state, index){
       state.focusedInputSource = index;
+    },
+    editorIsReady(state){
+      state.editorIsReady = true;
     },
     addInputSource(state, source){
       state.inputSources.push(source);

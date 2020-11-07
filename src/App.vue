@@ -5,14 +5,19 @@
       <div class="container">
         <div class="nav-wrapper">
           <a :href="window.isElectron === true ? 'javascript:window.electron.shell.openExternal(window.location.href)' : '#/'" class="brand-logo">
-            <img src="@/assets/logo.png" style="height: 50px; padding-top: 21px; padding-left: 3px; padding-right: 3px;">
+            <img src="@/assets/img/logo.png" style="height: 50px; padding-top: 21px; padding-left: 3px; padding-right: 3px;">
             <span class="hide-on-small-only">{{ $store.state.appName }}</span>
           </a>
           <a href="#sidenav" data-target="sidenav" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
           <ul id="nav-mobile" class="right hide-on-med-and-down"  v-if="$route.name !== 'editor'">
             <li v-for="link in $store.state.primaryHyperlinks" :key="link.name"><router-link :to="link.href">{{ link.name }}</router-link></li>
+            <li><a class="dropdown-trigger" href="#more-hyperlinks-dropdown" data-target="more-hyperlinks-dropdown">MORE<i></i></a></li>
           </ul>
-          <EditorMenu v-else-if="$route.name === 'editor'" />
+          <EditorMenu v-else-if="($route.name === 'editor') && ($store.state.editorIsReady === true)" />
+          <ul id="more-hyperlinks-dropdown" class="dropdown-content bold">
+            <li><router-link to="/contact">Contact us</router-link></li>
+            <li><router-link to="/documentation">Documentation</router-link></li>
+          </ul>
           <UserViewOnDesktop />
           <MinMax v-if="window.isElectron" /> 
         </div>
@@ -70,7 +75,9 @@
 nav, .minmax-group{
   -webkit-app-reqion: no-drag !important;
 }
-
+.dropdown-content{
+  width: 150px !important;
+}
 ::-webkit-scrollbar{
   width: 10px !important;
 }
@@ -89,7 +96,10 @@ nav, .minmax-group{
   background: #000000;
   border: thin solid #ffffff;
 }
-
+hr{
+  border-top: thin solid #fff;
+  border-bottom: thin solid #009688;
+}
 .position-absolute{
   position: absolute !important;
 }

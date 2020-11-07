@@ -1,15 +1,23 @@
 <template>
-<div class="editor-root">
+<div class="editor-root black">
 <!-- Start Editor Root -->
 
 <!-- Start Top Section -->
-<div class="row top-section horizontal-scroll">
-    <div class="horizontal-scroll-child" style="width: 100%; height: 100%; padding: 0px !important; margin: 0px !important; overflow: hidden !important;">
+<div class="top-section horizontal-scroll">
+    <!-- <div class="horizontal-scroll-child" style="width: 100%; height: 100%; padding: 0px !important; margin: 0px !important; overflow: hidden !important;">
         <div class="col s12 m12 l6 x6 top-section-block">
             <div class="teal white-text top-section-header">PREVIEW</div>
             <canvas class="top-section-view black"></canvas>
         </div>
-        <OutputDestination v-for="(output, index) in 1" :key="index" :id="output.id" :index="index" />
+        <OutputDestination v-for="(output, index) in 0" :key="index" :id="output.id" :index="index" />
+    </div> -->
+    <div class="horizontal-scroll-child horizontal-scroll-child-1 white-text">
+        <div v-if="$store.state.inputSources[$store.state.focusedInputSource]" class="black white-text" style="display: block; width: calc(100% - 20px); height: calc(100% - 20px); margin: 10px;">
+            Hi
+        </div>
+    </div>
+    <div class="horizontal-scroll-child horizontal-scroll-child-2 teal" style="overflow-y: auto !important;">
+        <div v-for="x in 4" :key="x + 'cgg'" class="black white-text" style="display: block; width: calc(100% - 20px); height: calc(100% - 20px); margin: 10px;">Hi</div>
     </div>
 </div>
 <!-- End Top Section -->
@@ -84,7 +92,7 @@
 </template>
 
 <script>
-import OutputDestination from '@/components/OutputDestination.vue';
+// import OutputDestination from '@/components/OutputDestination.vue';
 import InputSource from '@/components/InputSource.vue';
 import EditorBottomNoInput from '@/components/EditorBottomNoInput.vue';
 import ElectronDesktopCaptureModal from '@/components/ElectronDesktopCaptureModal.vue';
@@ -111,6 +119,7 @@ export default {
     },
     mounted(){
         const _$this = this;
+        this.$store.commit('editorIsReady');
         //setInterval(() => {
            window.navigator.mediaDevices.enumerateDevices().then(devices => {
                 _$this.cameras = [...devices.filter(device => device.kind === 'videoinput').map(i=>i)];
@@ -157,7 +166,7 @@ export default {
     },
     components: {
         InputSource,
-        OutputDestination,
+        // OutputDestination,
         EditorBottomNoInput,
         ElectronDesktopCaptureModal
   },
@@ -188,12 +197,12 @@ export default {
     height: 100% !important;
     padding: 0px !important;
     margin: 0px !important;
-    border-bottom: thin solid teal;
-    border-top: thin solid teal;
+    border-bottom: thin solid #009688;
+    border-top: thin solid #009688;
     margin: 0px !important;
     padding: 0px !important;
 }
-.top-section > div{
+/*.top-section > div{
     margin: 0px !important;
     padding: 0px !important;
     height: 100% !important;
@@ -214,22 +223,28 @@ export default {
 .top-section-view{
     width: 100%;
     height: calc(100% - 18px);
-}
+}*/
 .horizontal-scroll{
     white-space: nowrap;
     overflow-x: auto;
+    display: block;
+    width: 100%;
+    overflow-y: hidden;
 }
 .horizontal-scroll-child{
     display: inline-block;
+    height: 100% !important;
+    width: 50%;
+    border: thin solid #009688;
 }
-.top-section-block{
+/*.top-section-block{
     padding: 0px !important;
     margin: 0px !important;
     height: 100%;
     border-right: thin solid teal;
     border-radius: 5px;
     overflow: hidden;
-}
+}*/
 
 @media only screen and (min-width: 600px) and (max-width: 992px) {
 /* Medium Screen */
