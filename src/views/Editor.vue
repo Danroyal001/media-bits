@@ -101,6 +101,14 @@ export default {
             hasGottenDevices: false
         };
     },
+    beforeRouteLeave(to, from, next){
+        if(this.$store.state.currentProjectIsSaved === true){
+            next();
+        } else {
+            alert("If you leave without saving your work, all changes will be lost")
+            next(false);
+        }
+    },
     mounted(){
         const _$this = this;
         //setInterval(() => {

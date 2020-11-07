@@ -1,10 +1,10 @@
 <template>
-  <div class="white" style="width: 100% !important; height:100% !important; margin: 0; padding: 0; overflow-x: hidden;">
+  <div oncontextmenu="return false" class="white" style="width: 100% !important; height:100% !important; margin: 0; padding: 0; overflow-x: hidden;">
   <div class="navbar-fixed">
     <nav class="teal">
       <div class="container">
         <div class="nav-wrapper">
-          <a :href="window.isElectron == true ? 'javascript:window.electron.shell.openExternal(window.location.href)' : '#/'" class="brand-logo">
+          <a :href="window.isElectron === true ? 'javascript:window.electron.shell.openExternal(window.location.href)' : '#/'" class="brand-logo">
             <img src="@/assets/logo.png" style="height: 50px; padding-top: 21px; padding-left: 3px; padding-right: 3px;">
             <span class="hide-on-small-only">{{ $store.state.appName }}</span>
           </a>
@@ -13,14 +13,18 @@
             <li v-for="link in $store.state.primaryHyperlinks" :key="link.name"><router-link :to="link.href">{{ link.name }}</router-link></li>
           </ul>
           <EditorMenu v-else-if="$route.name === 'editor'" />
+          <UserViewOnDesktop />
           <MinMax v-if="window.isElectron" /> 
         </div>
       </div>
     </nav>
   </div>
+
+  <!-- Begin Sidenav -->
   <ul class="sidenav" id="sidenav">
-    <li v-for="link in $store.state.primaryHyperlinks" :key="link.name"><router-link :to="link.href">{{ link.name }}</router-link></li>
+    <li v-for="link in $store.state.primaryHyperlinks" :key="link.name"><router-link :to="link.href" class="sidenav-close waves-effect waves-light">{{ link.name }}</router-link></li>
   </ul>
+  <!-- End Sidenav -->
   
   <!-- <transition name="view-pager">
     <keep-alive>
@@ -53,6 +57,10 @@
 <style src="@/assets/css/fontawesome.min.css"></style>
 
 <style>
+*{
+    /*transition: all 1.2s;*/
+    scroll-behavior: smooth;
+  }
 
 /* Facilitate dragging behavior in eleectron */
 .brand-logo{
@@ -61,10 +69,6 @@
 }
 nav, .minmax-group{
   -webkit-app-reqion: no-drag !important;
-}
-
-*{
-  transition: 1.2s all;
 }
 
 ::-webkit-scrollbar{
@@ -111,33 +115,29 @@ nav, .minmax-group{
 @keyframes viewPagerEnter{
   from{
     right:-300px;
-    perspective: 900;
+    /*perspective: 900;*/
     opacity:0;
-    transform: translateZ(1000);
-    -webkit-transform: translateZ(1);
-    -moz-transform: translateZ(1);
-    -ms-transform: translateZ(1);
+    transform: translateZ(100px);
+    -webkit-transform: translateZ(100px);
+    -moz-transform: translateZ(100px);
+    -ms-transform: translateZ(100px);
     -o-transform: translateZ(1);
     }
   to{
-    right:0;
-    perspective: 1000;
+    right:0px;
+    /*perspective: 1000;*/
     opacity:1;
-    transform: translateZ(0);
-    -webkit-transform: translateZ(1);
-    -moz-transform: translateZ(1);
-    -ms-transform: translateZ(1);
-    -o-transform: translateZ(1);
+    transform: translateZ(0px);
+    -webkit-transform: translateZ(0px);
+    -moz-transform: translateZ(0px);
+    -ms-transform: translateZ(0px);
+    -o-transform: translateZ(0px);
     }
   }
 /* @keyframes viewPagerLeave{
   from{left:0;opacity:1}
   to{left:300px;opacity:0}
   } */
-  *{
-    transition: all 1.2s;
-    scroll-behavior: smooth;
-  }
   .bold{
     font-weight: 900;
   }
@@ -152,6 +152,7 @@ import EditorMenu from '@/components/EditorMenu.vue';
 import * as M from '@/assets/js/materialize.min.js';
 import PreLoader from '@/components/PreLoader.vue';
 import MinMax from '@/components/MinMax.vue';
+import UserViewOnDesktop from "@/components/UserViewOnDesktop.vue";
 
 const workerString = `
 postMessage("I'm working before postMessage('ali').");
@@ -167,8 +168,8 @@ const workerBlob = new Blob([workerString], {
 
 window.myWorker = new Worker(URL.createObjectURL(workerBlob));
 
-const JSZip = require('jszip');
-window.JSZip = JSZip;
+window.JSZip = require('jszip');
+
 
 
 window.M = M;
@@ -182,7 +183,8 @@ export default {
   components: {
     EditorMenu,
     PreLoader,
-    MinMax
+    MinMax,
+    UserViewOnDesktop
   },
   data(){
     return {

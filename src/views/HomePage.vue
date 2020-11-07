@@ -6,7 +6,7 @@
   <div class="carousel carousel-slider center black-text">
 
     <div class="carousel-fixed-item center">
-      <router-link to="/editor" class="btn waves-effect waves-light teal white-text">GET STARTED</router-link>
+      <router-link to="/editor" class="btn waves-effect waves-light teal white-text pulse">GET STARTED</router-link>
     </div>
 
     <div v-for="x in 4" :key="x" :id="'homepage-carousel-item-' + x" class="carousel-item">
@@ -22,7 +22,7 @@
     <br />
     <div class="container center">
       <a class="m-y-4 btn white black-text bold waves-effect waves-teal">Pricing</a> &nbsp;
-      <a class="m-y-4 btn white black-text bold waves-effect waves-teal">View Features</a> &nbsp;
+      <a @click="viewFeatures" class="m-y-4 btn white black-text bold waves-effect waves-teal">View Features</a> &nbsp;
       <a class="m-y-4 btn white black-text bold waves-effect waves-teal">Watch demo video</a> &nbsp;    
     </div>
     <br />
@@ -60,19 +60,19 @@
   </div>
 
   <div class="center">
-    <h2> <img src="@/assets/logo.png" height="50" alt="Media-Bits Logo"> Media-Bits</h2>
+    <h2> <img src="@/assets/logo.png" height="50" alt="Media-Bits Logo"> {{ $store.state.appName }}</h2>
   </div>
 
   <div class="container">
-    <h5 class="center">Next generation multimedia streaming, editing, mixing, projection and <wbr />video-conferencing<wbr /> software</h5>
+    <h5 class="center">Next generation multimedia streaming, editing, switching, mixing, projection and <wbr />video-conferencing<wbr /> software</h5>
     <br />
-    <p>Media-Bits is a live multimedia streaming, editing, switching, mixing, projection and <wbr />video-conferencing<wbr /> software that utilises the latest advances in computer software and hardware to provide advanced multimedia capabilities, a task previously only possible on expensive dedicated hardware.</p>
-    <p>Media-Bits also functions as live streaming software that allows you to publish your live productions directly to the Internet!.</p>
-    <p>Media-Bits runs on Windows 7, Windows 8, Windows 10, Linux, Mac OSX and in the Browser.</p>
-    <p>Media-Bits is a complete live video production software solution with features including <b>LIVE</b> mixing, switching, recording and streaming of SD, full HD and 4K video sources including cameras, video files, DVDs, images, verses Powerpoint and much much more.</p>
-    <p>Whether you are looking to produce big budget live concert productions, sporting events, Church services or small webcasts, then Media-Bits is for you.</p>
-    <p>For a full list of what is possible with Media-Bits, <a href="javascript:(() => document.querySelector('#features').scrollIntoView(true))()">click here</a> to view all features.</p>
-    <p><b>Download a trial today and use a fully functional version of Media-Bits for 14 days free of charge.</b></p>
+    <p>{{ $store.state.appName }} is a live multimedia streaming, editing, switching, mixing, projection and <wbr />video-conferencing<wbr /> software that utilises the latest advances in computer software and hardware to provide advanced multimedia capabilities, a task previously only possible on expensive dedicated hardware.</p>
+    <p>{{ $store.state.appName }} also functions as live streaming software that allows you to publish your live productions directly to the Internet!.</p>
+    <p>{{ $store.state.appName }} runs on Windows 7, Windows 8, Windows 10, Linux, Mac OSX and in the Browser.</p>
+    <p>{{ $store.state.appName }} is a complete live video production software solution with features including <b>LIVE</b> mixing, switching, recording and streaming of SD, full HD and 4K video sources including cameras, video files, DVDs, images, verses Powerpoint and much much more.</p>
+    <p>Whether you are looking to produce big budget live concert productions, sporting events, Church services or small webcasts, then {{ $store.state.appName }} is for you.</p>
+    <p>For a full list of what is possible with {{ $store.state.appName }}, <a @click="viewFeatures" href="javascript:void(0)">click here</a> to view all features.</p>
+    <p><b>Download a trial today and use a fully functional version of {{ $store.state.appName }} for 14 days free of charge.</b></p>
   </div>
   <br />
   <div class="center">
@@ -92,7 +92,7 @@
     <br />
     <h3 class="center">Welcome to a world of possibilities!</h3>
     <br />
-    <div class="center"><span style="font-size: 30px; padding: 16px; padding-top: 16px;" class="center white teal-text bold">Media-Bits Features</span></div>
+    <div class="center"><span style="font-size: 30px; padding: 16px; padding-top: 16px;" class="center white teal-text bold">{{ $store.state.appName }} Features</span></div>
     <br />
     <h1 class="center">...</h1>
     <br />
@@ -126,16 +126,17 @@
   <br />
   <br />
 
-  <div class="container row before-header">
+  <div class="container row before-footer">
+    <form @submit="subscribeToNewsLetter($event)" class="col s12 m6 l6">
+      <span>Subscribe to {{ $store.state.appName }} newsletter</span>
+      <br />
+      <input type="email" pattern="\S+@\S+.\S+" placeholder="john@doe.com" required>
+    </form>
+
     <div class="col s12 m6 l6">
-      <span>Media-Bit Blog</span>
+      <span>{{ $store.state.appName }} Blog</span>
       <br />
       <router-link to="/blog" class="btn teal waves-effect waves-light">Visit our blog for more news</router-link>
-    </div>
-    <div class="col s12 m6 l6">
-      <span>Subscribe to our newsletter</span>
-      <br />
-      <input type="email" placeholder="john@doe.com">
     </div>
   </div>
 
@@ -144,30 +145,51 @@
    <footer class="page-footer teal">
           <div class="container">
             <div class="row">
-              <div class="col l6 s12">
-                <h5 class="white-text"><img src="@/assets/logo.png" height="50px"> Media-BIts</h5>
-                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
-              </div>
-              <div class="col l4 offset-l2 s12">
-                <h5 class="white-text">Links</h5>
+              <div class="col l3 m6 s12">
+                <h5 class="white-text"><img src="@/assets/logo.png" height="20">Media-Bits&trade;</h5>
                 <ul>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                  <li><router-link class="grey-text text-lighten-3" to="/download">Download</router-link></li>
+                  <li><a class="grey-text text-lighten-3" :target="window.isElectron ? false : '_blank'" :href="window.isElectron ? 'javascript:window.electron.shell.openExternal(\'https://daniel-effiong.web.app/#/projects\')' : 'https://daniel-effiong.web.app/#/projects'">Related softwares</a></li>
+                </ul>
+              </div>
+
+              <div class="col l3 m6 s12">
+                <h5 class="white-text">Get Support</h5>
+                <ul>
+                  <li v-for="(link, index) in footerLinks.getSupportLinks" :key="index"><router-link :to="link.href" class="grey-text text-lighten-3">{{ link.text }}</router-link></li>
+                </ul>
+              </div>
+
+              <div class="col l3 m6 s12">
+                <h5 class="white-text">Relevant Links</h5>
+                <ul>
+                  <li v-for="(link, index) in footerLinks.relevantLinks" :key="index"><router-link :to="link.href" class="grey-text text-lighten-3">{{ link.text }}</router-link></li>
+                </ul>
+              </div>
+
+              <div class="col l3 m6 s12">
+                <h5 class="white-text">Social Handles</h5>
+                <ul>
+                  <li><a class="grey-text text-lighten-3"><i class="fa fa-facebook"></i>Facebook</a></li>
+                  <li><a class="grey-text text-lighten-3"><i class="fa fa-twitter"></i>Twitter</a></li>
+                  <li><a class="grey-text text-lighten-3"><i class="fa fa-instagram"></i>Instagram</a></li>
+                  <li><a class="grey-text text-lighten-3"><i class="fa fa-youtube"></i>You Tube</a></li>
+                  <br />
+                  <li><a class="grey-text text-lighten-3"><img src="@/assets/img/streamingmascots.png"></a></li>
                 </ul>
               </div>
             </div>
           </div>
+
           <div class="footer-copyright">
             <div class="container">
-            &copy; {{ year }} Copyright - Media-Bits
-            <a class="grey-text text-lighten-4 right" :href="window.isElectron ? 'window.shell.openExternal(\'https://daniel-effiong.web.app\')' : 'https://daniel-effiong.web.app'">More Links</a>
+            &copy; {{ year }} Copyright - {{ $store.state.appName }}
+            <a class="grey-text text-lighten-4 right" :href="window.isElectron ? 'javascript:window.shell.openExternal(\'https://daniel-effiong.web.app\')' : 'https://daniel-effiong.web.app'">Propriety software of Daniel Effiong</a>
             </div>
           </div>
         </footer>
 
-<!-- Root -->
+<!-- End Root -->
 </div>
 </template>
 
@@ -177,12 +199,61 @@ export default {
   methods: {
     logData($event){
       console.log($event);
+    },
+    viewFeatures(){
+      return document.querySelector('#features').scrollIntoView(true)
+    },
+    subscribeToNewsLetter($event){
+      $event.preventDefault();
     }
   },
   data(){
     return {
       carouselInstance: {},
-      window
+      window,
+      year: `${(new Date()).getFullYear()}`,
+      footerLinks: {
+        getSupportLinks: [  
+          {
+            text: "Subscribtion",
+            href: "/subscribtion"
+          },
+          {
+            text: "Documentation",
+            href: "/documentation"
+          },
+          {
+            text: "Tutorial Videos",
+            href: "/tutorial-videos"
+          },
+          {
+            text: "Forum",
+            href: "/forum"
+          },
+          {
+            text: "Premium Support",
+            href: "/premium-support"
+          },
+          {
+            text: "Email Support",
+            href: "/email-support"
+          }
+        ],
+        relevantLinks: [
+          {
+            text: "Contact Us",
+            href: "/contact"
+          },
+          {
+            text: "Term & Conditions",
+            href: "/terms-and-conditions"
+          },
+          {
+            text: "Privacy Policy",
+            href: "/privacy-policy"
+          }
+        ]
+      }
     }
   },
   created(){
@@ -212,14 +283,16 @@ export default {
 
 <style>
 .grid-after-carousel{
-  border-top: thin solid white;
-  border-bottom: thin solid white;
+  border: thin solid white;
 }
-.before-header span{
+.before-footer{
+  margin-bottom: 16px;
+}
+.before-footer span{
   font-size: 30px;
   font-weight: 900;
 }
-.before-header input[type=email]{
+.before-footer input[type=email]{
   caret-color: #009688;
   color: #009688;
 }

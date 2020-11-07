@@ -53,7 +53,8 @@ window.convertProjectToFile = window.electronConvertProjectToFile || function(fi
 const $store = createStore({
   // plugins: [vuexLocal.default.plugin],
   state: {
-    appName: 'Media-Bits',
+    appName: 'Media-Bits™',
+    focusedInputSource: 0,
     primaryHyperlinks: [
       {
         name: 'HOME',
@@ -182,6 +183,9 @@ const $store = createStore({
     },
     setOutputDestinations(state, destinations){
       state.outputDestinations = destinations;
+    },
+    setFocusedInputSource(state, index){
+      state.focusedInputSource = index;
     },
     addInputSource(state, source){
       state.inputSources.push(source);
