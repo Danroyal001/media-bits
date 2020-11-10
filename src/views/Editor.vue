@@ -6,15 +6,17 @@
 <div class="top-section horizontal-scroll">
     
     <div class="horizontal-scroll-child horizontal-scroll-child-1 white-text">
-        <div v-if="$store.state.inputSources[$store.state.focusedInputSource]" class="black white-text fill" style="display: block !important;">
-            <video id="preview" muted loop autoplay v-if="($store.state.inputSources[$store.state.focusedInputSource]) && ($store.state.inputSources[$store.state.focusedInputSource].type.toLowerCase().includes('video'))" class="fill" controls></video>
-            <audio id="preview" muted loop autoplay v-else-if="($store.state.inputSources[$store.state.focusedInputSource]) && ($store.state.inputSources[$store.state.focusedInputSource].type.toLowerCase().includes('audio'))" class="fill" controls></audio>
-            <img id="preview" v-else-if="($store.state.inputSources[$store.state.focusedInputSource]) && ($store.state.inputSources[$store.state.focusedInputSource].type.toLowerCase().includes('image'))" class="fill" />
+        <div v-if="$store.state.inputSources[$store.state.focusedInputSource]" class="black white-text fill" style="display: block !important; overflow: hidden;">
+            <div style="width: 100%; height: 20px; font-size: 15px;" class="center bold white-text teal">Preview</div>
+            <video id="preview" muted loop autoplay v-if="($store.state.inputSources[$store.state.focusedInputSource]) && ($store.state.inputSources[$store.state.focusedInputSource].type.toLowerCase().includes('video'))" style="width: 100%; height: calc(100% - 20px);" controls></video>
+            <audio id="preview" loop autoplay v-else-if="($store.state.inputSources[$store.state.focusedInputSource]) && ($store.state.inputSources[$store.state.focusedInputSource].type.toLowerCase().includes('audio'))" style="width: 100%; height: calc(100% - 20px);" controls></audio>
+            <img id="preview" v-else-if="($store.state.inputSources[$store.state.focusedInputSource]) && ($store.state.inputSources[$store.state.focusedInputSource].type.toLowerCase().includes('image'))" style="width: 100%; height: calc(100% - 20px);" />
         </div>
     </div>  
     <div class="horizontal-scroll-child horizontal-scroll-child-2 teal">
-        <div v-for="x in 1" :key="x + '.mb'" class="black white-text" style="display: block; width: calc(100% - 5px); height: calc(100% - 5px); margin: 2.5px;">
-            Output goes here
+        <div style="width: 100%; height: 20px; font-size: 15px;" class="center bold white-text teal">Output</div>
+        <div v-for="x in 1" :key="x + '.mb'" class="black white-text" style="display: block; width: 100%; height: calc(100% - 20px);">
+            &nbsp;
         </div>
     </div>
 </div>

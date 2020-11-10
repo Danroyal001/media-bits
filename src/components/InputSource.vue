@@ -35,10 +35,12 @@ export default {
             const elem = window.document.querySelector('#inputVisual' + this.count);
             const preview = window.document.querySelector('#preview');
 
-            if(src.includes('video file') || src.includes('audio file')){
+            if((src.includes('video file') || src.includes('audio file')) && preview){
                 preview.src = elem.src;
-            } else if (src.includes('image')){
+            } else if (src.includes('image') && preview){
                 preview.src = elem.src;
+            } else if ((src.includes('video') && src.includes('live') && !src.includes('audio')) && preview){
+                preview.srcObject = elem.srcObject;
             }
 
             return window.$store.commit('setFocusedInputSource', count - 1);
@@ -47,18 +49,23 @@ export default {
     mounted(){
         let _$this = this;
         const _$elem = window.document.querySelector('#inputVisual' + _$this.count);
+        const addSrc = e => {
+            e.src = _$this.source.data;
+            e.play();
+            return setTimeout(_$elem.pause, 500);
+        }
         switch(_$this.source.type.toLowerCase()){
             case 'audio file':
-                (() => _$elem.src = _$this.source.data)();
+                (() => addSrc(_$elem))();
                 break;
             case 'video file':
-                (() => _$elem.src = _$this.source.data)();
+                (() => addSrc(_$elem))();
                 break;
             case 'live audio input':
-                (() => _$elem.srcObject = _$this.source.data)();
+                (() => addSrc(_$elem))();
                 break;
             case 'live video input':
-                (() => _$elem.srcObject = _$this.source.data)();
+                (() => addSrc(_$elem))();
                 break;
             case 'video input from url':
                 (() => {})();

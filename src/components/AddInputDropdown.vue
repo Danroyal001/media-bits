@@ -133,8 +133,8 @@ export default {
                                     cursor: 'motion'
                                 },
                                 audio: false
-                            }).then(stream => addSource(stream)).catch(e => window.M.toast({
-                                    html: `${e}`,
+                            }).then(stream => addSource(stream)).catch(() => window.M.toast({
+                                    html: `Unable to get desktop capture on your device`,
                                     classes: 'bold red rounded'
                                 }))
                         }

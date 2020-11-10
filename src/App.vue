@@ -72,11 +72,8 @@
   -webkit-user-select: none;
   -webkit-app-region: drag;
 }
-nav, .minmax-group{
-  -webkit-app-reqion: no-drag !important;
-}
 .dropdown-content{
-  width: 150px !important;
+  width: 200px !important;
 }
 ::-webkit-scrollbar{
   width: 10px !important;

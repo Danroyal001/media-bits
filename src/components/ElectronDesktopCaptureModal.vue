@@ -58,16 +58,16 @@ export default {
             }
           }
         }).then(stream => {
-            window.$store.commit('addInputSource', {
-                                name: 'Desktop Capture (Video)',
+          window.$store.commit('addInputSource', {
+                                name: 'Live Desktop Capture (Video)',
                                 id: Math.random(),
-                                type: 'desktop capture (video)',
+                                type: 'live desktop capture (video)',
                                 data: stream,
                                 position: 0
                             });
                             return setTimeout(window.focus, 1000);
-        }).catch(e => window.M.toast({
-                                    html: `${e}`,
+                          }).catch(() => window.M.toast({
+                                    html: `Unable to get desktop capture on your device`,
                                     classes: 'bold red rounded'
                                 }))
         }

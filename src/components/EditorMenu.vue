@@ -1,5 +1,5 @@
 <template>
-<ul id="nav-mobile" class="right hide-on-med-and-down">
+<ul id="nav-mobile" class="right hide-on-med-and-down bold">
     <li>
         <a class="btn-small waves-effect waves-light dropdown-trigger" data-target="file-submenu-dropdown">FILE</a>
     </li>

@@ -2,15 +2,19 @@ import { createStore } from 'vuex'
 // const vuexLocal = require('./vuexLocal.js');
 
 window.loadFromOpenedFile = window.electronLoadFromOpenedFile || function(file){
-  document
-  return new Promise(resolve => {
+  // document
+  return new Promise((resolve, reject) => {
     const jszip = new window.JSZip();
     return jszip.loadAsync(file).then(file2 => {
         file = file2
-        console.log(file)
+        // console.log(file)
         Object.values(file.files)[0].async('string').then(str => {
         file = str;
-        file = JSON.parse(`[${file}]`);
+        try {
+          file = JSON.parse(`[${file}]`);
+        } catch (exception){
+          reject(exception);
+        }
         file = new Uint8Array(file);
         file = (new TextDecoder('utf-8')).decode(file);
         file = JSON.parse(file);
@@ -53,7 +57,8 @@ window.convertProjectToFile = window.electronConvertProjectToFile || function(fi
 const $store = createStore({
   // plugins: [vuexLocal.default.plugin],
   state: {
-    appName: 'Media-Bits™',
+    appName: 'Media-Bits',
+    // ™
     focusedInputSource: 0,
     primaryHyperlinks: [
       {
@@ -84,19 +89,25 @@ const $store = createStore({
             isText: false
           }).then(file => {
 
-              window.loadFromOpenedFile(file).then(_file => {
-              window.$store.commit('setInputSources', _file.inputSources);
-              window.$store.commit('setOutputDestinations', _file.outputDestinations);
-            }).catch(e => window.M.toast({
-              html: `Unable to process file because it has invalid content:  <br /> ${e}`,
+              return window.loadFromOpenedFile(file).then(_file => {
+                window.$store.commit('setInputSources', []);
+                window.$store.commit('setOutputDestinations', []);
+                window.$store.commit('setInputSources', _file.inputSources);
+                window.$store.commit('setOutputDestinations', _file.outputDestinations);
+            }).catch(() => window.M.toast({
+              html: `Unable to process file because it has invalid content`,
               classes: 'bold red rounded'
             }));
             
-          }).catch(err => window.M.toast({
-            html: `Unable to process file because it has invalid content:  <br /> ${err}`,
+          }).catch(() => window.M.toast({
+            html: `Unable to process file because it has invalid content`,
             classes: 'bold red rounded'
           }));
         }
+    },
+    {
+      title: "Import from Cloud",
+      onclick(){}
     },
     {
         title: "Save to PC",
@@ -108,7 +119,7 @@ const $store = createStore({
             });
           } else {
             let file = {
-              inputSources: window.$store.state.inputSources,
+              inputSources: window.$store.state.inputSources.filter(source => !source.type.includes('live')),
               outputDestinations: window.$store.state.outputDestinations
             };
             
@@ -124,8 +135,8 @@ const $store = createStore({
                 html: successString,
                 classes: 'bold teal z-depth-4 rounded'
              });
-            }).catch(_err => window.M.toast({
-              html: _err,
+            }).catch(except => window.M.toast({
+              html: `Unable to Save for the following reason: ${except}`,
               classes: 'bold red z-depth-4 rounded'
            }));
 
@@ -153,24 +164,9 @@ const $store = createStore({
         class: "modal-trigger",
         dataTarget: "tools-modal",
         href: "#tools-modal"
-      },
-      {
-        title: "MORE",
-        onclick(){},
-        class: "modal-trigger",
-        dataTarget: "more-modal",
-        href: "#more-modal"
       }
     ],
-    inputSources: [
-      // {
-      //   name: 'Aud 1100',
-      //   type: 'audio file',
-      //   position: 1,
-      //   data: null,
-      //   id: Math.random()
-      // }
-    ],
+    inputSources: [],
     outputDestinations: [],
     editorIsReady: false,
   },
