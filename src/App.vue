@@ -1,5 +1,5 @@
 <template>
-  <div oncontextmenu="return false" class="white" style="width: 100% !important; height:100% !important; margin: 0; padding: 0; overflow-x: hidden;">
+  <div oncontextmenu="return false" ondrag="return false" ondragstart="return false" ondragover="return false" class="white" style="width: 100% !important; height:100% !important; margin: 0; padding: 0; overflow-x: hidden;">
   <div class="navbar-fixed">
     <nav class="teal">
       <div class="container">
