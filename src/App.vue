@@ -163,18 +163,14 @@ import UserViewOnDesktop from "@/components/UserViewOnDesktop.vue";
 
 
 
-const __myWorker = new Worker(URL.createObjectURL(new Blob([`
-self.onmessage = function(e) {
-  self.postMessage(e.data);
-};
-`], {
-  type: 'application/javascript'
-})));
-__myWorker.onmessage = (e) => console.log(e.data)
-window.__myWorker = __myWorker;
-
-const __arrayBufferToBase64 = buffer => window.btoa(String.fromCharCode(...(new Uint8Array(buffer))));
-console.log(__arrayBufferToBase64.toString());
+// begin window.__workerFromString
+window.__workerFromString = string => {
+    const __myWorker = new Worker(URL.createObjectURL(new Blob([string], {
+    type: 'application/javascript'
+  })));
+  return  __myWorker;
+}
+// end window.__workerFromString
 
 
 

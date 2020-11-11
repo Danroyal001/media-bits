@@ -1,3 +1,0 @@
-function __arrayBufferToBase64(buffer) {
-  return window.btoa(String.fromCharCode.apply(String, Object(_home_danroyal001_Documents_firebaseProjects_media_bits_node_modules_babel_runtime_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_29__["default"])(new Uint8Array(buffer))));
-}
