@@ -9,7 +9,7 @@
         <div v-if="$store.state.inputSources[$store.state.focusedInputSource]" class="black white-text fill" style="display: block !important; overflow: hidden;">
             <div style="width: 100%; height: 20px; font-size: 15px;" class="center bold white-text teal">Preview</div>
             <video id="preview" muted loop autoplay v-if="($store.state.inputSources[$store.state.focusedInputSource]) && ($store.state.inputSources[$store.state.focusedInputSource].type.toLowerCase().includes('video'))" style="width: 100%; height: calc(100% - 20px);" controls></video>
-            <audio id="preview" loop autoplay v-else-if="($store.state.inputSources[$store.state.focusedInputSource]) && ($store.state.inputSources[$store.state.focusedInputSource].type.toLowerCase().includes('audio'))" style="width: 100%; height: calc(100% - 20px);" controls></audio>
+            <AudioEqualizer id="preview" loop autoplay v-else-if="($store.state.inputSources[$store.state.focusedInputSource]) && ($store.state.inputSources[$store.state.focusedInputSource].type.toLowerCase().includes('audio'))" controls></AudioEqualizer>
             <img id="preview" v-else-if="($store.state.inputSources[$store.state.focusedInputSource]) && ($store.state.inputSources[$store.state.focusedInputSource].type.toLowerCase().includes('image'))" style="width: 100%; height: calc(100% - 20px);" />
         </div>
     </div>  
@@ -75,7 +75,7 @@
     <div class="modal-footer">
       <button class="btn-small red waves-effect waves-light modal-close">CLOSE</button>
       <a @click="requestCameraPermission" class="modal-close waves-effect waves-light btn">GRANT PERMISSION</a>
-      <a @click="addLiveVideo" class="modal-close waves-effect waves-green btn">Add</a>
+      <a @click="addLiveVideo" class="modal-close waves-effect waves-light btn">Add</a>
     </div>
 </div>
 <!-- End select camera modal -->
@@ -91,6 +91,7 @@
 import InputSource from '@/components/InputSource.vue';
 import EditorBottomNoInput from '@/components/EditorBottomNoInput.vue';
 import ElectronDesktopCaptureModal from '@/components/ElectronDesktopCaptureModal.vue';
+import AudioEqualizer from '@/components/AudioEqualizer.vue';
 
 export default {
     name: 'Editor',
@@ -163,7 +164,8 @@ export default {
         InputSource,
         // OutputDestination,
         EditorBottomNoInput,
-        ElectronDesktopCaptureModal
+        ElectronDesktopCaptureModal,
+        AudioEqualizer
   },
 }
 </script>

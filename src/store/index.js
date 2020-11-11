@@ -13,7 +13,7 @@ window.loadFromOpenedFile = window.electronLoadFromOpenedFile || function(file){
         try {
           file = JSON.parse(`[${file}]`);
         } catch (exception){
-          reject(exception);
+          return reject(exception);
         }
         file = new Uint8Array(file);
         file = (new TextDecoder('utf-8')).decode(file);
@@ -30,13 +30,13 @@ window.convertProjectToFile = window.electronConvertProjectToFile || function(fi
             file = (new TextEncoder('utf-8')).encode(file);
             file = file.toString();
             const d = new Date();
-            const day = d.getDay();
-            const month = d.getMonth();
+            const day = d.getDate();
+            const month = d.getMonth() + 1;
             const year = d.getFullYear();
             const hour = d.getHours();
             const minutes = d.getMinutes();
             const seconds = d.getSeconds();
-            const fileName = `${year}-${month}-${day}_${hour > 12 ? hour - 12 : hour}:${minutes}:${seconds}${hour > 12 ? 'pm' : 'am'}.mb`;
+            const fileName = `${year}-${month}-${day}_${hour > 12 ? hour - 12 : hour}-${minutes}-${seconds}${hour > 12 ? 'pm' : 'am'}.mb`; 
             const jszip = new window.JSZip();
             jszip.file(fileName, file);
             jszip.generateAsync({

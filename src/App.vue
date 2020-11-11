@@ -161,23 +161,24 @@ import PreLoader from '@/components/PreLoader.vue';
 import MinMax from '@/components/MinMax.vue';
 import UserViewOnDesktop from "@/components/UserViewOnDesktop.vue";
 
-const workerString = `
-postMessage("I'm working before postMessage('ali').");
 
-onmessage = function(e) {
-  postMessage('Hi ' + e.data);
+
+const __myWorker = new Worker(URL.createObjectURL(new Blob([`
+self.onmessage = function(e) {
+  self.postMessage(e.data);
 };
-`;
-
-const workerBlob = new Blob([workerString], {
+`], {
   type: 'application/javascript'
-});
+})));
+__myWorker.onmessage = (e) => console.log(e.data)
+window.__myWorker = __myWorker;
 
-window.myWorker = new Worker(URL.createObjectURL(workerBlob));
+const __arrayBufferToBase64 = buffer => window.btoa(String.fromCharCode(...(new Uint8Array(buffer))));
+console.log(__arrayBufferToBase64.toString());
+
+
 
 window.JSZip = require('jszip');
-
-
 
 window.M = M;
 

@@ -4,8 +4,8 @@
         <span>Input Source {{ count }} &nbsp; <i @click="removeSource" class="btn-small red white-text waves-effect waves-light close-btn">&times;</i></span>
     </div> 
     <div class="body black">
-        <video v-if="source.type.toLowerCase().includes('video')" :id="'inputVisual' + count" muted loop controls :title="source.title" class="fill-parent"></video>
-        <audio v-else-if="source.type.toLowerCase().includes('audio')" :id="'inputVisual' + count" loop controls :title="source.title" class="fill-parent"></audio>
+        <video autoplay v-if="source.type.toLowerCase().includes('video')" :id="'inputVisual' + count" muted loop controls :title="source.title" class="fill-parent"></video>
+        <audio autoplay v-else-if="source.type.toLowerCase().includes('audio')" :id="'inputVisual' + count" loop controls :title="source.title" class="fill-parent"></audio>
         <img v-else-if="source.type.toLowerCase().includes('image')" :id="'inputVisual' + count" :title="source.title" class="fill-parent" />
     </div>
     <div class="footer black">
@@ -51,8 +51,9 @@ export default {
         const _$elem = window.document.querySelector('#inputVisual' + _$this.count);
         const addSrc = e => {
             e.src = _$this.source.data;
-            e.play();
-            return setTimeout(_$elem.pause, 500);
+            e.pause();
+            e.scrollIntoView(true);
+            return setTimeout(() => e.pause(), 500);
         }
         switch(_$this.source.type.toLowerCase()){
             case 'audio file':
