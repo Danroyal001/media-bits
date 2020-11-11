@@ -82,18 +82,22 @@ const $store = createStore({
       {
         title: "Open",
         onclick(){
+          const loader = document.querySelector('#global-loader-modal');
           window.$store.dispatch('loadFile', {
             fileType: 'application/zip',
             multiple: false,
             callback: null,
             isText: false
           }).then(file => {
+              loader.M_Modal.open();
 
               return window.loadFromOpenedFile(file).then(_file => {
                 window.$store.commit('setInputSources', []);
                 window.$store.commit('setOutputDestinations', []);
                 window.$store.commit('setInputSources', _file.inputSources);
                 window.$store.commit('setOutputDestinations', _file.outputDestinations);
+                loader.M_Modal.close();
+                return true;
             }).catch(() => window.M.toast({
               html: `Unable to process file because it has invalid content`,
               classes: 'bold red rounded'
@@ -149,6 +153,7 @@ const $store = createStore({
       title: "Save to Cloud"
     }
     ],
+    globalLoaderText: "Loading...",
     editorBtns: [
       {
           title: "ADD INPUT",

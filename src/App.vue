@@ -48,7 +48,7 @@
   <!-- Begin Global Loader Modal -->
 <div id="global-loader-modal" class="modal">
     <div class="modal-content">
-      <h4>Loading</h4>
+      <h4>{{ $store.state.globalLoaderText }}</h4>
       <span><PreLoader /></span>
     </div>
 </div>
