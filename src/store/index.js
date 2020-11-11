@@ -98,15 +98,23 @@ const $store = createStore({
                 window.$store.commit('setOutputDestinations', _file.outputDestinations);
                 loader.M_Modal.close();
                 return true;
-            }).catch(() => window.M.toast({
+            }).catch(() => {
+              document.querySelector('#global-loader-modal').M_Modal.close();
+
+              window.M.toast({
               html: `Unable to process file because it has invalid content`,
               classes: 'bold red rounded'
-            }));
+            });
+          });
             
-          }).catch(() => window.M.toast({
-            html: `Unable to process file because it has invalid content`,
-            classes: 'bold red rounded'
-          }));
+          }).catch(() => {
+              document.querySelector('#global-loader-modal').M_Modal.close();
+              
+              window.M.toast({
+              html: `Unable to process file because it has invalid content`,
+              classes: 'bold red rounded'
+            });
+          });
         }
     },
     {
