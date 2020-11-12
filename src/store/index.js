@@ -70,12 +70,12 @@ const $store = createStore({
         href: '/editor'
       },
       {
-        name: 'SUBSRIBTION',
-        href: '/subscribtion'
-      },
-      {
         name: 'DOWNLOAD',
         href: '/download'
+      },
+      {
+        name: 'SUBSRIBTION',
+        href: '/subscribtion'
       }
     ],
     fileSubmenuDropdown: [

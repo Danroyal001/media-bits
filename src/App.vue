@@ -110,6 +110,10 @@ hr{
   justify-content: center;
 }
 
+.p-8px{
+  padding: 8px;
+}
+
 .view-pager-enter-active{
   position:relative;
   animation:viewPagerEnter 1.2s;
@@ -148,7 +152,8 @@ hr{
   .bold{
     font-weight: 900;
   }
-  .m-y-4{
+  
+  .m-y-4px{
     margin-top: 4px;
     margin-bottom: 4px;
   }

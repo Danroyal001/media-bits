@@ -20,9 +20,9 @@
   <div class="teal">
     <br />
     <div class="container center">
-      <router-link to="/pricing" class="m-y-4 btn white black-text bold waves-effect waves-teal">Pricing</router-link> &nbsp;
-      <a @click="viewFeatures" class="m-y-4 btn white black-text bold waves-effect waves-teal">View Features</a> &nbsp;
-      <router-link to="/demo-video" class="m-y-4 btn white black-text bold waves-effect waves-teal">Watch demo video</router-link> &nbsp;    
+      <router-link to="/pricing" class="m-y-4px btn white black-text bold waves-effect waves-teal">Pricing</router-link> &nbsp;
+      <a @click="viewFeatures" class="m-y-4px btn white black-text bold waves-effect waves-teal">View Features</a> &nbsp;
+      <router-link to="/demo-video" class="m-y-4px btn white black-text bold waves-effect waves-teal">Watch demo video</router-link> &nbsp;    
     </div>
     <br />
   </div>
