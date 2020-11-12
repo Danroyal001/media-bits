@@ -10,14 +10,16 @@
           </a>
           <a href="#sidenav" data-target="sidenav" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
           <ul id="nav-mobile" class="right hide-on-med-and-down"  v-if="$route.name !== 'editor'">
-             <li><div class="user-view">
+             <li>
+             <div class="user-view">
               <div class="background">
-                <img src="images/office.jpg">
+                <img src="@/assets/img/office.jpg">  
               </div>
-              <a href="#user"><img class="circle" src="images/yuna.jpg"></a>
+              <a href="#user"><img class="circle" src="@/assets/img/user-circle.svg"></a>
               <a href="#name"><span class="white-text name">John Doe</span></a>
               <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
-    </div></li>
+             </div>
+             </li>
             <li v-for="link in $store.state.primaryHyperlinks" :key="link.name"><router-link :to="link.href">{{ link.name }}</router-link></li>
             <li><a class="dropdown-trigger" href="#more-hyperlinks-dropdown" data-target="more-hyperlinks-dropdown">MORE<i></i></a></li>
           </ul>
