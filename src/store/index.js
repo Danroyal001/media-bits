@@ -78,6 +78,7 @@ const $store = createStore({
         href: '/subscribtion'
       }
     ],
+    year: `${(new Date()).getFullYear()}`,
     fileSubmenuDropdown: [
       {
         title: "Open",

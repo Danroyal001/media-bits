@@ -1,5 +1,30 @@
 <template>
-<div></div>
+<div>
+    <br />
+
+    <table class="table-responsive highlight striped">
+        <caption class="bold">COMPARISON TABLE</caption>
+        <thead>
+          <tr>
+              <th>Feature</th>
+              <th>Daily Subscribtion (Per use)</th>
+              <th>Monthly Subscribtion</th>
+              <th>yearly Subscribtion</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>vjyg</td>
+            <td>tvhtjg</td>
+            <td>jghjh</td>
+            <td>chthh</td>
+          </tr>
+        </tbody>
+    </table>
+    
+    <br />
+</div>
 </template>
 
 <script>

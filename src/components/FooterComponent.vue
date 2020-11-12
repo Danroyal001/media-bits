@@ -41,7 +41,7 @@
 
           <div class="footer-copyright">
             <div class="container">
-            &copy; {{ year }} Copyright - {{ $store.state.appName }}
+            &copy; {{ $store.state.year }} Copyright - {{ $store.state.appName }}
             <a class="grey-text text-lighten-4 right" :href="window.isElectron ? 'javascript:window.shell.openExternal(\'https://daniel-effiong.web.app\')' : 'https://daniel-effiong.web.app'">Propriety software of Daniel Effiong</a>
             </div>
           </div>

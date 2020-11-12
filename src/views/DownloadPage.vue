@@ -51,6 +51,22 @@
     <br />
     <h3 class="teal white-text center p-8px">version history</h3>
     <br />
+    <table class="table-responsive highlight striped">
+        <thead>
+          <tr>
+              <th>Version</th>
+              <th>Release Date</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>1.0.0</td>
+            <td>dd/mm/yyyy</td>
+          </tr>
+        </tbody>
+    </table>
+<br />
 </div>
 
 <FooterComponent />
