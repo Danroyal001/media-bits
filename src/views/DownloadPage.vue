@@ -44,18 +44,27 @@
     </div>
 
 </div>
+
 <hr />
+
 <div class="container">
     <br />
     <h3 class="teal white-text center p-8px">version history</h3>
     <br />
 </div>
+
+<FooterComponent />
 </div>
 </template>
 
 <script>
+import FooterComponent from "@/components/FooterComponent.vue";
+
 export default {
-    name: 'download-page'
+    name: 'download-page',
+    components: {
+        FooterComponent
+    }
 }
 </script>
 
