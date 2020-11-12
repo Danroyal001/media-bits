@@ -1,5 +1,6 @@
 <template>
-<div>
+<div class="container">
+    <br />
     <br />
 
     <table class="table-responsive highlight striped">
@@ -9,7 +10,7 @@
               <th>Feature</th>
               <th>Daily Subscribtion (Per use)</th>
               <th>Monthly Subscribtion</th>
-              <th>yearly Subscribtion</th>
+              <th>Yearly Subscribtion</th>
           </tr>
         </thead>
 
@@ -22,7 +23,7 @@
           </tr>
         </tbody>
     </table>
-    
+
     <br />
 </div>
 </template>
@@ -34,5 +35,7 @@ export default {
 </script>
 
 <style>
-
+caption{
+    font-size: 40px;
+}
 </style>

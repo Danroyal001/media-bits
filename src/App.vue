@@ -4,7 +4,7 @@
     <nav class="teal">
       <div class="container">
         <div class="nav-wrapper">
-          <a :href="window.isElectron === true ? 'javascript:window.electron.shell.openExternal(window.location.href)' : '#/'" class="brand-logo">
+          <a :href="window.isElectron === true ? 'javascript:void(0)' : `javascript:(() => window.$router.push('/'))()`" class="brand-logo">
             <img src="@/assets/img/logo.png" style="height: 50px; padding-top: 21px; padding-left: 3px; padding-right: 3px;">
             <span class="hide-on-small-only">{{ $store.state.appName }}</span>
           </a>
@@ -152,7 +152,7 @@ hr{
   .bold{
     font-weight: 900;
   }
-  
+
   .m-y-4px{
     margin-top: 4px;
     margin-bottom: 4px;

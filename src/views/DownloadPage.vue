@@ -33,9 +33,11 @@
         </div>
     </div>
 
+    <br />
     <hr />
     <div class="center">OR</div>
     <hr />
+    <br />
 
     <div class="row center">
         <div class="container col s12 download-link waves-effect waves-dark">
