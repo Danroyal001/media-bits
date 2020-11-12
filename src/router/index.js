@@ -62,7 +62,7 @@ const routes = [
     })
   },
   {
-    path: '/docummentation',
+    path: '/documentation',
     name: 'documentation',
     component: defineAsyncComponent({
       loader: () => import('@/views/Documentation.vue'),
