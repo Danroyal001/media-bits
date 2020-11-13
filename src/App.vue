@@ -10,16 +10,16 @@
           </a>
           <a href="#sidenav" data-target="sidenav" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
           <ul id="nav-mobile" class="right hide-on-med-and-down"  v-if="$route.name !== 'editor'">
-             <li>
-             <div class="user-view">
-              <div class="background">
-                <img src="@/assets/img/office.jpg">  
+            <!--<li>
+              <div class="user-view" style="height: 300px; width: 300px;">
+                <div class="background">
+                  <img style="width: 300px; height: 300px;" src="@/assets/img/office.jpg">  
+                </div>
+                <a href="#user"><img class="circle" style="height: 100px; width: 100px;" src="@/assets/img/user-circle.svg"></a>
+                <a href="#name"><span class="white-text name">John Doe</span></a>
+                <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
               </div>
-              <a href="#user"><img class="circle" src="@/assets/img/user-circle.svg"></a>
-              <a href="#name"><span class="white-text name">John Doe</span></a>
-              <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
-             </div>
-             </li>
+            </li>-->
             <li v-for="link in $store.state.primaryHyperlinks" :key="link.name"><router-link :to="link.href">{{ link.name }}</router-link></li>
             <li><a class="dropdown-trigger" href="#more-hyperlinks-dropdown" data-target="more-hyperlinks-dropdown">MORE<i></i></a></li>
           </ul>

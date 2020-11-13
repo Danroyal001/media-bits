@@ -1,34 +1,35 @@
 <template>
 <div>
-  <div class="main container">
-    <h3 id="introduction-to-media-bits" class="center">Introduction to <br />{{ $store.state.appName }}</h3>
-    <p>{{ $store.state.appName }} is ...</p>
+  <div v-for="topic in documentation" :key="topic.title" class="main">
+    <div class="container">
+      <h3 id="introduction-to-media-bits" class="center">{{ topic.title }}</h3>
+      <p v-html="topic.body"></p>
+    </div>
   </div>
 
   <FooterComponent />
 
   <ul id="documentation-table-of-contents" class="sidenav sidenav-fixed">
-    <li v-for="(section, index) in sections" :key="'documentation-section' + index + 1"><a :href="'#' + section.href">{{ section.text }}</a></li>
+    <li v-for="(topic, index) in documentation" :key="'documentation-section' + index + 1"><a :href="topic.href">{{ topic.title }}</a></li>
   </ul>
 </div>
 </template>
 
 <script>
 import FooterComponent from "@/components/FooterComponent.vue";
+import { getOnlyDocumentation } from '@/assets/js/documentation.js';
 
 export default {
   name: "documentation",
   components: {
     FooterComponent
   },
+  mounted(){
+      this.documentation = getOnlyDocumentation();
+  },
   data(){
     return {
-      sections: [
-        {
-          href: "introduction-to-media-bits",
-          text: "Introduction to Media-Bits"
-        }
-      ]
+      documentation: []
     }
   }
 }
