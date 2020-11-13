@@ -76,6 +76,11 @@
     scroll-behavior: smooth;
   }
 
+.modal-overlay{
+  cursor: not-allowed !important;
+  pointer-events: none !important;
+}
+
 /* Facilitate dragging behavior in eleectron */
 .brand-logo{
   -webkit-user-select: none;
@@ -196,6 +201,7 @@ export default {
   name: 'App',
   mounted(){
     window.M.AutoInit();
+    console.log(window.fetch)
     document.querySelector('#global-loader-modal').M_Modal.options.dismissible = false
   },
   components: {

@@ -12,6 +12,9 @@
             <AudioEqualizer id="preview" loop autoplay v-else-if="($store.state.inputSources[$store.state.focusedInputSource]) && ($store.state.inputSources[$store.state.focusedInputSource].type.toLowerCase().includes('audio'))" controls></AudioEqualizer>
             <img id="preview" v-else-if="($store.state.inputSources[$store.state.focusedInputSource]) && ($store.state.inputSources[$store.state.focusedInputSource].type.toLowerCase().includes('image'))" style="width: 100%; height: calc(100% - 20px);" />
         </div>
+        <div v-else class="black white-text fill" style="display: block !important; overflow: hidden;">
+            <div style="width: 100%; height: 20px; font-size: 15px;" class="center bold white-text teal">Preview</div>
+        </div>
     </div>  
     <div class="horizontal-scroll-child horizontal-scroll-child-2 teal">
         <div style="width: 100%; height: 20px; font-size: 15px;" class="center bold white-text teal">Output</div>
@@ -105,12 +108,12 @@ export default {
             hasGottenDevices: false
         };
     },
-    beforeRouteLeave(to, from, next){
+    beforeLeave(to, from, next){
         if(this.$store.state.currentProjectIsSaved === true){
-            next();
+            return next();
         } else {
             alert("If you leave without saving your work, all changes will be lost")
-            next(false);
+            return next(false);
         }
     },
     mounted(){

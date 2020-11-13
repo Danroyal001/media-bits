@@ -194,6 +194,7 @@ const $store = createStore({
         href: "#tools-modal"
       }
     ],
+    currentProjectIsSaved: false,
     inputSources: [],
     outputDestinations: [],
     editorIsReady: false,

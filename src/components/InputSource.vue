@@ -47,6 +47,8 @@ export default {
         }
     },
     mounted(){
+        this.setFocusedInputSource();
+
         let _$this = this;
         const _$elem = window.document.querySelector('#inputVisual' + _$this.count);
         const addSrc = e => {

@@ -4,7 +4,7 @@
     <br />
 
     <table class="table-responsive highlight striped">
-        <caption class="bold">COMPARISON TABLE</caption>
+        <caption class="bold">PRICING TABLE</caption>
         <thead>
           <tr>
               <th>Feature</th>
