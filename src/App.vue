@@ -21,7 +21,7 @@
               </div>
             </li>-->
             <li v-for="link in $store.state.primaryHyperlinks" :key="link.name"><router-link :to="link.href">{{ link.name }}</router-link></li>
-            <li><a class="dropdown-trigger" href="#more-hyperlinks-dropdown" data-target="more-hyperlinks-dropdown">MORE...<i></i></a></li>
+            <li><a class="dropdown-trigger" href="#more-hyperlinks-dropdown" data-target="more-hyperlinks-dropdown">MORE &nbsp; <small><sub><i class="fas fa-caret-down"></i></sub></small></a></li>
           </ul>
           <EditorMenu v-else-if="($route.name === 'editor') && ($store.state.editorIsReady === true)" />
           <ul id="more-hyperlinks-dropdown" class="dropdown-content bold">

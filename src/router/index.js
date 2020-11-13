@@ -127,6 +127,19 @@ const routes = [
     })
   },
   {
+    path: '/terms-and-conditions',
+    name: 'terms-and-conditions',
+    component: defineAsyncComponent({
+      loader: () => import('@/views/TermsAndConditions.vue'),
+      loadingComponent: PreLoader,
+      errorComponent: NetworkError,
+      delay,
+      timeout,
+      suspensible,
+      onError,
+    })
+  },
+  {
     path: '/privacy-policy',
     name: 'privacy-policy',
     component: defineAsyncComponent({
