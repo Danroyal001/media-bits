@@ -21,8 +21,8 @@
     <br />
     <div class="container center">
       <router-link to="/subscribtion" class="m-y-4px btn white black-text bold waves-effect waves-teal">Pricing</router-link> &nbsp;
-      <a @click="viewFeatures" class="m-y-4px btn white black-text bold waves-effect waves-teal">View Features</a> &nbsp;
-      <router-link to="/demo-video" class="m-y-4px btn white black-text bold waves-effect waves-teal">Watch demo video</router-link> &nbsp;    
+      <a href="#features" class="m-y-4px btn white black-text bold waves-effect waves-teal">View Features</a> &nbsp;
+      <router-link to="/tutorial-videos/#/demo-video" class="m-y-4px btn white black-text bold waves-effect waves-teal">Watch demo video</router-link> &nbsp;    
     </div>
     <br />
   </div>
@@ -212,12 +212,6 @@ import FooterComponent from "@/components/FooterComponent.vue";
 export default {
   name: 'HomePage',
   methods: {
-    logData($event){
-      console.log($event);
-    },
-    viewFeatures(){
-      return document.querySelector('#features').scrollIntoView(true)
-    },
     subscribeToNewsLetter($event){
       $event.preventDefault();
     }
