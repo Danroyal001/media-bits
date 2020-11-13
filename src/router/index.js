@@ -75,6 +75,71 @@ const routes = [
     })
   },
   {
+    path: '/blog',
+    name: 'blog',
+    component: defineAsyncComponent({
+      loader: () => import('@/views/Blog.vue'),
+      loadingComponent: PreLoader,
+      errorComponent: NetworkError,
+      delay,
+      timeout,
+      suspensible,
+      onError,
+    })
+  },
+  {
+    path: '/forum',
+    name: 'forum',
+    component: defineAsyncComponent({
+      loader: () => import('@/views/Forum.vue'),
+      loadingComponent: PreLoader,
+      errorComponent: NetworkError,
+      delay,
+      timeout,
+      suspensible,
+      onError,
+    })
+  },
+  {
+    path: '/premium-support',
+    name: 'premium-support',
+    component: defineAsyncComponent({
+      loader: () => import('@/views/PremiumSupport.vue'),
+      loadingComponent: PreLoader,
+      errorComponent: NetworkError,
+      delay,
+      timeout,
+      suspensible,
+      onError,
+    })
+  },
+  {
+    path: '/email-support',
+    name: 'email-support',
+    component: defineAsyncComponent({
+      loader: () => import('@/views/EmailSupport.vue'),
+      loadingComponent: PreLoader,
+      errorComponent: NetworkError,
+      delay,
+      timeout,
+      suspensible,
+      onError,
+    })
+  },
+  {
+    path: '/privacy-policy',
+    name: 'privacy-policy',
+    component: defineAsyncComponent({
+      loader: () => import('@/views/PrivacyPolicy.vue'),
+      loadingComponent: PreLoader,
+      errorComponent: NetworkError,
+      delay,
+      timeout,
+      suspensible,
+      onError,
+    })
+  },
+  {
     path: '/subscribtion',
     name: 'subscribtion',
     component: defineAsyncComponent({
