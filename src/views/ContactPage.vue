@@ -1,10 +1,28 @@
 <template>
-<div></div>
+<div>
+    <div class="container">
+        <form></form>
+    </div>
+
+    <FooterComponent />
+</div>
 </template>
 
 <script>
+import FooterComponent from "@/components/FooterComponent.vue";
+
 export default {
-    name: 'contact'
+    name: 'contact-page',
+    data(){
+        return {
+            name: "",
+            email: "",
+            company: ""
+        }
+    },
+        components: {
+            FooterComponent
+        }
 }
 </script>
 

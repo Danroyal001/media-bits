@@ -1,8 +1,10 @@
 <template>
 <div>
   <div v-for="topic in documentation" :key="topic.title" class="main">
-    <div class="container">
-      <h3 id="introduction-to-media-bits" class="center">{{ topic.title }}</h3>
+    <div :id="topic.href" class="container">
+      <br />
+      <br />
+      <h4 class="center" :title="topic.title">{{ topic.title }}</h4>
       <p v-if="role === 'documentation'" v-html="topic.body"></p>
       <video v-else class="black" controls loop>
         <source :src="topic.videoURL">
@@ -15,7 +17,7 @@
   <FooterComponent />
 
   <ul id="documentation-table-of-contents" class="sidenav sidenav-fixed">
-    <li v-for="(topic, index) in documentation" :key="'documentation-section' + index + 1"><a :href="topic.href">{{ topic.title }}</a></li>
+    <li v-for="(topic, index) in documentation" :key="'documentation-section' + index + 1"><a :href="'#' + topic.href" :title="topic.title" class="truncate">{{ topic.title }}</a></li>
   </ul>
 </div>
 </template>
@@ -60,6 +62,11 @@ export default {
   z-index: 1;
   border-right: thin solid #009688 !important;
 }
+
+.sidenav > li{
+  height: auto !important;
+}
+
 .video{
   width: 100% !important;
 }

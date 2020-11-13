@@ -78,6 +78,20 @@ const $store = createStore({
         href: '/subscribtion'
       }
     ],
+    secondaryHyperlinks: [
+      {
+        name: "Contact Us",
+        href: "/contact"
+      },
+      {
+        name: "Documentation",
+        href: "/documentation"
+      },
+      {
+        name: "Tutorial Videos",
+        href: "/tutorial-videos"
+      }
+    ],
     year: `${(new Date()).getFullYear()}`,
     fileSubmenuDropdown: [
       {

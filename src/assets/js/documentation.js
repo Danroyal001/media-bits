@@ -1,9 +1,15 @@
 const documentation = [
     {
-      href: "#introduction-to-media-bits",
+      href: "introduction-to-media-bits",
       title: "Introduction to Media-Bits",
       body: "Media-Bits is a ...",
       videoURL: "https://you.tube/crgcrg"
+    },
+    {
+      href: "getting-started-with-your-first-project",
+      title: "Getting started with your first project",
+      body: "...",
+      videoURL: "https://you.tube/gfh"
     }
   ]
 
@@ -19,6 +25,7 @@ const getOnlyDocumentation = () => {
 const getOnlyVideos = () => {
     return documentation.map(doc => ({
       title: doc.title,
+      href: doc.href,
       videoURL: doc.videoURL
     }));
 }

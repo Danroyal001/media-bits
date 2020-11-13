@@ -25,8 +25,7 @@
           </ul>
           <EditorMenu v-else-if="($route.name === 'editor') && ($store.state.editorIsReady === true)" />
           <ul id="more-hyperlinks-dropdown" class="dropdown-content bold">
-            <li><router-link to="/contact">Contact us</router-link></li>
-            <li><router-link to="/documentation">Documentation</router-link></li>
+            <li v-for="link in $store.state.secondaryHyperlinks" :key="link"><router-link :to="link.href">{{ link.name }}</router-link></li>
           </ul>
           <UserViewOnDesktop />
           <MinMax v-if="window.isElectron" /> 
