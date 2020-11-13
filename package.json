@@ -1,6 +1,6 @@
 {
   "name": "media-bits",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -62,9 +62,13 @@
     "Audio",
     "Editing",
     "Media",
-    "Editing"
+    "Editing",
+    "Explainer Videos"
   ],
-  "author": "Danroyal001",
+  "author": {
+    "name": "Danroyal001",
+    "email": "danroyaleffiong@gmail.com"
+  },
   "license": "SEE LICENSE IN REAMDE.md",
   "bugs": {
     "url": "https://github.com/danroyal001/media-bits/issues"

@@ -90,6 +90,14 @@ const $store = createStore({
       {
         name: "Tutorial Videos",
         href: "/tutorial-videos"
+      },
+      {
+        name: "Media-Bits Blog",
+        href: "/blog"
+      },
+      {
+        name: "Media-Bits Forum",
+        href: "/forum"
       }
     ],
     year: `${(new Date()).getFullYear()}`,
