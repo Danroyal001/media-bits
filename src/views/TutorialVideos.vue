@@ -1,10 +1,15 @@
 <template>
-<DocumentationOrVideos type="videos" />
+<DocumentationOrVideos role="videos" />
 </template>
 
 <script>
+import DocumentationOrVideos from "@/components/DocumentationOrVideos.vue";
+
 export default {
-    name: "tutorial-videos"
+    name: "tutorial-videos",
+    components: {
+        DocumentationOrVideos
+    }
 }
 </script>
 

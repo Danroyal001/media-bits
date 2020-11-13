@@ -17,7 +17,10 @@ const getOnlyDocumentation = () => {
 }
 
 const getOnlyVideos = () => {
-    return documentation.map(doc => doc.videoURL);
+    return documentation.map(doc => ({
+      title: doc.title,
+      videoURL: doc.videoURL
+    }));
 }
 
 const _getOnlyDocumentation = getOnlyDocumentation;

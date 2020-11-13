@@ -86,6 +86,19 @@ const routes = [
       suspensible,
       onError,
     })
+  },
+  {
+    path: '/tutorial-videos',
+    name: 'tutorial-videos',
+    component: defineAsyncComponent({
+      loader: () => import('@/views/TutorialVideos.vue'),
+      loadingComponent: PreLoader,
+      errorComponent: NetworkError,
+      delay,
+      timeout,
+      suspensible,
+      onError,
+    })
   }
 ]
 

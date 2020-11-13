@@ -3,7 +3,12 @@
   <div v-for="topic in documentation" :key="topic.title" class="main">
     <div class="container">
       <h3 id="introduction-to-media-bits" class="center">{{ topic.title }}</h3>
-      <p v-html="topic.body"></p>
+      <p v-if="role === 'documentation'" v-html="topic.body"></p>
+      <video v-else class="black" controls loop>
+        <source :src="topic.videoURL">
+      </video>
+      <br />
+      <hr />
     </div>
   </div>
 
@@ -24,7 +29,15 @@ export default {
     FooterComponent
   },
   mounted(){
-      
+      if (this.role === 'documentation'){
+        import('@/assets/js/documentation.js').then(({ getOnlyDocumentation }) => {
+        this.documentation = getOnlyDocumentation();
+        });
+      } else if (this.role === 'videos'){
+        import('@/assets/js/documentation.js').then(({ getOnlyVideos }) => {
+        this.documentation = getOnlyVideos();
+        });
+      }
   },
   data(){
     return {
@@ -46,6 +59,9 @@ export default {
   margin-top: 60px !important;
   z-index: 1;
   border-right: thin solid #009688 !important;
+}
+.video{
+  width: 100% !important;
 }
 
 .main, footer {

@@ -12,8 +12,6 @@ import "firebase/storage";
 import "firebase/messaging";
 import "firebase/functions";
 
-window.__firebase = firebase;
-
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
     apiKey: "AIzaSyABk77tsR2CoJeAlD8Almd2wz0_w4tbeEA",
@@ -27,6 +25,8 @@ const firebaseConfig = {
   };
   
 // Initialize Firebase
-window.__firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
+
+window.__firebase = firebase;
 
 window.vm = createApp(App).use(store).use(router).mount('#app')
