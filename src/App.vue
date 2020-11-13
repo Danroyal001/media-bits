@@ -139,9 +139,9 @@ hr{
 }
 @keyframes viewPagerEnter{
   from{
-    right:-300px;
+    bottom: -300px;
     /*perspective: 900;*/
-    opacity:0;
+    opacity: 0;
     transform: translateZ(100px);
     -webkit-transform: translateZ(100px);
     -moz-transform: translateZ(100px);
@@ -149,9 +149,9 @@ hr{
     -o-transform: translateZ(1);
     }
   to{
-    right:0px;
+    bottom: 0px;
     /*perspective: 1000;*/
-    opacity:1;
+    opacity: 1;
     transform: translateZ(0px);
     -webkit-transform: translateZ(0px);
     -moz-transform: translateZ(0px);
@@ -200,9 +200,7 @@ window.M = M;
 export default {
   name: 'App',
   mounted(){
-    window.M.AutoInit();
-    console.log(window.fetch)
-    document.querySelector('#global-loader-modal').M_Modal.options.dismissible = false
+    return window.M.AutoInit();
   },
   components: {
     EditorMenu,

@@ -108,14 +108,6 @@ export default {
             hasGottenDevices: false
         };
     },
-    beforeLeave(to, from, next){
-        if(this.$store.state.currentProjectIsSaved === true){
-            return next();
-        } else {
-            alert("If you leave without saving your work, all changes will be lost")
-            return next(false);
-        }
-    },
     mounted(){
         const _$this = this;
         this.$store.commit('editorIsReady');

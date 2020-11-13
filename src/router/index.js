@@ -107,9 +107,16 @@ const router = createRouter({
   routes
 });
 
-router.beforeEach();
-
-router.afterEach();
+router.beforeEach((_to, from, next) => {
+  if(from.name === 'editor'){
+    if(window.$store.state.currentProjectIsSaved === true){
+      return next();
+    } else {
+      window.alert("If you leave without saving your work, all changes will be lost")
+      return next(false);
+    }
+  } else return next();
+});
 
 window.$router = router;
 

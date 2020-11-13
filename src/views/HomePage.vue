@@ -67,7 +67,7 @@
     <br />
     <p>{{ $store.state.appName }} is a live multimedia streaming, editing, switching, mixing, projection and <wbr />video-conferencing<wbr /> software that utilises the latest advances in computer software and hardware to provide advanced multimedia capabilities, a task previously only possible on expensive dedicated hardware.</p>
     <p>{{ $store.state.appName }} also functions as live streaming software that allows you to publish your live productions directly to the Internet!.</p>
-    <p>{{ $store.state.appName }} runs on Windows 7, Windows 8, Windows 10, Linux, Mac OSX and in the Browser.</p>
+    <p>{{ $store.state.appName }} runs <strong>EVERYWHERE</strong> (Windows 7, Windows 8, Windows 10, Linux, Mac OSX, Android, IOS and even in the <router-link to="/editor">Browser</router-link>.)</p>
     <p>{{ $store.state.appName }} is a complete live video production software solution with features including <b>LIVE</b> mixing, switching, recording and streaming of SD, full HD and 4K video sources including cameras, video files, DVDs, images, verses Powerpoint and much much more.</p>
     <p>Whether you are looking to produce big budget live concert productions, sporting events, Church services or small webcasts, then {{ $store.state.appName }} is for you.</p>
     <p>For a full list of what is possible with {{ $store.state.appName }}, <a @click="viewFeatures" href="javascript:void(0)">click here</a> to view all features.</p>
@@ -103,7 +103,7 @@
 
       <div class="col s12 m6 l4 center">
         <div><img src="@/assets/img/logo.png" width="100"></div>
-        <h5>Video/Audio Editing</h5>
+        <h5>Video/Audio Editing and manipulation</h5>
         <p>{{ $store.state.appName }} is a handy tool for quick video/audio editing and trimming</p>
       </div>
 
@@ -135,16 +135,22 @@
     </div>
     <br />
     <div class="row white-text">
-      <div class="col s12 m6 l6 center">
+      <div class="col s12 m6 l4 center">
         <div><img src="@/assets/img/logo.png" width="100"></div>
         <h5>Video conferencing</h5>
         <p>Video Conferencing is made super-easy with <br />{{ $store.state.appName }}</p>
       </div>
 
-      <div class="col s12 m6 l6 center">
+      <div class="col s12 m6 l4 center">
         <div><img src="@/assets/img/logo.png" width="100"></div>
         <h5>Project Collaboration</h5>
         <p>{{ $store.state.appName }} acknowledges the fact that we live in <br />the cloud computing era. For this reason, <br />{{ $store.state.appName }} makes it project collaboration possible</p>  
+      </div>
+
+      <div class="col s12 m12 l4 center">
+        <div><img src="@/assets/img/logo.png" width="100"></div>
+        <h5>Explainer Videos</h5>
+        <p>Creating explainer videos is highly simplified with {{ $store.state.appName }}</p>
       </div>
     </div>
     <br />

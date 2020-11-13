@@ -194,12 +194,15 @@ const $store = createStore({
         href: "#tools-modal"
       }
     ],
-    currentProjectIsSaved: false,
+    currentProjectIsSaved: true,
     inputSources: [],
     outputDestinations: [],
     editorIsReady: false,
   },
   mutations: {
+    setCurrentProjectIsSaved(state, isSaved){
+      state.currentProjectIsSaved = isSaved;
+    },
     setInputSources(state, sources){
       state.inputSources = sources;
     },
