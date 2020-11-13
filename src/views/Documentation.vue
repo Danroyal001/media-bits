@@ -17,7 +17,6 @@
 
 <script>
 import FooterComponent from "@/components/FooterComponent.vue";
-import { getOnlyDocumentation } from '@/assets/js/documentation.js';
 
 export default {
   name: "documentation",
@@ -25,7 +24,9 @@ export default {
     FooterComponent
   },
   mounted(){
-      this.documentation = getOnlyDocumentation();
+      import('@/assets/js/documentation.js').then(({ getOnlyDocumentation }) => {
+        this.documentation = getOnlyDocumentation();
+        });
   },
   data(){
     return {
