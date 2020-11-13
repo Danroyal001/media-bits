@@ -57,6 +57,7 @@ export default {
             e.scrollIntoView(true);
             return setTimeout(() => e.pause(), 500);
         }
+        _$this.$store.commit('setCurrentProjectIsSaved', false);
         switch(_$this.source.type.toLowerCase()){
             case 'audio file':
                 (() => addSrc(_$elem))();

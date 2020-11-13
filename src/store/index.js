@@ -151,6 +151,7 @@ const $store = createStore({
             };
             
             return window.convertProjectToFile(file).then(({blob, fileName}) => {
+
               let a = document.createElement('a');
               a.href = blob;
               a.download = fileName + '.zip';
@@ -162,6 +163,8 @@ const $store = createStore({
                 html: successString,
                 classes: 'bold teal z-depth-4 rounded'
              });
+             return window.$store.commit('setCurrentProjectIsSaved', true);
+
             }).catch(except => window.M.toast({
               html: `Unable to Save for the following reason: ${except}`,
               classes: 'bold red z-depth-4 rounded'

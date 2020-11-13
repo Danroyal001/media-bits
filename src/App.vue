@@ -135,7 +135,7 @@ hr{
 .view-pager-leave-active{
   position:relative;
   /* animation:viewPagerLeave 0.4s; */
-  animation: viewPagerEnter reverse .6s;
+  animation: viewPagerEnter reverse 1.2s;
 }
 @keyframes viewPagerEnter{
   from{
