@@ -18,8 +18,20 @@
     </div>  
     <div class="horizontal-scroll-child horizontal-scroll-child-2 teal">
         <div style="width: 100%; height: 20px; font-size: 15px;" class="center bold white-text teal">Output</div>
-        <div v-for="x in 1" :key="x + '.mb'" class="black white-text" style="display: block; width: 100%; height: calc(100% - 20px);">
-            &nbsp;
+        <div v-for="(x, index) in 1" :key="'output-destination-' + index" :id="'output-destination-' + index" class="black white-text output-destination row" style="display: block; margin: 0px; padding: 0px; width: 100%; height: calc(100% - 20px);">
+            <div class="col s12 row output-destination-top-block">
+                <div class="col s1 orange output-audio-channel-visualizer"></div>
+                <video class="col s11 output-video-visualizer" controls loop></video>
+            </div>
+            <div class="col s12 orange output-destination-bottom-block">
+                <button class="btn teal white-text waves-effect waves-light bold">PROJECT <i class="fa fa-stream"></i></button>
+
+                <button class="btn teal white-text waves-effect waves-light bold">STREAM <i class="fa fa-wifi"></i></button>
+
+                <button class="btn red white-text waves-effect waves-light bold">RECORD <i class="fa fa-video"></i></button>
+
+                <button class="btn teal white-text waves-effect waves-light bold">CONFIG <i class="fa fa-wrench"></i></button>
+            </div>
         </div>
     </div>
 </div>
@@ -214,6 +226,34 @@ export default {
 }
 #preview{
     object-fit: contain !important;
+}
+
+.output-destination{
+    border: thin solid #000000;
+}
+
+.output-destination, .output-destination div, .output-destination video{
+    margin: 0px !important;
+    padding: 0px !important;
+}
+
+.output-destination .output-destination-top-block{
+    height: 85% !important;
+}
+
+.output-destination .output-destination-bottom-block{
+    height: 15%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+.output-destination .output-audio-channel-visualizer{
+    height: 100% !important;
+}
+
+.output-destination video.output-video-visualizer{
+    height: 100% !important;
 }
 
 @media only screen and (min-width: 600px) and (max-width: 992px) {
