@@ -63,6 +63,8 @@
 </div>
 <!-- End Global Loader Modal -->
 
+  <AuthenticationModal />
+
   </div>
 </template>
 
@@ -179,6 +181,7 @@ import * as M from '@/assets/js/materialize.min.js';
 import PreLoader from '@/components/PreLoader.vue';
 import MinMax from '@/components/MinMax.vue';
 import UserViewOnDesktop from "@/components/UserViewOnDesktop.vue";
+import AuthenticationModal from "@/components/AuthenticationModal.vue";
 
 
 
@@ -206,7 +209,8 @@ export default {
     EditorMenu,
     PreLoader,
     MinMax,
-    UserViewOnDesktop
+    UserViewOnDesktop,
+    AuthenticationModal
   },
   data(){
     return {

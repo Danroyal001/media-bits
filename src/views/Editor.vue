@@ -24,7 +24,7 @@
                 <video class="col s11 output-video-visualizer" controls loop></video>
             </div>
             <div class="col s12 orange output-destination-bottom-block">
-                <button class="btn-small teal white-text waves-effect waves-light bold">PROJECT <i class="fa fa-stream"></i></button>
+                <button class="btn-small teal white-text waves-effect waves-light bold">PROJECT <i class="fa fa-desktop"></i></button>
 
                 <button class="btn-small teal white-text waves-effect waves-light bold">STREAM <i class="fa fa-wifi"></i></button>
 
