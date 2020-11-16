@@ -24,13 +24,13 @@
                 <video class="col s11 output-video-visualizer" controls loop></video>
             </div>
             <div class="col s12 orange output-destination-bottom-block">
-                <button class="btn teal white-text waves-effect waves-light bold">PROJECT <i class="fa fa-stream"></i></button>
+                <button class="btn-small teal white-text waves-effect waves-light bold">PROJECT <i class="fa fa-stream"></i></button>
 
-                <button class="btn teal white-text waves-effect waves-light bold">STREAM <i class="fa fa-wifi"></i></button>
+                <button class="btn-small teal white-text waves-effect waves-light bold">STREAM <i class="fa fa-wifi"></i></button>
 
-                <button class="btn red white-text waves-effect waves-light bold">RECORD <i class="fa fa-video"></i></button>
+                <button class="btn-small red white-text waves-effect waves-light bold">RECORD <i class="fa fa-video"></i></button>
 
-                <button class="btn teal white-text waves-effect waves-light bold">CONFIG <i class="fa fa-wrench"></i></button>
+                <button class="btn-small teal white-text waves-effect waves-light bold">CONFIG <i class="fa fa-wrench"></i></button>
             </div>
         </div>
     </div>
