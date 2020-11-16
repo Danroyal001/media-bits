@@ -140,6 +140,19 @@ const routes = [
     })
   },
   {
+    path: '/email-action-handler',
+    name: 'email-action-handler',
+    component: defineAsyncComponent({
+      loader: () => import('@/views/EmailActionHandler.vue'),
+      loadingComponent: PreLoader,
+      errorComponent: NetworkError,
+      delay,
+      timeout,
+      suspensible,
+      onError,
+    })
+  },
+  {
     path: '/privacy-policy',
     name: 'privacy-policy',
     component: defineAsyncComponent({
