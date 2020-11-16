@@ -44,8 +44,8 @@ export default {
   methods: {
       handleResetPassword(auth, actionCode, continueUrl, lang) {
           const $this = this;
-  // Localize the UI to the selected language as determined by the lang
-  // parameter.
+  window.localStorage.setItem("lang", lang)
+
   var accountEmail;
   // Verify the password reset code is valid.
   auth.verifyPasswordResetCode(actionCode).then(email => {
@@ -53,6 +53,7 @@ export default {
 
     // TODO: Show the reset screen with the user's email and ask the user for
     // the new password.
+    let newPassword = '';
 
     // Save the new password.
     auth.confirmPasswordReset(actionCode, newPassword).then(() => {
@@ -61,21 +62,24 @@ export default {
           if (continueUrl) return $this.$router.push(continueUrl);
       });
 
-    }).catch(_error => {
+    }).catch(error => {
       // Error occurred during confirmation. The code might have expired or the
       // password is too weak.
+      console.error(error);
       return $this.$$router.push("/");
     });
-  }).catch(_error => {
+  }).catch(error => {
     // Invalid or expired action code. Ask user to try to reset the password
     // again.
+    console.error(error);
     return $this.$$router.push("/");
   });
 },
 handleRecoverEmail(auth, actionCode, lang) {
   // Localize the UI to the selected language as determined by the lang
   // parameter.
-  var restoredEmail = null;
+  window.localStorage.setItem("lang", lang);
+  var restoredEmail = '';
   // Confirm the action code is valid.
   auth.checkActionCode(actionCode).then(function(info) {
     // Get the restored email address.
@@ -94,14 +98,18 @@ handleRecoverEmail(auth, actionCode, lang) {
       // Password reset confirmation sent. Ask user to check their email.
     }).catch(function(error) {
       // Error encountered while sending password reset code.
+      return console.error(error)
     });
   }).catch(function(error) {
     // Invalid code.
+    return console.error(error)
   });
 },
 handleVerifyEmail(auth, actionCode, continueUrl, lang) {
   // Localize the UI to the selected language as determined by the lang
   // parameter.
+  window.localStorage.setItem("lang", lang);
+
   // Try to apply the email verification code.
   auth.applyActionCode(actionCode).then(function(resp) {
     // Email address has been verified.
@@ -112,9 +120,11 @@ handleVerifyEmail(auth, actionCode, continueUrl, lang) {
     // TODO: If a continue URL is available, display a button which on
     // click redirects the user back to the app via continueUrl with
     // additional state determined from that URL's parameters.
+    return console.log(resp, continueUrl);
   }).catch(function(error) {
     // Code is invalid or expired. Ask the user to verify their email address
     // again.
+    return console.error(error);
   });
 }
   }
