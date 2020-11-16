@@ -4,8 +4,8 @@
     &nbsp;
     <i class="fa fa-caret-down dropdown-trigger" data-target="user-view-on-desktop"></i>
     <ul class="dropdown-content white" id="user-view-on-desktop">
-        <li><a class="bold teal-text disabled" style="display: flex; align-items: center; justify-content: flex-start; flex-direction: row;" disabled><img width="40" height="40" src="@/assets/img/user-circle.svg"> &nbsp; Guest</a></li>
-        <li><a @click="signIn" class="white-text teal waves-effect waves-light">{{ userIsAuth === true ? 'Sign out' : 'Sign In / Sign Up' }}</a></li>
+        <li><a class="bold teal-text disabled" style="display: flex; align-items: center; justify-content: flex-start; flex-direction: row;" disabled><img width="40" height="40" src="@/assets/img/user-circle.svg"> &nbsp; {{ currentUser !== null ? currentUser.displayName : 'Guest' }}</a></li>
+        <li><a @click="signIn" class="white-text teal waves-effect waves-light">{{ currentUser !== null ? 'Sign out' : 'Sign In / Sign Up' }}</a></li>
     </ul>
 </div> 
 </template>
@@ -13,12 +13,13 @@
 <script>
 export default {
     name: "user-view-on-desktop",
-    computed: {
-        userIsAuth: {
-            get(){
-                return false;
-            }
-        }
+    data(){
+        return {
+            currentUser: window.__firebase.auth().currentUser
+        };
+    },
+    mounted(){
+        this.currentUser = window.__firebase.auth().currentUser;
     },
     methods:{
         openDropdown(){
