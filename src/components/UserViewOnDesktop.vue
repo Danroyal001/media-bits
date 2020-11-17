@@ -4,8 +4,8 @@
     &nbsp;
     <i class="fa fa-caret-down dropdown-trigger" data-target="user-view-on-desktop"></i>
     <ul class="dropdown-content white" id="user-view-on-desktop">
-        <li><a class="bold teal-text disabled" style="display: flex; align-items: center; justify-content: flex-start; flex-direction: row;" disabled><img width="40" height="40" src="@/assets/img/user-circle.svg"> &nbsp; {{ currentUser !== null ? currentUser.displayName : 'Guest' }}</a></li>
-        <li><a @click="signIn" class="white-text teal waves-effect waves-light">{{ currentUser !== null ? 'Sign out' : 'Sign In / Sign Up' }}</a></li>
+        <li><a class="bold teal-text disabled" style="display: flex; align-items: center; justify-content: flex-start; flex-direction: row;" disabled><img width="40" height="40" src="@/assets/img/user-circle.svg"> &nbsp; {{ Boolean(currentUser) === true ? currentUser.displayName : 'Guest' }}</a></li>
+        <li><a @click="sign" class="white-text teal waves-effect waves-light">{{ Boolean(currentUser) === true ? 'Sign out' : 'Sign in / Sign up' }}</a></li>
     </ul>
 </div> 
 </template>
@@ -15,18 +15,31 @@ export default {
     name: "user-view-on-desktop",
     data(){
         return {
-            currentUser: window.__firebase.auth().currentUser
+            currentUser: window.__firebase.auth().currentUser,
+            Boolean
         };
     },
     mounted(){
         this.currentUser = window.__firebase.auth().currentUser;
+        setInterval(() => {
+            this.currentUser = window.__firebase.auth().currentUser;
+        }, 2000)
+        
     },
     methods:{
         openDropdown(){
             document.querySelector("[data-target=user-view-on-desktop]").click()
         },
-        signIn(){
-            return document.querySelector('#authentication-modal').M_Modal.open()
+        sign(){
+            if (!window.__firebase.auth().currentUser) return document.querySelector('#authentication-modal').M_Modal.open();
+
+            else {
+                window.M.toast({
+                    html: "Signed out successfully",
+                    classes: "teal bold rounded"
+                });
+                return window.__firebase.auth().signOut();
+                }
         }
     }
 }
