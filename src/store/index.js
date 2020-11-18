@@ -59,6 +59,7 @@ const $store = createStore({
   state: {
     appName: 'Media-Bits',
     // ™
+    currentUser: null,
     focusedInputSource: 0,
     primaryHyperlinks: [
       {

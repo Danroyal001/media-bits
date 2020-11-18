@@ -95,7 +95,8 @@ export default {
     },
     data(){
         return {
-            refinedData: ''
+            refinedData: '',
+            focuedInput: 0
         }
     },
     props:{

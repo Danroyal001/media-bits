@@ -20,7 +20,19 @@
         <div style="width: 100%; height: 20px; font-size: 15px;" class="center bold white-text teal">Output</div>
         <div v-for="(x, index) in 1" :key="'output-destination-' + index" :id="'output-destination-' + index" class="black white-text output-destination row" style="display: block; margin: 0px; padding: 0px; width: 100%; height: calc(100% - 20px);">
             <div class="col s12 row output-destination-top-block">
-                <div class="col s1 orange output-audio-channel-visualizer"></div>
+                <div class="col s1 orange output-audio-channel-visualizer row">
+                    <div class="col s2">&nbsp;</div>
+                    <div class="col s3 teal">
+                        <canvas>&nbsp;</canvas>
+                        <span>L</span>
+                    </div>
+                    <div class="col s2">&nbsp;</div>
+                    <div class="col s3 teal">
+                        <canvas>&nbsp;</canvas>
+                        <span>R</span>
+                    </div>
+                    <div class="col s2">&nbsp;</div>
+                </div>
                 <video class="col s11 output-video-visualizer" controls loop></video>
             </div>
             <div class="col s12 orange output-destination-bottom-block">
@@ -250,6 +262,25 @@ export default {
 }
 .output-destination .output-audio-channel-visualizer{
     height: 100% !important;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    font-size: 10px;
+    font-weight: bold;
+    text-align: center;
+    justify-content: center;
+}
+
+.output-destination .output-audio-channel-visualizer .s3{
+    height: calc(100% - 10px);
+    display: block;
+}
+
+.output-destination .output-audio-channel-visualizer .s3 canvas{
+    height: calc(100% - 20px);
+    width: 100%;
+    display: block;
+    background-color: #000000;
 }
 
 .output-destination video.output-video-visualizer{

@@ -269,4 +269,7 @@ export default {
   margin-top: 16px;
   margin-bottom: 26px;
 }
+#features .col:hover {
+  background-color: #f00 !important;
+}
 </style>
