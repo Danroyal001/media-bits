@@ -194,20 +194,25 @@ export default {
         project($event, outputDestinationNumber){
                 if(window.secondaryMonitor !== null && window.secondaryMonitor !== undefined){
                     try {
+                            window.secondaryMonitor.close();
                             window.secondaryMonitor.document.body.innerHTML = "<h1>Bye</h1>";
-                            window.secondaryMonitor = window.secondaryWindow.close();
+                            return window.secondaryWindow.close();
                         } catch(e){
-                            window.secondaryMonitor = undefined;
+                            return window.secondaryMonitor = undefined;
                         }                    
                 } else {
                     const destination = document.querySelector(`#output-destination-${outputDestinationNumber} video`);
                 
                     window.secondaryMonitor = window.open(undefined, "_blank", `top=5px, left=5px, width=500px, height=500px, toolbar=0, scrollbars=0, title=Output-destination-${outputDestinationNumber}`);
-                    window.secondaryMonitor.onload = () => window.secondaryMonitor.document.body.innerHTML = `
-                    <canvas>&nbsp;</canvas>
-                    `;
 
                     console.log(destination);
+
+                    return (() => {
+                        window.secondaryMonitor.onload = () => window.secondaryMonitor.document.body.innerHTML = `
+                    <h1>Hello</h1>
+                    <canvas>&nbsp;</canvas>
+                    `;
+                    })();
                 }
             }
     },

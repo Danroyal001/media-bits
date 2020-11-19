@@ -3,7 +3,7 @@
     <div @click="setFocusedInputSource" :class="['header', $store.state.focusedInputSource === count - 1 ? 'orange black-text' : 'teal white-text']">
         <span>Input Source {{ count }} &nbsp; <i @click="removeSource" class="btn-small red white-text waves-effect waves-light close-btn">&times;</i></span>
     </div>
-    <div class="body black">
+    <div @click="setFocusedInputSource" class="body black">
         <video autoplay v-if="source.type.toLowerCase().includes('video')" :id="'inputVisual' + count" muted loop controls :title="source.title" class="fill-parent"></video>
 
         <audio autoplay v-else-if="source.type.toLowerCase().includes('audio')" :id="'inputVisual' + count" loop controls :title="source.title" class="fill-parent"></audio>
@@ -11,8 +11,10 @@
         <img v-else-if="source.type.toLowerCase().includes('image')" :id="'inputVisual' + count" :title="source.title" class="fill-parent" />
     </div>
     <div class="footer black">
-        <marquee scrollamount="4" :class="['btn-small', $store.state.focusedInputSource === count - 1 ? 'orange black-text' : 'teal', 'truncate']">NAME: {{ source.name || '----|----' }}</marquee>
-        <div :class="['btn-small', $store.state.focusedInputSource === count - 1 ? 'orange black-text' : 'teal']">TYPE: {{ source.type || '----|----' }}</div>
+        <marquee @click="setFocusedInputSource" scrollamount="4" :class="['btn-small', $store.state.focusedInputSource === count - 1 ? 'orange black-text' : 'teal', 'truncate']">NAME: {{ source.name || '----|----' }}</marquee>
+
+        <div @click="setFocusedInputSource" :class="['btn-small', $store.state.focusedInputSource === count - 1 ? 'orange black-text' : 'teal']">TYPE: {{ source.type || '----|----' }}</div>
+
         <div :class="['btn-small', $store.state.focusedInputSource === count - 1 ? 'orange black-text' : 'teal', 'waves-effect', 'waves-light']">CONFIGURATION <i class="fas fa-wrench"></i></div>
     </div>
 </div>
