@@ -21,7 +21,7 @@
     </div>
     <div class="horizontal-scroll-child horizontal-scroll-child-2 teal">
         <div style="width: 100%; height: 20px; font-size: 15px;" class="center bold white-text teal">Output</div>
-        <div v-for="(x, index) in 1" :key="'output-destination-' + index" :id="'output-destination-' + index" class="black white-text output-destination row" style="display: block; margin: 0px; padding: 0px; width: 100%; height: calc(100% - 20px);">
+        <div v-for="(x, _index) in 1" :key="'output-destination-' + _index" :id="'output-destination-' + (_index + 1)" class="black white-text output-destination row" style="display: block; margin: 0px; padding: 0px; width: 100%; height: calc(100% - 20px);">
             <div class="col s12 row output-destination-top-block">
                 <div class="col s1 orange output-audio-channel-visualizer row">
                     <div class="col s2">&nbsp;</div>
@@ -49,7 +49,7 @@
                 <video class="col s11 output-video-visualizer" controls loop></video>
             </div>
             <div class="col s12 orange output-destination-bottom-block">
-                <button class="btn-small teal white-text waves-effect waves-light bold">PROJECT <i class="fa fa-desktop"></i></button>
+                <button @click="project($event, (_index + 1))" class="btn-small teal white-text waves-effect waves-light bold">PROJECT <i class="fa fa-desktop"></i></button>
 
                 <button class="btn-small teal white-text waves-effect waves-light bold">STREAM <i class="fa fa-wifi"></i></button>
 
@@ -106,9 +106,9 @@
 <div id="select-camera-modal" class="modal">
     <div class="modal-content">
       <h4>Select Camera <i class="fa fa-camera"></i></h4>
-      <select v-model="selectedCamera" autofocus class="validate">
-          <option v-for="camera in cameras" :key="camera" @changed="selectedCamera = camera" :value="camera.deviceId" class="teal-text">{{ camera.label }}</option>
-      </select>
+      <div>
+          <div v-for="camera in cameras" :key="camera" class="teal-text">{{ camera.label }}</div>
+      </div>
       <br />
       <p>Nothing showing? click on <code>GRANT PERMISSION</code></p>
     </div>
@@ -190,7 +190,26 @@ export default {
                                 position: 0
                             })
             });
-        }
+        },
+        project($event, outputDestinationNumber){
+                if(window.secondaryMonitor !== null && window.secondaryMonitor !== undefined){
+                    try {
+                            window.secondaryMonitor.document.body.innerHTML = "<h1>Bye</h1>";
+                            window.secondaryMonitor = window.secondaryWindow.close();
+                        } catch(e){
+                            window.secondaryMonitor = undefined;
+                        }                    
+                } else {
+                    const destination = document.querySelector(`#output-destination-${outputDestinationNumber} video`);
+                
+                    window.secondaryMonitor = window.open(undefined, "_blank", `top=5px, left=5px, width=500px, height=500px, toolbar=0, scrollbars=0, title=Output-destination-${outputDestinationNumber}`);
+                    window.secondaryMonitor.onload = () => window.secondaryMonitor.document.body.innerHTML = `
+                    <canvas>&nbsp;</canvas>
+                    `;
+
+                    console.log(destination);
+                }
+            }
     },
     components: {
         InputSource,
