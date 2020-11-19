@@ -8,29 +8,42 @@
     <div class="horizontal-scroll-child horizontal-scroll-child-1 white-text">
         <div v-if="$store.state.inputSources[$store.state.focusedInputSource]" class="black white-text fill" style="display: block !important; overflow: hidden;">
             <div style="width: 100%; height: 20px; font-size: 15px;" class="center bold white-text teal">Preview</div>
+
             <video id="preview" muted loop autoplay v-if="($store.state.inputSources[$store.state.focusedInputSource]) && ($store.state.inputSources[$store.state.focusedInputSource].type.toLowerCase().includes('video'))" style="width: 100%; height: calc(100% - 20px);" controls></video>
+
             <AudioEqualizer id="preview" loop autoplay v-else-if="($store.state.inputSources[$store.state.focusedInputSource]) && ($store.state.inputSources[$store.state.focusedInputSource].type.toLowerCase().includes('audio'))" controls></AudioEqualizer>
+
             <img id="preview" v-else-if="($store.state.inputSources[$store.state.focusedInputSource]) && ($store.state.inputSources[$store.state.focusedInputSource].type.toLowerCase().includes('image'))" style="width: 100%; height: calc(100% - 20px);" />
         </div>
         <div v-else class="black white-text fill" style="display: block !important; overflow: hidden;">
             <div style="width: 100%; height: 20px; font-size: 15px;" class="center bold white-text teal">Preview</div>
         </div>
-    </div>  
+    </div>
     <div class="horizontal-scroll-child horizontal-scroll-child-2 teal">
         <div style="width: 100%; height: 20px; font-size: 15px;" class="center bold white-text teal">Output</div>
         <div v-for="(x, index) in 1" :key="'output-destination-' + index" :id="'output-destination-' + index" class="black white-text output-destination row" style="display: block; margin: 0px; padding: 0px; width: 100%; height: calc(100% - 20px);">
             <div class="col s12 row output-destination-top-block">
                 <div class="col s1 orange output-audio-channel-visualizer row">
                     <div class="col s2">&nbsp;</div>
+
                     <div class="col s3 teal">
-                        <canvas>&nbsp;</canvas>
+                        <div>
+                            <div style="height: 50%;" class="output-audio-channel-progress-bar left-channel teal" />
+                        </div>
                         <span>L</span>
                     </div>
-                    <div class="col s2">&nbsp;</div>
+
+                    <div class="col s2">
+                        &nbsp;
+                    </div>
+
                     <div class="col s3 teal">
-                        <canvas>&nbsp;</canvas>
+                        <div>
+                            <div style="htight: 59%;" class="output-audio-channel-progress-bar right-channel teal" />
+                        </div>
                         <span>R</span>
                     </div>
+
                     <div class="col s2">&nbsp;</div>
                 </div>
                 <video class="col s11 output-video-visualizer" controls loop></video>
@@ -276,11 +289,20 @@ export default {
     display: block;
 }
 
-.output-destination .output-audio-channel-visualizer .s3 canvas{
+.output-audio-channel-visualizer .s3 div{
     height: calc(100% - 20px);
     width: 100%;
     display: block;
     background-color: #000000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.s3 div .output-audio-channel-progress-bar{
+    width: calc(100% - 4px);
+    max-height: calc(100% - 4px);
 }
 
 .output-destination video.output-video-visualizer{
