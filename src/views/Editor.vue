@@ -53,7 +53,7 @@
 
                 <button class="btn-small teal white-text waves-effect waves-light bold">STREAM <i class="fa fa-wifi"></i></button>
 
-                <button @click="toggleRecord" :class="['btn-small', $store.state.isRecording ? 'red' : 'teal', 'white-text', 'waves-effect', 'waves-light', 'bold']">RECORD <i class="fa fa-video"></i></button>
+                <button @click="toggleRecord($event, (_index + 1))" :class="['btn-small', $store.state.isRecording ? 'red' : 'teal', 'white-text', 'waves-effect', 'waves-light', 'bold']">RECORD <i class="fa fa-video"></i></button>
 
                 <button class="btn-small teal white-text waves-effect waves-light bold">CONFIG <i class="fa fa-wrench"></i></button>
             </div>
@@ -128,107 +128,168 @@
 
 <script>
 // import OutputDestination from '@/components/OutputDestination.vue';
-import InputSource from '@/components/InputSource.vue';
-import EditorBottomNoInput from '@/components/EditorBottomNoInput.vue';
-import ElectronDesktopCaptureModal from '@/components/ElectronDesktopCaptureModal.vue';
-import AudioEqualizer from '@/components/AudioEqualizer.vue';
+import InputSource from "@/components/InputSource.vue";
+import EditorBottomNoInput from "@/components/EditorBottomNoInput.vue";
+import ElectronDesktopCaptureModal from "@/components/ElectronDesktopCaptureModal.vue";
+import AudioEqualizer from "@/components/AudioEqualizer.vue";
 
 export default {
-    name: 'Editor',
-    data(){
-        return {
-            middleSectionBtns: [],
-            microphones: [],
-            cameras: [],
-            selectedCamera: {},
-            selectedMic: {},
-            hasGottenDevices: false
-        };
+  name: "Editor",
+  data() {
+    return {
+      middleSectionBtns: [],
+      microphones: [],
+      cameras: [],
+      selectedCamera: {},
+      selectedMic: {},
+      hasGottenDevices: false
+    };
+  },
+  mounted() {
+    const _$this = this;
+    this.$store.commit("editorIsReady");
+    //setInterval(() => {
+    window.navigator.mediaDevices.enumerateDevices().then(devices => {
+      _$this.cameras = [
+        ...devices.filter(device => device.kind === "videoinput").map(i => i)
+      ];
+      _$this.microphones = [
+        ...devices.filter(device => device.kind === "audioinput").map(i => i)
+      ];
+      _$this.hasGottenDevices = true;
+      window.M.AutoInit();
+    });
+    //}, 1000);
+  },
+  methods: {
+    requestCameraPermission() {
+      window.navigator.mediaDevices
+        .getUserMedia({ video: true, audio: true })
+        .then(stream => stream.getTracks().forEach(track => track.stop()));
     },
-    mounted(){
-        const _$this = this;
-        this.$store.commit('editorIsReady');
-        //setInterval(() => {
-           window.navigator.mediaDevices.enumerateDevices().then(devices => {
-                _$this.cameras = [...devices.filter(device => device.kind === 'videoinput').map(i=>i)];
-                _$this.microphones = [...devices.filter(device => device.kind === 'audioinput').map(i=>i)];
-                _$this.hasGottenDevices = true;
-                window.M.AutoInit();
-           });
-        //}, 1000);
+    addLiveAudio() {
+      window.navigator.mediaDevices
+        .getUserMedia({
+          audio: true,
+          video: false
+        })
+        .then(stream => {
+          window.$store.commit("addInputSource", {
+            name: "Microphone",
+            id: Math.random(),
+            type: "live audio input",
+            data: stream,
+            position: 0
+          });
+        });
     },
-    methods: {
-        requestCameraPermission(){
-            window.navigator.mediaDevices.getUserMedia({video:true,audio:true}).then(stream => stream.getTracks().forEach(track => track.stop()));
-        },
-        addLiveAudio(){
-            window.navigator.mediaDevices.getUserMedia({
-                audio: true,
-                video: false
-            }).then(stream => {
-                window.$store.commit('addInputSource', {
-                                name: 'Microphone',
-                                id: Math.random(),
-                                type: 'live audio input',
-                                data: stream,
-                                position: 0
-                            })
-            });
-        },
-        addLiveVideo(){
-            window.navigator.mediaDevices.getUserMedia({
-                audio: false,
-                video: {
-                    torch: true
-                }
-            }).then(stream => {
-                window.$store.commit('addInputSource', {
-                                name: 'Camera',
-                                id: Math.random(),
-                                type: 'live video input',
-                                data: stream,
-                                position: 0
-                            })
-            });
-        },
-        project($event, outputDestinationNumber){
-            const $this = this;
-                if(window.secondaryMonitor !== undefined){
-                    try {
-                            window.secondaryMonitor.close();
-                            window.secondaryMonitor = undefined;
-                        } catch(e){
-                            window.secondaryMonitor = undefined;
-                        }  
-                        $this.$store.commit('setIsProjecting', false);
-                } else {
-                    const destination = document.querySelector(`#output-destination-${outputDestinationNumber} video`);
-                
-                    window.secondaryMonitor = window.open(undefined, "_blank", `top=0, left=${screen.width}, width=500px, height=500px, toolbar=0, scrollbars=0, title=Output-destination-${outputDestinationNumber}`);
+    addLiveVideo() {
+      window.navigator.mediaDevices
+        .getUserMedia({
+          audio: false,
+          video: {
+            torch: true
+          }
+        })
+        .then(stream => {
+          window.$store.commit("addInputSource", {
+            name: "Camera",
+            id: Math.random(),
+            type: "live video input",
+            data: stream,
+            position: 0
+          });
+        });
+    },
+    project($event, outputDestinationNumber) {
+      if (document.querySelector(
+        `#output-destination-${count} video`
+      ).srcObject){
+      const $this = this;
+      if (window.secondaryMonitor !== undefined) {
+        try {
+          window.secondaryMonitor.close();
+          window.secondaryMonitor = undefined;
+        } catch (e) {
+          window.secondaryMonitor = undefined;
+        }
+        $this.$store.commit("setIsProjecting", false);
+      } else {
+        const destination = document.querySelector(
+          `#output-destination-${outputDestinationNumber} video`
+        );
 
-                    console.log(destination);
+        window.secondaryMonitor = window.open(
+          undefined,
+          "_blank",
+          `top=0, left=${
+            screen.width
+          }, width=500px, height=500px, toolbar=0, scrollbars=0, title=Output-destination-${outputDestinationNumber}`
+        );
 
-                    $this.$store.commit('setIsProjecting', true);
+        console.log(destination);
 
-                    return (() => {
-                        window.secondaryMonitor.onload = () => window.secondaryMonitor.document.body.innerHTML = `
+        $this.$store.commit("setIsProjecting", true);
+
+        return (() => {
+          window.secondaryMonitor.onload = () =>
+            (window.secondaryMonitor.document.body.innerHTML = `
                     <h1>Hello</h1>
                     <canvas>&nbsp;</canvas>
-                    `;
-                    })();
-                }
-            },
-            toggleRecord(){
-            }
+                    `);
+        })();
+      }
+      } else return window.M.toast({html: "Nothing to project", classes: "red bold rounded"});
     },
-    components: {
-        InputSource,
-        // OutputDestination,
-        EditorBottomNoInput,
-        ElectronDesktopCaptureModal,
-        AudioEqualizer
+    toggleRecord($event, count) {
+      const $this = this;
+      const videoEl = document.querySelector(
+        `#output-destination-${count} video`
+      );
+
+      if (videoEl.srcObject) {
+        if ($this.$store.state.isRecording === false) {
+          window.__recordedChunks = [];
+          let stream = videoEl.captureStream(100);
+
+          const options = { mimeType: "video/webm;codecs=vp9" };
+          window.__mediaRecorder = new MediaRecorder(stream, options);
+          window.__mediaRecorder.onerror = e => {
+            window.M.toast({
+              html: `${e.toString}`,
+              classes: "rounded red bold"
+            });
+          };
+          window.__mediaRecorder.ondataavailable = event => handleDataAvailable(event);
+          window.__mediaRecorder.start();
+
+          const handleDataAvailable = event => {
+            if (event.data.size > 0) {
+              window.__recordedChunks.push(event.data);
+            }
+          };
+
+          return $this.$store.commit("setIsRecording", true);
+        } else {
+          if (window.__mediaRecorder) window.__mediaRecorder.stop();
+          window.__mediaRecorder = undefined;
+
+          return $this.$store.commit("setIsRecording", false);
+        }
+      } else {
+        window.M.toast({ html: "Nothing to record", classes: "rounded bold red" });
+      }
+    }
   },
-}
+  components: {
+    InputSource,
+    // OutputDestination,
+    EditorBottomNoInput,
+    ElectronDesktopCaptureModal,
+    AudioEqualizer
+  }
+};
+
 </script>
 
 <style>

@@ -210,9 +210,13 @@ const $store = createStore({
     inputSources: [],
     outputDestinations: [],
     editorIsReady: false,
-    isProjecting: false
+    isProjecting: false,
+    isRecording: false
   },
   mutations: {
+    setIsRecording(state, trueOrFalse){
+      state.isRecording = trueOrFalse
+    },
     setIsProjecting(state, trueOrFalse){
       state.isProjecting = trueOrFalse;
     },
