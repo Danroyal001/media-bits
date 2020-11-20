@@ -1,5 +1,5 @@
 <template>
-<div class="horizontal-scroll-child input-source">
+<div :id="'input-source-' + count" class="horizontal-scroll-child input-source">
     <div @click="setFocusedInputSource" :class="['header', $store.state.focusedInputSource === count - 1 ? 'orange black-text' : 'teal white-text']">
         <span>Input Source {{ count }} &nbsp; <i @click="removeSource" class="btn-small red white-text waves-effect waves-light close-btn">&times;</i></span>
     </div>
@@ -61,6 +61,12 @@ export default {
             e.scrollIntoView(true);
             return setTimeout(() => e.pause(), 500);
         }
+        const addSrcObject = e => {
+            e.srcObject = _$this.source.data;
+            e.pause();
+            e.scrollIntoView(true);
+            return setTimeout(() => e.pause(), 500);
+        }
         _$this.$store.commit('setCurrentProjectIsSaved', false);
         switch(_$this.source.type.toLowerCase()){
             case 'audio file':
@@ -70,10 +76,10 @@ export default {
                 (() => addSrc(_$elem))();
                 break;
             case 'live audio input':
-                (() => addSrc(_$elem))();
+                (() => addSrcObject(_$elem))();
                 break;
             case 'live video input':
-                (() => addSrc(_$elem))();
+                (() => addSrcObject(_$elem))();
                 break;
             case 'video input from url':
                 (() => {})();
