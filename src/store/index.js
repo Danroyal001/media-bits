@@ -210,8 +210,12 @@ const $store = createStore({
     inputSources: [],
     outputDestinations: [],
     editorIsReady: false,
+    isProjecting: false
   },
   mutations: {
+    setIsProjecting(state, trueOrFalse){
+      state.isProjecting = trueOrFalse;
+    },
     setCurrentProjectIsSaved(state, isSaved){
       state.currentProjectIsSaved = isSaved;
     },

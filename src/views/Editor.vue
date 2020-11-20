@@ -49,11 +49,11 @@
                 <video class="col s11 output-video-visualizer" controls loop></video>
             </div>
             <div class="col s12 orange output-destination-bottom-block">
-                <button @click="project($event, (_index + 1))" class="btn-small teal white-text waves-effect waves-light bold">PROJECT <i class="fa fa-desktop"></i></button>
+                <button @click="project($event, (_index + 1))" :class="['btn-small', $store.state.isProjecting ? 'red' : 'teal', 'white-text', 'waves-effect', 'waves-light', 'bold']">PROJECT <i class="fa fa-desktop"></i></button>
 
                 <button class="btn-small teal white-text waves-effect waves-light bold">STREAM <i class="fa fa-wifi"></i></button>
 
-                <button class="btn-small red white-text waves-effect waves-light bold">RECORD <i class="fa fa-video"></i></button>
+                <button @click="toggleRecord" :class="['btn-small', $store.state.isRecording ? 'red' : 'teal', 'white-text', 'waves-effect', 'waves-light', 'bold']">RECORD <i class="fa fa-video"></i></button>
 
                 <button class="btn-small teal white-text waves-effect waves-light bold">CONFIG <i class="fa fa-wrench"></i></button>
             </div>
@@ -192,20 +192,23 @@ export default {
             });
         },
         project($event, outputDestinationNumber){
-                if(window.secondaryMonitor !== null && window.secondaryMonitor !== undefined){
+            const $this = this;
+                if(window.secondaryMonitor !== undefined){
                     try {
                             window.secondaryMonitor.close();
-                            window.secondaryMonitor.document.body.innerHTML = "<h1>Bye</h1>";
-                            return window.secondaryWindow.close();
+                            window.secondaryMonitor = undefined;
                         } catch(e){
-                            return window.secondaryMonitor = undefined;
-                        }                    
+                            window.secondaryMonitor = undefined;
+                        }  
+                        $this.$store.commit('setIsProjecting', false);
                 } else {
                     const destination = document.querySelector(`#output-destination-${outputDestinationNumber} video`);
                 
-                    window.secondaryMonitor = window.open(undefined, "_blank", `top=5px, left=5px, width=500px, height=500px, toolbar=0, scrollbars=0, title=Output-destination-${outputDestinationNumber}`);
+                    window.secondaryMonitor = window.open(undefined, "_blank", `top=0, left=${screen.width}, width=500px, height=500px, toolbar=0, scrollbars=0, title=Output-destination-${outputDestinationNumber}`);
 
                     console.log(destination);
+
+                    $this.$store.commit('setIsProjecting', true);
 
                     return (() => {
                         window.secondaryMonitor.onload = () => window.secondaryMonitor.document.body.innerHTML = `
@@ -214,6 +217,8 @@ export default {
                     `;
                     })();
                 }
+            },
+            toggleRecord(){
             }
     },
     components: {
