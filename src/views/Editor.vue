@@ -202,44 +202,50 @@ export default {
         });
     },
     project($event, outputDestinationNumber) {
-      if (document.querySelector(
-        `#output-destination-${count} video`
-      ).srcObject){
-      const $this = this;
-      if (window.secondaryMonitor !== undefined) {
-        try {
-          window.secondaryMonitor.close();
-          window.secondaryMonitor = undefined;
-        } catch (e) {
-          window.secondaryMonitor = undefined;
-        }
-        $this.$store.commit("setIsProjecting", false);
-      } else {
-        const destination = document.querySelector(
+      if (
+        document.querySelector(
           `#output-destination-${outputDestinationNumber} video`
-        );
+        ).srcObject
+      ) {
+        const $this = this;
+        if (window.secondaryMonitor !== undefined) {
+          try {
+            window.secondaryMonitor.close();
+            window.secondaryMonitor = undefined;
+          } catch (e) {
+            window.secondaryMonitor = undefined;
+          }
+          $this.$store.commit("setIsProjecting", false);
+        } else {
+          const destination = document.querySelector(
+            `#output-destination-${outputDestinationNumber} video`
+          );
 
-        window.secondaryMonitor = window.open(
-          undefined,
-          "_blank",
-          `top=0, left=${
-            screen.width
-          }, width=500px, height=500px, toolbar=0, scrollbars=0, title=Output-destination-${outputDestinationNumber}`
-        );
+          window.secondaryMonitor = window.open(
+            undefined,
+            "_blank",
+            `top=0, left=${
+              screen.width
+            }, width=500px, height=500px, toolbar=0, scrollbars=0, title=Output-destination-${outputDestinationNumber}`
+          );
 
-        console.log(destination);
+          console.log(destination);
 
-        $this.$store.commit("setIsProjecting", true);
+          $this.$store.commit("setIsProjecting", true);
 
-        return (() => {
-          window.secondaryMonitor.onload = () =>
-            (window.secondaryMonitor.document.body.innerHTML = `
+          return (() => {
+            window.secondaryMonitor.onload = () =>
+              (window.secondaryMonitor.document.body.innerHTML = `
                     <h1>Hello</h1>
                     <canvas>&nbsp;</canvas>
                     `);
-        })();
-      }
-      } else return window.M.toast({html: "Nothing to project", classes: "red bold rounded"});
+          })();
+        }
+      } else
+        return window.M.toast({
+          html: "Nothing to project",
+          classes: "red bold rounded"
+        });
     },
     toggleRecord($event, count) {
       const $this = this;
@@ -260,7 +266,8 @@ export default {
               classes: "rounded red bold"
             });
           };
-          window.__mediaRecorder.ondataavailable = event => handleDataAvailable(event);
+          window.__mediaRecorder.ondataavailable = event =>
+            handleDataAvailable(event);
           window.__mediaRecorder.start();
 
           const handleDataAvailable = event => {
@@ -271,13 +278,26 @@ export default {
 
           return $this.$store.commit("setIsRecording", true);
         } else {
-          if (window.__mediaRecorder) window.__mediaRecorder.stop();
+          if (window.__mediaRecorder && window.__recordedChunks) {
+            window.__mediaRecorder.stop();
+            const blob = new Blob(window.__recordedChunks)
+            const dataURL = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            document.body.appendChild(a);
+            a.href = dataURL;
+            a.click();
+            URL.revokeObjectURL(a)
+            a.remove();
+            }
           window.__mediaRecorder = undefined;
 
           return $this.$store.commit("setIsRecording", false);
         }
       } else {
-        window.M.toast({ html: "Nothing to record", classes: "rounded bold red" });
+        window.M.toast({
+          html: "Nothing to record",
+          classes: "rounded bold red"
+        });
       }
     }
   },
