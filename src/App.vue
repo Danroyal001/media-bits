@@ -175,7 +175,7 @@ hr{
   }
 </style>
 
-<script>
+<script lang="ts">
 import EditorMenu from "@/components/EditorMenu.vue";
 import * as M from "@/assets/js/materialize.min.js";
 import PreLoader from "@/components/PreLoader.vue";
@@ -184,10 +184,19 @@ import UserViewOnDesktop from "@/components/UserViewOnDesktop.vue";
 import AuthenticationModal from "@/components/AuthenticationModal.vue";
 
 class _VideoContext {
-  constructor({maxNodeCount, sampleRate}) {
-    this.maxNodeCount = maxNodeCount || 6;
+  maxNodeCount: number;
+  sampleRate: number;
+  id: number;
+  state: string;
+  canvas: HTMLCanvasElement;
+  ctx: CanvasRenderingContext2D;
+  startTime: number;
+  destination: HTMLVideoElement;
+  
+  constructor() {
+    this.maxNodeCount = 6;
 
-    this.sampleRate = sampleRate || 60;
+    this.sampleRate = 60;
 
     this.id = Math.random()
 

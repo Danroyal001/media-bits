@@ -116,11 +116,13 @@
 </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+export default defineComponent({
     name: "audio-equalizer",
     mounted(){}
-}
+})
 </script>
 
 <style scoped>

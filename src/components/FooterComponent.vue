@@ -52,7 +52,8 @@
 <!-- #end footer -->
 </template>
 
-<script>
+<script lang="ts">
+
 export default {
   name: "footer-component",
   data() {

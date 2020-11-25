@@ -4,7 +4,7 @@ import Home from '@/views/HomePage.vue'
 import NetworkError from '@/components/NetworkError.vue';
 import PreLoader from '@/components/PreLoader.vue';
 
-const onError = (error, retry, fail, attempts) => {
+const onError = (error: { message: string; }, retry: () => void, fail: () => void, attempts: number) => {
   if (error.message.match(/fetch/) && attempts <= 5) {
     retry()
   } else {
@@ -209,6 +209,6 @@ router.beforeEach((_to, from, next) => {
   } else return next();
 });
 
-window.$router = router;
+window.$router = router as typeof router;
 
 export default router

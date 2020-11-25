@@ -22,17 +22,18 @@
 </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import FooterComponent from "@/components/FooterComponent.vue";
 
-export default {
+export default defineComponent({
   name: "documentation",
   components: {
     FooterComponent
   },
   mounted(){
       if (this.role === 'documentation'){
-        import('@/assets/js/documentation.js').then(({ getOnlyDocumentation }) => {
+        import('@/assets/js/documentation').then(({ getOnlyDocumentation }) => {
         this.documentation = getOnlyDocumentation();
         });
       } else if (this.role === 'videos'){
@@ -52,7 +53,7 @@ export default {
           required: true
       }
   }
-}
+});
 </script>
 
 <style scoped>

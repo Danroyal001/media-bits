@@ -23,7 +23,7 @@
 <!-- End Electron desktop Capture modal -->
 </template>
 
-<script>
+<script lang="ts">
 export default {
     name: 'electron-desktop-capture-modal',
     data(){

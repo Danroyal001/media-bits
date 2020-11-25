@@ -11,7 +11,7 @@
 </ul>  
 </template>
 
-<script>
+<script lang="ts">
 import AddInputDropdown from '@/components/AddInputDropdown.vue';
 import FileSubmenuDropdown from '@/components/FileSubmenuDropdown.vue';
 

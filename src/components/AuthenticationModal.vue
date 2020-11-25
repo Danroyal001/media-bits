@@ -10,10 +10,11 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 const firebaseui = require("firebaseui");
 
-export default {
+export default defineComponent({
   name: "authentication-modal",
   mounted() {
     const $this = this;
@@ -62,7 +63,7 @@ export default {
       authIuSelector: "#authentication-modal.modal .modal-content"
     };
   }
-};
+});
 
 </script>
 

@@ -8,7 +8,7 @@
 </div>
 </template>
 
-<script>
+<script lang="ts">
 import FooterComponent from "@/components/FooterComponent.vue";
 
 export default {
