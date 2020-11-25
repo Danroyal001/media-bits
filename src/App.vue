@@ -176,33 +176,150 @@ hr{
 </style>
 
 <script>
-import EditorMenu from '@/components/EditorMenu.vue';
-import * as M from '@/assets/js/materialize.min.js';
-import PreLoader from '@/components/PreLoader.vue';
-import MinMax from '@/components/MinMax.vue';
+import EditorMenu from "@/components/EditorMenu.vue";
+import * as M from "@/assets/js/materialize.min.js";
+import PreLoader from "@/components/PreLoader.vue";
+import MinMax from "@/components/MinMax.vue";
 import UserViewOnDesktop from "@/components/UserViewOnDesktop.vue";
 import AuthenticationModal from "@/components/AuthenticationModal.vue";
 
+class _VideoContext {
+  constructor({maxNodeCount, sampleRate}) {
+    this.maxNodeCount = maxNodeCount || 6;
 
+    this.sampleRate = sampleRate || 60;
+
+    this.id = Math.random()
+
+    // this.state = "suspended";
+    this.state = "running";
+
+    this.canvas = document.createElement("canvas");
+    this.ctx = this.canvas.getContext("2d");
+
+    this.startTime = Date.now();
+
+    this.destination = document.createElement('video');
+    this.destination.srcObject = this.canvas.captureStream(this.sampleRate)
+    this.destination.muted = true;
+
+    this.destinations = [this.destination]
+
+    this.shouldTerminate = false;
+
+    this.onstatechange = newState => {
+      return `New state: ${newState}`;
+    };
+
+    this.sourceNodes = [];
+
+    this.sourceNodeSettings = [];
+
+    const renderFrame = () => {
+
+      const frameId = setTimeout(renderFrame, 1000/60);
+
+      if ((this.state == "running") && (this.sourceNodes.length > 0)){
+
+        // draw image here
+        this.sourceNodes.forEach(node => {
+          this.ctx.drawImage(node, 0, 0)
+        })
+
+      } else if (this.shouldTerminate){
+
+        return clearTimeout(frameId);
+
+      }
+
+      console.log(`renderFrame id: ${frameId}`);
+    }
+
+    renderFrame();
+
+    return this;
+  }
+
+  createMediaStreamSource(mediaStream) {
+    const elem = document.createElement('video');
+    elem.muted = true;
+    elem.srcObject = mediaStream;
+    this.sourceNodes.push(elem)
+    return this;
+  }
+
+  createMediaElementSource(mediaElement) {
+    this.sourceNodes.push(mediaElement)
+    return this;
+  }
+
+  createMediaStreamDestination() {
+    return new MediaStream(
+      this.canvas.captureStream(this.sampleRate).getTracks()
+    );
+  }
+
+  createMediaElementDestination(){
+    const stream = new MediaStream(this.canvas.captureStream(this.sampleRate).getTracks());
+
+    const elem = document.createElement('video');
+    elem.srcObject = stream;
+
+    return elem;
+  }
+
+  get currentTimeInMills() {
+    return Date.now() - this.startTime;
+  }
+
+  suspend() {
+    this.state = "suspended";
+    return "suspended";
+  }
+
+  resume() {
+    this.state = "running";
+    return "running";
+  }
+
+  setBWFilter(){}
+
+  setSephiaFilter(){}
+
+  setBlurFilter(){}
+
+  close() {
+    this.suspend();
+    this.shouldTerminate = true;
+  }
+
+  static toStrig() {
+    return `function(options){[native code]}`;
+  }
+}
+
+window._VideoContext = _VideoContext;
 
 // begin window.__workerFromString
 window.__workerFromString = string => {
-    const __myWorker = new Worker(URL.createObjectURL(new Blob([string], {
-    type: 'application/javascript'
-  })));
-  return  __myWorker;
-}
+  const __myWorker = new Worker(
+    URL.createObjectURL(
+      new Blob([string], {
+        type: "application/javascript"
+      })
+    )
+  );
+  return __myWorker;
+};
 // end window.__workerFromString
 
-
-
-window.JSZip = require('jszip');
+window.JSZip = require("jszip");
 
 window.M = M;
 
 export default {
-  name: 'App',
-  mounted(){
+  name: "App",
+  mounted() {
     return window.M.AutoInit();
   },
   components: {
@@ -212,10 +329,11 @@ export default {
     UserViewOnDesktop,
     AuthenticationModal
   },
-  data(){
+  data() {
     return {
       window
-    }
+    };
   }
-}
+};
+
 </script>
