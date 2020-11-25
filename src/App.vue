@@ -219,20 +219,22 @@ class _VideoContext {
 
       const frameId = setTimeout(renderFrame, 1000/60);
 
-      if ((this.state == "running") && (this.sourceNodes.length > 0)){
-
-        // draw image here
-        this.sourceNodes.forEach(node => {
-          this.ctx.drawImage(node, 0, 0)
-        })
-
-      } else if (this.shouldTerminate){
+      if (this.shouldTerminate){
 
         return clearTimeout(frameId);
 
       }
 
-      console.log(`renderFrame id: ${frameId}`);
+      if ((this.state == "running") && (this.sourceNodes.length > 0)){
+
+        // draw image here
+        this.sourceNodes.forEach(node => {
+          this.ctx.drawImage(node, 0, 0);
+        })
+
+      }
+
+        console.log(`renderFrame`);
     }
 
     renderFrame();
@@ -274,11 +276,13 @@ class _VideoContext {
 
   suspend() {
     this.state = "suspended";
+    this.onstatechange(this.state);
     return "suspended";
   }
 
   resume() {
     this.state = "running";
+    this.onstatechange(this.state);
     return "running";
   }
 
@@ -291,6 +295,8 @@ class _VideoContext {
   close() {
     this.suspend();
     this.shouldTerminate = true;
+
+    return null;
   }
 
   static toStrig() {
