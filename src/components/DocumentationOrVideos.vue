@@ -33,18 +33,18 @@ export default defineComponent({
   },
   mounted(){
       if (this.role === 'documentation'){
-        import('@/assets/js/documentation').then(({ getOnlyDocumentation }) => {
+        import('@/assets/js/documentation.ts').then(({ getOnlyDocumentation }) => {
         this.documentation = getOnlyDocumentation();
         });
       } else if (this.role === 'videos'){
-        import('@/assets/js/documentation.js').then(({ getOnlyVideos }) => {
+        import('@/assets/js/documentation.ts').then(({ getOnlyVideos }) => {
         this.documentation = getOnlyVideos();
         });
       }
   },
   data(){
     return {
-      documentation: []
+      documentation: [] as object[]
     }
   },
   props: {

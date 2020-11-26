@@ -1,10 +1,10 @@
 import { createStore } from 'vuex'
 // const vuexLocal = require('./vuexLocal.js');
 
-window.loadFromOpenedFile = window.electronLoadFromOpenedFile || function(file){
+window['loadFromOpenedFile'] = window['electronLoadFromOpenedFile'] || function(file){
   // document
   return new Promise((resolve, reject) => {
-    const jszip = new window.JSZip();
+    const jszip = new window['JSZip']();
     return jszip.loadAsync(file).then(file2 => {
         file = file2
         // console.log(file)

@@ -189,9 +189,14 @@ class _VideoContext {
   id: number;
   state: string;
   canvas: HTMLCanvasElement;
-  ctx: CanvasRenderingContext2D;
+  ctx: CanvasRenderingContext2D | null;
   startTime: number;
   destination: HTMLVideoElement;
+  destinations: HTMLVideoElement[];
+  shouldTerminate: boolean;
+  onstatechange: (newState: any) => string;
+  sourceNodes: any[];
+  sourceNodeSettings: any[];
   
   constructor() {
     this.maxNodeCount = 6;
@@ -204,12 +209,12 @@ class _VideoContext {
     this.state = "running";
 
     this.canvas = document.createElement("canvas");
-    this.ctx = this.canvas.getContext("2d");
+    this.ctx = this.canvas.getContext("2d") as CanvasRenderingContext2D;
 
     this.startTime = Date.now();
 
     this.destination = document.createElement('video');
-    this.destination.srcObject = this.canvas.captureStream(this.sampleRate)
+    this.destination.srcObject = this.canvas.captureStream(this.sampleRate) as MediaStream
     this.destination.muted = true;
 
     this.destinations = [this.destination]
