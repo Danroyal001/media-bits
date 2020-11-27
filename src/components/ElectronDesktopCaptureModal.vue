@@ -28,24 +28,25 @@ export default {
     name: 'electron-desktop-capture-modal',
     data(){
         return {
-            streamSources: [],
+            streamSources: [] as any[],
             selectedStream: '',
-            mounted: false
+            mounted: false as true|false
         }
     },
     //props: ['streamSources'],
     beforeCreate(){
-        if(window.isElectron){
-            window.electron.desktopCapturer.getSources({types: ['screen', 'window']}).then(sources => {
-            this.streamSources = sources
-            this.mounted = true;
+      const $this = this;
+        if((window as any).isElectron){
+            (window as any).electron.desktopCapturer.getSources({types: ['screen', 'window']}).then((sources: any[]) => {
+            ($this as any).streamSources = sources;
+            ($this as any).mounted = true;
         }).catch(console.log);
         }
     },
     methods: {
-        resolve(){
-            const selected = this.selectedStream;
-            return window.navigator.mediaDevices.getUserMedia({
+        resolve(): any{
+            const selected = (this as any).selectedStream;
+            return (window as any).navigator.mediaDevices.getUserMedia({
           audio: false,
           video: {
             mandatory: {
@@ -57,16 +58,16 @@ export default {
               maxHeight: 720
             }
           }
-        }).then(stream => {
-          window.$store.commit('addInputSource', {
+        }).then((stream: any) => {
+          (window as any).$store.commit('addInputSource', {
                                 name: 'Live Desktop Capture (Video)',
                                 id: Math.random(),
                                 type: 'live desktop capture (video)',
                                 data: stream,
                                 position: 0
                             });
-                            return setTimeout(window.focus, 1000);
-                          }).catch(() => window.M.toast({
+                            return setTimeout((window as any).focus, 1000);
+                          }).catch(() => (window as any).M.toast({
                                     html: `Unable to get desktop capture on your device`,
                                     classes: 'bold red rounded'
                                 }))

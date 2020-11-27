@@ -27,6 +27,6 @@ const firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-window.__firebase = firebase;
+(window as any).__firebase = firebase;
 
-window.vm = createApp(App).use(store).use(router).mount('#app')
+(window as any).vm = createApp(App).use(store).use(router).mount('#app')

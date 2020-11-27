@@ -22,7 +22,7 @@ export default defineComponent({
     const options = {
       onOpenStart() {
         // Initialize the FirebaseUI Widget using Firebase.
-        const ui = new firebaseui.auth.AuthUI(window.__firebase.auth());
+        const ui = new firebaseui.auth.AuthUI((window as any).__firebase.auth());
         
         const uiConfig = {
           callbacks: {
@@ -40,7 +40,7 @@ export default defineComponent({
           // signInSuccessUrl: '<url-to-redirect-to-on-success>',
           signInOptions: [
             // Leave the lines as is for the providers you want to offer your users.
-            window.__firebase.auth.EmailAuthProvider.PROVIDER_ID
+            (window as any).__firebase.auth.EmailAuthProvider.PROVIDER_ID
           ],
           // Terms of service url.
           tosUrl: "/terms-and-conditions",
@@ -52,10 +52,10 @@ export default defineComponent({
         return ui.start($this.authIuSelector, uiConfig);
       },
       onCloseEnd() {
-          document.querySelector($this.authIuSelector).innerHTML = "";
+          (document.querySelector($this.authIuSelector) as any).innerHTML = "";
         }
     };
-    this.instances = window.M.Modal.init(elems, options);
+    this.instances = (window as any).M.Modal.init(elems, options);
   },
   data() {
     return {

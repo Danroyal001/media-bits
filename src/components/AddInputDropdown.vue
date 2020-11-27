@@ -6,6 +6,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+//import * as M from "@/assets/js/materialize.min.js";
 
 export default defineComponent({
     name: 'add-input-dropdown',
@@ -15,15 +16,15 @@ export default defineComponent({
                 {
                     label: 'Video File',
                     onclick(){
-                        window.$store.dispatch('loadFile', {
+                        (window as any).$store.dispatch('loadFile', {
                             fileType: 'video/*',
                             isText: false
-                        }).then(file => {
+                        }).then((file: Blob) => {
                             const fr = new window.FileReader();
                             fr.onload = () => {
                                 let refinedFile = fr.result;
-                                window.$store.commit('addInputSource', {
-                                name: file.name,
+                                (window as any).$store.commit('addInputSource', {
+                                name: (file as any).name!!,
                                 id: Math.random(),
                                 type: 'video file',
                                 file,
@@ -32,7 +33,7 @@ export default defineComponent({
                             })
                             }
                             fr.readAsDataURL(file);
-                        }).catch(e => window.M.toast({
+                        }).catch((e: any) => (window.M as any).toast({
               html: e,
               classes: 'bold red rounded'
             }))
@@ -41,15 +42,15 @@ export default defineComponent({
                 {
                     label: 'Audio File',
                     onclick(){
-                        window.$store.dispatch('loadFile', {
+                        (window as any).$store.dispatch('loadFile', {
                             fileType: 'audio/*, video/*',
                             isText: false
-                        }).then(file => {
+                        }).then((file: Blob) => {
                             const fr = new window.FileReader();
                             fr.onload = () => {
                                 let refinedFile = fr.result;
-                                window.$store.commit('addInputSource', {
-                                name: file.name,
+                                (window as any).$store.commit('addInputSource', {
+                                name: (file as any).name,
                                 id: Math.random(),
                                 type: 'audio file',
                                 file,
@@ -58,7 +59,7 @@ export default defineComponent({
                             })
                             }
                             fr.readAsDataURL(file);
-                        }).catch(e => window.M.toast({
+                        }).catch((e: any) => (window.M as any).toast({
               html: e,
               classes: 'bold red rounded'
             }))
@@ -67,15 +68,15 @@ export default defineComponent({
                 {
                     label: 'Image File',
                     onclick(){
-                        window.$store.dispatch('loadFile', {
+                        (window as any).$store.dispatch('loadFile', {
                             fileType: 'image/*',
                             isText: false
-                        }).then(file => {
+                        }).then((file: Blob) => {
                             const fr = new window.FileReader();
                             fr.onload = () => {
                                 let refinedFile = fr.result;
-                                window.$store.commit('addInputSource', {
-                                name: file.name,
+                                (window as any).$store.commit('addInputSource', {
+                                name: (file as any).name,
                                 id: Math.random(),
                                 type: 'image file',
                                 file,
@@ -84,7 +85,7 @@ export default defineComponent({
                             })
                             }
                             fr.readAsDataURL(file);
-                        }).catch(e => window.M.toast({
+                        }).catch((e: any) => (window.M as any).toast({
               html: e,
               classes: 'bold red rounded'
             }))
@@ -118,8 +119,8 @@ export default defineComponent({
                 {
                     label: 'Live Desktop Capture (Video)',
                     onclick(){
-                        const addSource = stream => {
-                            window.$store.commit('addInputSource', {
+                        const addSource = (stream: any) => {
+                            (window as any).$store.commit('addInputSource', {
                                 name: 'Live Desktop Capture (Video)',
                                 id: Math.random(),
                                 type: 'live desktop capture (video)',
@@ -127,15 +128,15 @@ export default defineComponent({
                                 position: 0
                             })
                         }
-                        if (window.isElectron){
-                            document.querySelector('#electron-desktop-capture-modal').M_Modal.open()
+                        if ((window as any).isElectron){
+                            (document.querySelector('#electron-desktop-capture-modal') as any).M_Modal.open()
                         } else {
-                            window.navigator.mediaDevices.getDisplayMedia({
+                            (window.navigator.mediaDevices as any).getDisplayMedia({
                                 video: {
                                     cursor: 'motion'
                                 },
                                 audio: false
-                            }).then(stream => addSource(stream)).catch(() => window.M.toast({
+                            }).then((stream: any) => addSource(stream)).catch(() => (window.M as any).toast({
                                     html: `Unable to get desktop capture on your device`,
                                     classes: 'bold red rounded'
                                 }))

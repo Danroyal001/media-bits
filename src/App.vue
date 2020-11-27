@@ -188,14 +188,14 @@ class _VideoContext {
   sampleRate: number;
   id: number;
   state: string;
-  canvas: HTMLCanvasElement;
+  canvas: HTMLCanvasElement|any;
   ctx: CanvasRenderingContext2D | null;
   startTime: number;
   destination: HTMLVideoElement;
   destinations: HTMLVideoElement[];
   shouldTerminate: boolean;
   onstatechange: (newState: string) => string;
-  sourceNodes: HTMLMediaElement[]|null[];
+  sourceNodes: HTMLMediaElement[]|HTMLVideoElement[]|null[];
   sourceNodeSettings: any[];
   
   constructor() {
@@ -215,7 +215,7 @@ class _VideoContext {
 
     this.destination = document.createElement('video');
     // eslint-disable-next-line no-prototype-builtins
-    this.destination.srcObject = this.canvas.captureStream!!(this.sampleRate) as MediaStream
+    this.destination.srcObject = (this.canvas as any).captureStream!!(this.sampleRate) as MediaStream
     this.destination.muted = true;
 
     this.destinations = [this.destination]
@@ -226,7 +226,8 @@ class _VideoContext {
       return `New state: ${newState}`;
     };
 
-    this.sourceNodes = Array(this.maxNodeCount) as HTMLMediaElement[]|null[];
+    this.sourceNodes = []
+    this.sourceNodes.length = this.maxNodeCount;
 
     this.sourceNodeSettings = [];
 
@@ -242,10 +243,12 @@ class _VideoContext {
 
       if ((this.state == "running") && (this.sourceNodes.length > 0)){
 
+        const fn = (node: HTMLMediaElement) => {
+          this.ctx?.drawImage((node as CanvasImageSource), 0, 0);
+        }
+
         // draw image here
-        this.sourceNodes.forEach(node => {
-          this.ctx?.drawImage(node, 0, 0);
-        })
+        this.sourceNodes.forEach((fn as unknown as ((value: HTMLMediaElement, index: number, array: HTMLMediaElement[]) => void) & ((value: null, index: number, array: null[]) => void)))
 
       }
 
@@ -261,18 +264,18 @@ class _VideoContext {
     const elem = document.createElement('video');
     elem.muted = true;
     elem.srcObject = mediaStream;
-    this.sourceNodes.push(elem)
+    this.sourceNodes.push(elem as never)
     return this;
   }
 
   createMediaElementSource(mediaElement: HTMLMediaElement) {
-    this.sourceNodes.push(mediaElement)
+    this.sourceNodes.push(mediaElement as never)
     return this;
   }
 
   createMediaStreamDestination() {
     return new MediaStream(
-      this.canvas.captureStream(this.sampleRate).getTracks()
+      (this.canvas as any).captureStream!!(this.sampleRate)?.getTracks()
     );
   }
 
@@ -324,10 +327,10 @@ Object.defineProperty(window, '_VideoContext', {
   writable: false,
   configurable: false,
   enumerable: true
-  })
+  });
 
 // begin window.__workerFromString
-window.__workerFromString = (str: string) => {
+(window as any).__workerFromString = (str: string) => {
   const __myWorker = new Worker(
     URL.createObjectURL(
       new Blob([str], {
@@ -339,7 +342,7 @@ window.__workerFromString = (str: string) => {
 };
 // end window.__workerFromString
 
-window.JSZip = require("jszip");
+(window as any).JSZip = require("jszip");
 
 window.M = M;
 

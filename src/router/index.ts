@@ -1,4 +1,4 @@
-import { createRouter,  createWebHistory } from 'vue-router'
+import { createRouter,  createWebHistory, RouteRecordRaw } from 'vue-router'
 import { defineAsyncComponent } from 'vue';
 import Home from '@/views/HomePage.vue'
 import NetworkError from '@/components/NetworkError.vue';
@@ -195,20 +195,20 @@ const routes = [
 
 const router = createRouter({
   history: createWebHistory(),
-  routes
+  routes: routes as unknown as RouteRecordRaw[]
 });
 
 router.beforeEach((_to, from, next) => {
   if(from.name === 'editor'){
-    if(window.$store.state.currentProjectIsSaved === true){
+    if((window as any).$store.state.currentProjectIsSaved === true){
       return next();
     } else {
-      window.alert("If you leave without saving your work, all changes will be lost")
+      (window as any).alert("If you leave without saving your work, all changes will be lost")
       return next(false);
     }
   } else return next();
 });
 
-window.$router = router as typeof router;
+(window as any).$router = router as typeof router;
 
 export default router

@@ -9,10 +9,10 @@ localForage.config({
 
 localForage.setDriver(localForage.INDEXEDDB);
 
-window.localForage = localForage;
+(window as any).localForage = localForage;
  
 export default new VuexPersistence({
-    storage: window.localForage,
+    storage: (window as any).localForage,
     key: 'mb',
     asyncStorage: true
   })
