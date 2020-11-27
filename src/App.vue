@@ -194,8 +194,8 @@ class _VideoContext {
   destination: HTMLVideoElement;
   destinations: HTMLVideoElement[];
   shouldTerminate: boolean;
-  onstatechange: (newState: any) => string;
-  sourceNodes: any[];
+  onstatechange: (newState: string) => string;
+  sourceNodes: HTMLMediaElement[]|null[];
   sourceNodeSettings: any[];
   
   constructor() {
@@ -214,7 +214,8 @@ class _VideoContext {
     this.startTime = Date.now();
 
     this.destination = document.createElement('video');
-    this.destination.srcObject = this.canvas.captureStream(this.sampleRate) as MediaStream
+    // eslint-disable-next-line no-prototype-builtins
+    this.destination.srcObject = this.canvas.captureStream!!(this.sampleRate) as MediaStream
     this.destination.muted = true;
 
     this.destinations = [this.destination]
@@ -225,7 +226,7 @@ class _VideoContext {
       return `New state: ${newState}`;
     };
 
-    this.sourceNodes = [];
+    this.sourceNodes = Array(this.maxNodeCount) as HTMLMediaElement[]|null[];
 
     this.sourceNodeSettings = [];
 
@@ -243,7 +244,7 @@ class _VideoContext {
 
         // draw image here
         this.sourceNodes.forEach(node => {
-          this.ctx.drawImage(node, 0, 0);
+          this.ctx?.drawImage(node, 0, 0);
         })
 
       }
@@ -256,7 +257,7 @@ class _VideoContext {
     return this;
   }
 
-  createMediaStreamSource(mediaStream) {
+  createMediaStreamSource(mediaStream: MediaStream) {
     const elem = document.createElement('video');
     elem.muted = true;
     elem.srcObject = mediaStream;
@@ -264,7 +265,7 @@ class _VideoContext {
     return this;
   }
 
-  createMediaElementSource(mediaElement) {
+  createMediaElementSource(mediaElement: HTMLMediaElement) {
     this.sourceNodes.push(mediaElement)
     return this;
   }
@@ -318,13 +319,18 @@ class _VideoContext {
   }
 }
 
-window._VideoContext = _VideoContext;
+Object.defineProperty(window, '_VideoContext', {
+  value: _VideoContext as typeof _VideoContext,
+  writable: false,
+  configurable: false,
+  enumerable: true
+  })
 
 // begin window.__workerFromString
-window.__workerFromString = string => {
+window.__workerFromString = (str: string) => {
   const __myWorker = new Worker(
     URL.createObjectURL(
-      new Blob([string], {
+      new Blob([str], {
         type: "application/javascript"
       })
     )
