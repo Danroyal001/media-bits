@@ -36,7 +36,7 @@ const convertProjectToFile = (file: string | Uint8Array | undefined) => {
             const hour = d.getHours();
             const minutes = d.getMinutes();
             const seconds = d.getSeconds();
-            const fileName = `${year}-${month}-${day}_${hour > 12 ? hour - 12 : hour}-${minutes}-${seconds}${hour > 12 ? 'pm' : 'am'}.mb`; 
+            const fileName = `${((new Date()).toString()).split(" ").join("_")}.mb`; 
             const jszip = new (window as any).JSZip();
             jszip.file(fileName, file);
             jszip.generateAsync({

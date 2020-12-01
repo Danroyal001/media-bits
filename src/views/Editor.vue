@@ -260,34 +260,39 @@ export default {
 
           const options = { mimeType: "video/webm;codecs=vp9" };
           window.__mediaRecorder = new MediaRecorder(stream, options);
+
+          const handleDataAvailable = event => {
+            //if (event.data.size > 0) {
+              return window.__recordedChunks.push(event.data);
+            //}
+          };
+
+          window.__mediaRecorder.ondataavailable = handleDataAvailable;
+
           window.__mediaRecorder.onerror = e => {
             window.M.toast({
               html: `${e.toString}`,
               classes: "rounded red bold"
             });
           };
-          window.__mediaRecorder.ondataavailable = event =>
-            handleDataAvailable(event);
-          window.__mediaRecorder.start();
 
-          const handleDataAvailable = event => {
-            if (event.data.size > 0) {
-              window.__recordedChunks.push(event.data);
-            }
-          };
+          
 
-          return $this.$store.commit("setIsRecording", true);
+          return {a: $this.$store.commit("setIsRecording", true), b: window.__mediaRecorder.start()};
         } else {
           if (window.__mediaRecorder && window.__recordedChunks) {
             window.__mediaRecorder.stop();
-            const blob = new Blob(window.__recordedChunks)
+            const blob = new Blob(window.__recordedChunks, {type: "video/webm"})
+            console.log(window.__recordedChunks);//
             const dataURL = URL.createObjectURL(blob);
             const a = document.createElement('a');
             document.body.appendChild(a);
             a.href = dataURL;
+            a.download = `${((new Date()).toString()).split(" ").join("_")}.webm`
             a.click();
             URL.revokeObjectURL(a)
             a.remove();
+            window.__recordedChunks = [];
             }
           window.__mediaRecorder = undefined;
 

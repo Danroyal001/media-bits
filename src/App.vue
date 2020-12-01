@@ -183,7 +183,9 @@ import MinMax from "@/components/MinMax.vue";
 import UserViewOnDesktop from "@/components/UserViewOnDesktop.vue";
 import AuthenticationModal from "@/components/AuthenticationModal.vue";
 
-class _VideoContext {
+const __VideoContextToString: string = `function __VideoContext(options) { [native code] }` as string;
+
+class __VideoContext {
   maxNodeCount: number;
   sampleRate: number;
   id: number;
@@ -310,6 +312,12 @@ class _VideoContext {
 
   setBlurFilter(){}
 
+  setEffect(){}
+
+  setEntryEffect(){}
+
+  setAfterEffect(){}
+
   close() {
     this.suspend();
     this.shouldTerminate = true;
@@ -317,13 +325,17 @@ class _VideoContext {
     return null;
   }
 
-  static toStrig() {
-    return `function(options){[native code]}`;
+  static toString() {
+    return __VideoContextToString;
   }
 }
 
-Object.defineProperty(window, '_VideoContext', {
-  value: _VideoContext as typeof _VideoContext,
+__VideoContext.prototype.toString = () => {
+    return __VideoContextToString;
+  }
+
+Object.defineProperty(window, '__VideoContext', {
+  value: __VideoContext as typeof __VideoContext,
   writable: false,
   configurable: false,
   enumerable: true
