@@ -10,8 +10,9 @@
 
 <script lang="ts">
 import FooterComponent from "@/components/FooterComponent.vue";
+import { defineComponent } from 'vue';
 
-export default {
+export default defineComponent({
     name: 'contact-page',
     data(){
         return {
@@ -23,7 +24,7 @@ export default {
         components: {
             FooterComponent
         }
-}
+})
 </script>
 
 <style>

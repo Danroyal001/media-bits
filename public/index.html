@@ -10,13 +10,9 @@
     <title><%= htmlWebpackPlugin.options.title %></title>
     <style>
       *{
-        user-select: none
-        /* -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        -webkit-user-select: none; */
+        user-select: none;
       }
-      html, body{
+      html, body, #app{
         margin: 0px !important;
         padding: 0px !important;
         width: 100% !important;
@@ -28,7 +24,7 @@
     <noscript>
       <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
-    <div style="width: 100% !important; height: 100% !important;" id="app"></div>
+    <div id="app"></div>
     <script>
     </script>
     <!-- built files will be auto injected -->

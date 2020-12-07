@@ -5,7 +5,7 @@
       <h4>Select Screen/Window <i class="fa fa-desktop"></i></h4>
       <br />
 
-    <div style="height: 280px; !important; overflow: auto;">
+    <div style="height: 265px; !important; overflow: auto;">
         <p v-for="streamSource in streamSources" :key="streamSource.toString()" :id="streamSource.toString()">
       <label>
         <input v-model="selectedStream" class="with-gap" name="source" type="radio" :value="streamSource.id"  />

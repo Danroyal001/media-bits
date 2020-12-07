@@ -29,14 +29,7 @@ const convertProjectToFile = (file: string | Uint8Array | undefined) => {
             file = JSON.stringify(file);
             file = (new TextEncoder()).encode(file);
             file = file.toString();
-            const d = new Date();
-            const day = d.getDate();
-            const month = d.getMonth() + 1;
-            const year = d.getFullYear();
-            const hour = d.getHours();
-            const minutes = d.getMinutes();
-            const seconds = d.getSeconds();
-            const fileName = `${((new Date()).toString()).split(" ").join("_")}.mb`; 
+            const fileName = `Project-${((new Date()).toString()).split(" ").join("_")}.mb`; 
             const jszip = new (window as any).JSZip();
             jszip.file(fileName, file);
             jszip.generateAsync({
@@ -105,6 +98,15 @@ const $store = createStore({
     ],
     year: `${(new Date()).getFullYear()}`,
     fileSubmenuDropdown: [
+      {
+        title: "New",
+        onclick(){
+          const child = window.open();
+          (child as any).parent = null;
+          (child as any).opener = null;
+          (child as any).location = window.location;
+        }
+      },
       {
         title: "Open",
         onclick(){
@@ -190,7 +192,12 @@ const $store = createStore({
         }
     },
     {
-      title: "Save to Cloud"
+      title: "Save to Cloud",
+      onclick(){}
+    },
+    {
+      title: "Submit as template",
+      onclick(){}
     }
     ],
     globalLoaderText: "Loading...",
@@ -216,7 +223,8 @@ const $store = createStore({
     outputDestinations: [],
     editorIsReady: false,
     isProjecting: false,
-    isRecording: false
+    isRecording: false,
+    isStreaming: false
   },
   mutations: {
     setIsRecording(state, trueOrFalse){

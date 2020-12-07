@@ -68,9 +68,9 @@
   </div>
 </template>
 
-<style src="@/assets/css/materialize.css"></style>
+<!-- <style src="@/assets/css/materialize.css"></style> -->
 
-<style src="@/assets/css/fontawesome.min.css"></style>
+<!-- <style src="@/assets/css/fontawesome.min.css"></style> -->
 
 <style>
 *{
@@ -177,11 +177,20 @@ hr{
 
 <script lang="ts">
 import EditorMenu from "@/components/EditorMenu.vue";
-import * as M from "@/assets/js/materialize.min.js";
+// import * as M from "@/assets/js/materialize.min.js";
+// window.M = M;
+import "@/assets/js/materialize.min.js";
 import PreLoader from "@/components/PreLoader.vue";
 import MinMax from "@/components/MinMax.vue";
 import UserViewOnDesktop from "@/components/UserViewOnDesktop.vue";
 import AuthenticationModal from "@/components/AuthenticationModal.vue";
+
+
+// stylesheets
+import "@/assets/css/materialize.css";
+import "@/assets/css/fontawesome.min.css";
+
+(window as any).JSZip = require("jszip");
 
 const __VideoContextToString: string = `function __VideoContext(options) { [native code] }` as string;
 
@@ -353,10 +362,6 @@ Object.defineProperty(window, '__VideoContext', {
   return __myWorker;
 };
 // end window.__workerFromString
-
-(window as any).JSZip = require("jszip");
-
-window.M = M;
 
 export default {
   name: "App",

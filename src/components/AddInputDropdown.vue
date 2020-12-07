@@ -106,15 +106,21 @@ export default defineComponent({
                 },
                 {
                     label: 'Video Input from URL',
-                    onclick(){}
+                    onclick(){},
+                    href: '#audio-from-url-modal',
+                    class: 'modal-trigger'
                 },
                 {
                     label: 'Audio Input from URL',
-                    onclick(){}
+                    onclick(){},
+                    href: '#audio-from-url-modal',
+                    class: 'modal-trigger'
                 },
                 {
                     label: 'Image from URL',
-                    onclick(){}
+                    onclick(){},
+                    href: '#image-from-url-modal',
+                    class: 'modal-trigger'
                 },
                 {
                     label: 'Live Desktop Capture (Video)',

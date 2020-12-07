@@ -46,15 +46,15 @@
 
                     <div class="col s2">&nbsp;</div>
                 </div>
-                <video class="col s11 output-video-visualizer" controls loop></video>
+                <video class="col s11 output-video-visualizer" autoplay="true" nocontrols loop></video>
             </div>
             <div class="col s12 orange output-destination-bottom-block">
-                <button @click="project($event, (_index + 1))" :class="['btn-small', $store.state.isProjecting ? 'red' : 'teal', 'white-text', 'waves-effect', 'waves-light', 'bold']">PROJECT <i class="fa fa-desktop"></i></button>
+                <button @click="project($event, (_index + 1))" :class="['btn-small', $store.state.isProjecting ? 'red' : 'teal', 'white-text', 'waves-effect', 'waves-light', 'bold']"> {{ $store.state.isProjecting ? 'PROJECTING' : 'PROJECT' }} <i class="fa fa-desktop"></i></button>
 
                 <button class="btn-small teal white-text waves-effect waves-light bold">STREAM <i class="fa fa-wifi"></i></button>
 
-                <button @click="toggleRecord($event, (_index + 1))" :class="['btn-small', $store.state.isRecording ? 'red' : 'teal', 'white-text', 'waves-effect', 'waves-light', 'bold']">RECORD <i class="fa fa-video"></i></button>
-
+                <button @click="toggleRecord($event, (_index + 1))" :class="['btn-small', $store.state.isRecording ? 'red' : 'teal', 'white-text', 'waves-effect', 'waves-light', 'bold']"> {{ $store.state.isRecording ? 'RECORDING' : 'RECORD' }} <i class="fa fa-video"></i></button>
+  
                 <button class="btn-small teal white-text waves-effect waves-light bold">CONFIG <i class="fa fa-wrench"></i></button>
             </div>
         </div>
@@ -88,9 +88,14 @@
 <div id="select-microphone-modal" class="modal">
     <div class="modal-content">
       <h4>Select Microphone <i class="fa fa-microphone"></i></h4>
-      <select v-model="selectedMic" autofocus class="validate">
-          <option v-for="mic in microphones" :key="mic" @change="selectedMic = mic" :value="mic.deviceId" class="teal-text">{{ mic.label }}1</option>
-      </select>
+      <form>
+          <p v-for="mic in microphones" :key="mic.label">
+            <label>
+              <input v-model="selectedMic" :value="mic.deviceId + '--' + mic.label" class="with-gap" name="camera" type="radio" />
+              <span class="teal-text">{{ mic.label }}</span>
+            </label>
+          </p>
+      </form>
       <br />
       <p>Nothing showing? click on <code>GRANT PERMISSION</code></p>
     </div>
@@ -102,13 +107,67 @@
 </div>
 <!-- End select microphone modal -->
 
+<!-- Begin image from url modal -->
+<div id="image-from-url-modal" class="modal">
+    <div class="modal-content">
+      <h4>Type the image URL below <i class="fa fa-globe"></i></h4>
+      <form>
+          <input placeholder="type url here" type="url" />
+      </form>
+      <br />
+    </div>
+    <div class="modal-footer">
+      <button class="btn-small red waves-effect waves-light modal-close">CLOSE</button>
+      <a class="modal-close waves-effect waves-green btn">Add</a>
+    </div>
+</div>
+<!-- End image from url modal -->
+
+<!-- Begin video from url modal -->
+<div id="video-from-url-modal" class="modal">
+    <div class="modal-content">
+      <h4>Type the video URL below <i class="fa fa-globe"></i></h4>
+      <form>
+          <input placeholder="type url here" type="url" />
+      </form>
+      <br />
+    </div>
+    <div class="modal-footer">
+      <button class="btn-small red waves-effect waves-light modal-close">CLOSE</button>
+      <a class="modal-close waves-effect waves-green btn">Add</a>
+    </div>
+</div>
+<!-- End video from url modal -->
+
+<!-- Begin audio from url modal -->
+<div id="audio-from-url-modal" class="modal">
+    <div class="modal-content">
+      <h4>Type the audio URL below <i class="fa fa-globe"></i></h4>
+      <form>
+          <input placeholder="type url here" type="url" />
+      </form>
+      <br />
+    </div>
+    <div class="modal-footer">
+      <button class="btn-small red waves-effect waves-light modal-close">CLOSE</button>
+      <a class="modal-close waves-effect waves-green btn">Add</a>
+    </div>
+</div>
+<!-- End audio from url modal -->
+
 <!-- Begin select camera modal -->
 <div id="select-camera-modal" class="modal">
     <div class="modal-content">
       <h4>Select Camera <i class="fa fa-camera"></i></h4>
-      <div>
-          <div v-for="camera in cameras" :key="camera" class="teal-text">{{ camera.label }}</div>
-      </div>
+      <form>
+          <p v-for="camera in cameras" :key="camera.label">
+            <label>
+              <input v-model="selectedCamera" :value="camera.deviceId + '--' + camera.label" class="with-gap" name="camera" type="radio" />
+              <span class="teal-text">{{ camera.label }}</span>
+            </label>
+          </p>
+      </form>
+
       <br />
       <p>Nothing showing? click on <code>GRANT PERMISSION</code></p>
     </div>
@@ -140,13 +199,14 @@ export default {
       middleSectionBtns: [],
       microphones: [],
       cameras: [],
-      selectedCamera: {},
-      selectedMic: {},
+      selectedCamera: '',
+      selectedMic: '',
       hasGottenDevices: false
     };
   },
   mounted() {
     const _$this = this;
+
     this.$store.commit("editorIsReady");
     //setInterval(() => {
     window.navigator.mediaDevices.enumerateDevices().then(devices => {
@@ -168,24 +228,43 @@ export default {
         .then(stream => stream.getTracks().forEach(track => track.stop()));
     },
     addLiveAudio() {
+      if (this.selectedMic !== ''){
+
+      const label = this.selectedMic.split('--')[1];
+      const deviceId = this.selectedMic.split('--')[0];
+
       window.navigator.mediaDevices
         .getUserMedia({
+          deviceId: deviceId,
+          label: label,
           audio: true,
           video: false
         })
         .then(stream => {
           window.$store.commit("addInputSource", {
-            name: "Microphone",
+            name: `Microphone - ${label}`,
             id: Math.random(),
             type: "live audio input",
             data: stream,
             position: 0
           });
         });
+    
+      } else return window.M.toast({
+          html: "Please select one microphone to proceed",
+          classes: "red pulse bold rounded"
+        });
     },
     addLiveVideo() {
+      if (this.selectedCamera) {
+
+      const label = this.selectedCamera.split('--')[1];
+      const deviceId = this.selectedCamera.split('--')[0];
+
       window.navigator.mediaDevices
         .getUserMedia({
+          label: label,
+          deviceId: deviceId,
           audio: false,
           video: {
             torch: true
@@ -193,12 +272,17 @@ export default {
         })
         .then(stream => {
           window.$store.commit("addInputSource", {
-            name: "Camera",
+            name: `Camera - ${label}`,
             id: Math.random(),
             type: "live video input",
             data: stream,
             position: 0
           });
+        });
+    
+      } else return window.M.toast({
+          html: "Please select one camera to proceed",
+          classes: "red pulse bold rounded"
         });
     },
     project($event, outputDestinationNumber) {
@@ -226,7 +310,7 @@ export default {
             "_blank",
             `top=0, left=${
               screen.width
-            }, width=500px, height=500px, toolbar=0, scrollbars=0, title=Output-destination-${outputDestinationNumber}`
+            }, width=500px, height=500px, toolbar=0, frame=0, scrollbars=0, title=Output-destination-${outputDestinationNumber}`
           );
 
           console.log(destination);
@@ -255,21 +339,22 @@ export default {
 
       if (videoEl.srcObject) {
         if ($this.$store.state.isRecording === false) {
-          window.__recordedChunks = [];
+          window[`outputDestination${count}`] = {};
+          window[`outputDestination${count}`].__recordedChunks = [];
           let stream = videoEl.captureStream(100);
-
+  
           const options = { mimeType: "video/webm;codecs=vp9" };
-          window.__mediaRecorder = new MediaRecorder(stream, options);
+          window[`outputDestination${count}`].__mediaRecorder = new MediaRecorder(stream, options);
 
           const handleDataAvailable = event => {
             //if (event.data.size > 0) {
-              return window.__recordedChunks.push(event.data);
+              window[`outputDestination${count}`].__recordedChunks.push(event.data);
             //}
           };
 
-          window.__mediaRecorder.ondataavailable = handleDataAvailable;
+          window[`outputDestination${count}`].__mediaRecorder.ondataavailable = handleDataAvailable;
 
-          window.__mediaRecorder.onerror = e => {
+          window[`outputDestination${count}`].__mediaRecorder.onerror = e => {
             window.M.toast({
               html: `${e.toString}`,
               classes: "rounded red bold"
@@ -278,23 +363,29 @@ export default {
 
           
 
-          return {a: $this.$store.commit("setIsRecording", true), b: window.__mediaRecorder.start()};
+          return {a: $this.$store.commit("setIsRecording", true), b: window[`outputDestination${count}`].__mediaRecorder.start()};
         } else {
-          if (window.__mediaRecorder && window.__recordedChunks) {
-            window.__mediaRecorder.stop();
-            const blob = new Blob(window.__recordedChunks, {type: "video/webm"})
-            console.log(window.__recordedChunks);//
-            const dataURL = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            document.body.appendChild(a);
-            a.href = dataURL;
-            a.download = `${((new Date()).toString()).split(" ").join("_")}.webm`
-            a.click();
-            URL.revokeObjectURL(a)
-            a.remove();
-            window.__recordedChunks = [];
+          if (window[`outputDestination${count}`].__mediaRecorder && window[`outputDestination${count}`].__recordedChunks) {
+
+            window[`outputDestination${count}`].__mediaRecorder.onstop = () => {
+              const blobArray = window[`outputDestination${count}`].__recordedChunks;
+              const blob = blobArray[0];
+              console.log(blob)
+              const dataURL = URL.createObjectURL(blob);
+              const a = document.createElement('a');
+              document.body.appendChild(a);
+              a.href = dataURL;
+              a.download = `Record-${((new Date()).toString()).split(':').join('-').split(" ").join("_")}.webm`
+              a.click();
+              URL.revokeObjectURL(a)
+              a.remove();
+              window[`outputDestination${count}`].__recordedChunks = [];
             }
-          window.__mediaRecorder = undefined;
+
+            window[`outputDestination${count}`].__mediaRecorder.stop();
+
+            }
+          window[`outputDestination${count}`].__mediaRecorder = undefined;
 
           return $this.$store.commit("setIsRecording", false);
         }
