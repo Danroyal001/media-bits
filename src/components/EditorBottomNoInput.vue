@@ -1,6 +1,6 @@
 <template>
 <div class="black" style="display: flex; height: 50%; align-items: center; justify-content: center; flex-direction: column; text-align: center;">
-    <h4 class="white-text">
+    <h4 class="teal-text">
         <i class="fa fa-desktop"></i>
         <i class="fa fa-globe"></i>
         <i class="fa fa-wifi"></i>
@@ -10,7 +10,7 @@
     <AddInputDropdown id="add-input-dropdown-2" />
 </div>
 </template>
-
+ 
 <script lang="ts">
 import AddInputDropdown from '@/components/AddInputDropdown.vue';
 import { defineComponent } from 'vue';
