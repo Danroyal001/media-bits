@@ -39,13 +39,14 @@ export default {
             const elem = window.document.querySelector('#inputVisual' + this.count);
             const preview = window.document.querySelector('#preview');
 
-            if((src.includes('video file') || src.includes('audio file')) && preview){
-                preview.src = elem.src;
+            if((src.includes('video') || src.includes('audio')) && preview){
+                preview.srcObject = elem.captureStream();
+                preview.currentTime = elem.currentTime;
             } else if (src.includes('image') && preview){
                 preview.src = elem.src;
-            } else if ((src.includes('video') && src.includes('live') && !src.includes('audio')) && preview){
-                preview.srcObject = elem.srcObject;
-            }
+            } //else if ((src.includes('video') && src.includes('live') && !src.includes('audio')) && preview){
+                //preview.srcObject = elem.srcObject;
+            //}
 
             return window.$store.commit('setFocusedInputSource', count - 1);
         }
@@ -57,13 +58,13 @@ export default {
         const _$elem = window.document.querySelector('#inputVisual' + _$this.count);
         const addSrc = e => {
             e.src = _$this.source.data;
-            e.pause();
+            e.play();
             e.scrollIntoView(true);
             return setTimeout(() => e.pause(), 500);
         }
         const addSrcObject = e => {
             e.srcObject = _$this.source.data;
-            e.pause();
+            e.play();
             e.scrollIntoView(true);
             return setTimeout(() => e.pause(), 500);
         }

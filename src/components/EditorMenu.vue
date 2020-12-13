@@ -26,7 +26,7 @@ export default {
         FileSubmenuDropdown
     },
     created: doTheNeedful,
-    mounted: doTheNeedful,
+    onMounted: doTheNeedful,
     updated: doTheNeedful
 }
 </script>

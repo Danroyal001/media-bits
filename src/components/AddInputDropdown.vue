@@ -1,6 +1,6 @@
 <template>
 <ul id='add-input-dropdown-1' class='dropdown-content'>
-    <li v-for="(btn, index) in data" :key="index"><a :class="btn.class" class="bold" :href="btn.href" @click="btn.onclick">{{ btn.label }}</a></li>
+    <li v-for="(btn, index) in btns" :key="index"><a :class="btn.class" class="bold" :href="btn.href" @click="btn.onclick">{{ btn.label }}</a></li>
 </ul>
 </template>
 
@@ -8,11 +8,12 @@
 import { defineComponent } from 'vue';
 //import * as M from "@/assets/js/materialize.min.js";
 
+
 export default defineComponent({
     name: 'add-input-dropdown',
     data(){
         return {
-            data: [
+            btns: [
                 {
                     label: 'Video File',
                     onclick(){
@@ -20,6 +21,8 @@ export default defineComponent({
                             fileType: 'video/*',
                             isText: false
                         }).then((file: Blob) => {
+                        (window as any).$store.commit('setGlobalLoaderText', 'Importing Video(s)');
+                        (document.querySelector('#global-loader-modal') as any).M_Modal.open();
                             const fr = new window.FileReader();
                             fr.onload = () => {
                                 let refinedFile = fr.result;
@@ -30,13 +33,17 @@ export default defineComponent({
                                 file,
                                 data: refinedFile,
                                 position: 0
-                            })
+                            });
+                            (document.querySelector('#global-loader-modal') as any).M_Modal.close();
                             }
                             fr.readAsDataURL(file);
-                        }).catch((e: any) => (window.M as any).toast({
+                        }).catch((e: any) => {
+                            (window.M as any).toast({
               html: e,
               classes: 'bold red rounded'
-            }))
+            });
+            (document.querySelector('#global-loader-modal') as any).M_Modal.close()
+                        })
                     }
                 },
                 {
@@ -151,7 +158,11 @@ export default defineComponent({
                     }
                 },
                 {
-                    label: 'Layout Template',
+                    label: 'Title / Epic Scene',
+                    onclick(){}
+                },
+                {
+                    label: 'Existing Media-Bits project',
                     onclick(){}
                 }
             ]

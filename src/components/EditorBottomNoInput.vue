@@ -6,7 +6,7 @@
         <i class="fa fa-wifi"></i>
         <i class="fa fa-image"></i>
     </h4>
-    <h1 title="click here to add an input source" class="btn-small bold dropdown-trigger waves-effect waves-light pulse" data-target="add-input-dropdown-2">CLICK HERE TO ADD INPUT SOURCE</h1>
+    <button title="click here to add an input source" class="btn-small bold dropdown-trigger waves-effect waves-light pulse" data-target="add-input-dropdown-2">ADD INPUT</button>
     <AddInputDropdown id="add-input-dropdown-2" />
 </div>
 </template>

@@ -3,21 +3,23 @@ import { createStore } from 'vuex'
 
 (window as any).loadFromOpenedFile = (file: any) => {
   // document
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     const jszip = new (window as any).JSZip();
     return jszip.loadAsync(file).then((file2: any) => {
         file = file2;
         // console.log(file)
         (Object?.values((file as any).files)[0] as any).async('string').then((str: any) => {
         file = str;
-        try {
-          file = JSON.parse(`[${file}]`);
-        } catch (exception){
-          return reject(exception);
-        }
-        file = new Uint8Array(file);
-        file = (new TextDecoder('utf-8')).decode(file);
-        file = JSON.parse(file);
+        //try {
+          //file = JSON.parse(`[${file}]`);
+        //} catch (exception){
+          //return reject(exception);
+        //}
+        //file = new Uint8Array(file);
+        //file = (new TextDecoder('utf-8')).decode(file);
+        //file = JSON.parse(file);
+        file = file.split("\n").reverse().join("");//
+        file = JSON.parse(file)//
         return resolve(file);
       })
     });
@@ -27,8 +29,8 @@ import { createStore } from 'vuex'
 const convertProjectToFile = (file: string | Uint8Array | undefined) => {
   return new Promise(resolve => {
             file = JSON.stringify(file);
-            file = (new TextEncoder()).encode(file);
-            file = file.toString();
+            //file = (new TextEncoder()).encode(file);
+            file = file.split("").reverse().join("\n").toString();//
             const fileName = `Project-${((new Date()).toString()).split(" ").join("_")}.mb`; 
             const jszip = new (window as any).JSZip();
             jszip.file(fileName, file);
@@ -109,7 +111,7 @@ const $store = createStore({
       },
       {
         title: "Open",
-        onclick(){
+        async onclick(){
           const loader = document.querySelector('#global-loader-modal');
           (window as any).$store.dispatch('loadFile', {
             fileType: 'application/zip',
@@ -147,15 +149,20 @@ const $store = createStore({
     },
     {
       title: "Import from Cloud",
-      onclick(){}
+      async onclick(){}
     },
     {
         title: "Save to PC",
-        onclick(){
+        async onclick(){
           if ((window as any).$store.state.inputSources.length < 1){
             (window as any).M.toast({
               html: 'Nothing to save!',
               classes: 'bold red rounded'
+            });
+          } else if (((window as any).$store.state.inputSources.length > 0) && ((window as any).$store.state.currentProjectIsSaved === true)) {
+            (window as any).M.toast({
+              html: 'Project is already saved!',
+              classes: 'bold teal rounded'
             });
           } else {
             let file = {
@@ -193,6 +200,10 @@ const $store = createStore({
     },
     {
       title: "Save to Cloud",
+      async onclick(){}
+    },
+    {
+      title: "Share / Collaborate",
       onclick(){}
     },
     {
@@ -232,6 +243,9 @@ const $store = createStore({
     },
     setIsProjecting(state, trueOrFalse){
       (state as any).isProjecting = trueOrFalse;
+    },
+    setGlobalLoaderText(state, text){
+      (state as any).globalLoaderText = text;
     },
     setCurrentProjectIsSaved(state, isSaved){
       (state as any).currentProjectIsSaved = isSaved;
