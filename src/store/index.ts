@@ -31,7 +31,7 @@ const convertProjectToFile = (file: string | Uint8Array | undefined) => {
             file = JSON.stringify(file);
             //file = (new TextEncoder()).encode(file);
             file = file.split("").reverse().join("\n").toString();//
-            const fileName = `Project-${((new Date()).toString()).split(" ").join("_")}.mb`; 
+            const fileName = `Project-${((new Date()).toString()).split(" ").join("_").split(":").join("-")}.mb`; 
             const jszip = new (window as any).JSZip();
             jszip.file(fileName, file);
             jszip.generateAsync({
