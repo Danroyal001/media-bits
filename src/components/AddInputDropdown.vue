@@ -162,6 +162,14 @@ export default defineComponent({
                     onclick(){}
                 },
                 {
+                    label: 'Colo(u)r view',
+                    onclick(){}
+                },
+                {
+                    label: 'Browser view',
+                    onclick(){}
+                },
+                {
                     label: 'Existing Media-Bits project',
                     onclick(){}
                 }

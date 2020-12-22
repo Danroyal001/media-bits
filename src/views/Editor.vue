@@ -68,10 +68,10 @@
 </div>
 <!-- End Middle section -->
 
-<div v-if="$store.state.inputSources.length > 0" class="horizontal-scroll black bottom-section">
+<div @drop="onDrop($event)" v-if="$store.state.inputSources.length > 0" class="dragover horizontal-scroll black bottom-section">
     <InputSource v-for="(source, index) in $store.state.inputSources" :key="'input-source-' + (index + 1)" :source="source" :count="(index + 1)"></InputSource>
 </div>
-<EditorBottomNoInput v-else />
+<EditorBottomNoInput class="dragover" @drop="onDrop($event)" v-else />
 
 <!-- Begin Tools Modal -->
 <div id="tools-modal" class="modal">
@@ -395,7 +395,12 @@ export default {
           classes: "rounded bold red"
         });
       }
-    }
+    },
+    stream(){},
+    onDrop($event){
+      $event.preventDefault();
+      console.log($event.dataTransfer.files)
+    },
   },
   components: {
     InputSource,
