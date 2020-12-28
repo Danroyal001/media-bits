@@ -58,6 +58,7 @@ const $store = createStore({
     // ™
     currentUser: null,
     focusedInputSource: 0,
+    recordings: [],
     primaryHyperlinks: [
       {
         name: 'HOME',

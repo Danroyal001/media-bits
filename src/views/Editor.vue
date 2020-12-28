@@ -62,20 +62,101 @@
 </div>
 <!-- End Top Section -->
 
-<!-- Start Middle Section -->
-<div class="teal middle-section white-text row">
-    <div>.</div>
-    <div class="white">
-      <input type="range" min="0" max="100" step="0.001">
+<!-- Begin Middle Section -->
+<div class="teal middle-section white-text">
+    <div class="input-field">
+      <select class="white-text">
+        <option
+        v-for="item in [
+          {
+            label: 'Slide from Bottom',
+            value: 'slide-form-bottom'
+          },
+          {
+            label: 'Slide from Top',
+            value: 'slide-from-top'
+          },
+          {
+            label: 'Slide from Left',
+            value: 'slide-from-left'
+          },
+          {
+            label: 'Slide from Right',
+            value: 'slide-from-right'
+          },
+          {
+            label: 'Fade',
+            value: 'fade'
+          },
+          {
+            label: 'Scale in',
+            value: 'scale-in'
+          },
+          {
+            label: 'Scale out',
+            value: 'scale-out'
+          },
+          {
+            label: '3D Rotate to left',
+            value: '3d-rotate-to-left'
+          },
+          {
+            label: '3D Rotate to right',
+            value: '3d-rotate-to-right'
+          },
+          {
+            label: '3D Rotate to top',
+            value: '3d-rotate-to-top'
+          },
+          {
+            label: '3D Rotate to bottom',
+            value: '3d-rotate-to-bottom'
+          },
+          {
+            label: 'Spin-in clockwise',
+            value: 'spin-in-clockwise'
+          },
+          {
+            label: 'Spin-in counter-clockwise',
+            value: 'spin-in-counter-clockwise'
+          },
+          {
+            label: 'Get more Transitions',
+            value: 'get-more'
+          }
+        ]"
+        class="white-text"
+        :key="JSON.stringify(item)"
+        :id="JSON.stringify(item)"
+        :value="item.value"
+        >{{ item.value === 'get-more' ? '' : 'Transition:' }} {{ item.label }}</option>
+      </select>
     </div>
-    <div>.</div>
+
+    <div class="white">
+      <input
+      type="range"
+      value="0"
+      min="0"
+      max="100"
+      step="0.001"
+      />
+    </div>
+
+    <div class="input-field">
+      <a href="#view-recordings-modal" class="modal-trigger teal btn-small waves-effect waves-light waves-white">View Recordings</a>
+
+      <a href="#" class="modal-trigger teal btn-small waves-effect waves-light waves-white">More</a>
+    </div>
 </div>
 <!-- End Middle section -->
 
+<!-- Begin bottom section -->
 <div @drop="onDrop($event)" v-if="$store.state.inputSources.length > 0" class="dragover horizontal-scroll black bottom-section">
     <InputSource v-for="(source, index) in $store.state.inputSources" :key="'input-source-' + (index + 1)" :source="source" :count="(index + 1)"></InputSource>
 </div>
 <EditorBottomNoInput class="dragover" @drop="onDrop($event)" v-else />
+<!-- end bottom section -->
 
 <!-- Begin Tools Modal -->
 <div id="tools-modal" class="modal">
@@ -110,6 +191,20 @@
     </div>
 </div>
 <!-- End select microphone modal -->
+
+<!-- Begin view recordings modal -->
+<div id="view-recordings-modal" class="modal">
+    <div class="modal-content black-text">
+      <h4>Recordings <i class="fa fa-video"></i></h4>
+      <ul>
+        <li>Oops! no recordings</li>
+      </ul>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-small red waves-effect waves-light modal-close">CLOSE</button>
+    </div>
+</div>
+<!-- End view recordings modal -->
 
 <!-- Begin image from url modal -->
 <div id="image-from-url-modal" class="modal">
