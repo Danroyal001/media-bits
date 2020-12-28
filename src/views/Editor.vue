@@ -63,8 +63,12 @@
 <!-- End Top Section -->
 
 <!-- Start Middle Section -->
-<div class="teal middle-section row">
-    <button v-for="btn in middleSectionBtns" :key="btn" @click="btn.action" class="btn-small waves-effect waves-light">{{ btn.label }}</button>
+<div class="teal middle-section white-text row">
+    <div>.</div>
+    <div class="white">
+      <input type="range" min="0" max="100" step="0.001">
+    </div>
+    <div>.</div>
 </div>
 <!-- End Middle section -->
 
@@ -196,7 +200,6 @@ export default {
   name: "Editor",
   data() {
     return {
-      middleSectionBtns: [],
       microphones: [],
       cameras: [],
       selectedCamera: '',
@@ -398,8 +401,33 @@ export default {
     },
     stream(){},
     onDrop($event){
+
+      $event.bubbles = false;
       $event.preventDefault();
-      console.log($event.dataTransfer.files)
+
+      let files = [];
+      
+      if ($event.dataTransfer.files) {
+
+        files.push(...(Array.from($event.dataTransfer.files)));
+
+      } else {
+
+        (Array.from($event.dataTransfer.items)).forEach(item => {
+          if (item.kind && (item.kind === 'file')){
+            files.push(item.getAsFile());
+          }
+        });
+
+      }
+
+      (Array.from(files)).forEach(file => {
+        console.log(file.name);
+        console.log(file.size);
+      });
+
+      return files;
+
     },
   },
   components: {
@@ -422,12 +450,12 @@ export default {
 }
 .middle-section{
     width: 100% !important;
-    margin: 0px;
+    margin: 0px !important;
     height: 35px !important;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
 }
 .bottom-section{
     height: calc(50% - 37px);

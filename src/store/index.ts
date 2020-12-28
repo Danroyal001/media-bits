@@ -121,6 +121,8 @@ const $store = createStore({
           }).then((file: any) => {
               (loader as any).M_Modal.open();
 
+              (document.querySelector('title')  as any).textContent = `Media-Bits: ${file.name}`;
+
               return (window as any).loadFromOpenedFile(file).then((_file: { inputSources: any; outputDestinations: any; }) => {
                 (window as any).$store.commit('setInputSources', []);
                 (window as any).$store.commit('setOutputDestinations', []);

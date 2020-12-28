@@ -1,5 +1,6 @@
 <template>
 <div class="black" style="display: flex; height: 50%; align-items: center; justify-content: center; flex-direction: column; text-align: center;">
+    <h5 class="teal-text hide-on-med-and-down">Drag and drop files/clips here or click <code>ADD INPUT</code> </h5>
     <h4 class="teal-text">
         <i class="fa fa-desktop"></i>
         <i class="fa fa-globe"></i>

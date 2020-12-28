@@ -22,7 +22,7 @@
 
 <script>
 export default {
-    name: 'input source',
+    name: 'inputsource',
     methods: {
         removeSource(){
             const _$this = this;
@@ -40,7 +40,16 @@ export default {
             const preview = window.document.querySelector('#preview');
 
             if((src.includes('video') || src.includes('audio')) && preview){
-                preview.srcObject = elem.captureStream();
+                if (elem.mozCaptureStream){
+                    preview.srcObject = elem.mozCaptureStream();
+                } else if (elem.msCaptureStream) {
+                    preview.srcObject = elem.msCaptureStream();
+                } else if (elem.captureStream) {
+                    preview.srcObject = elem.captureStream();
+                } else if (elem.oCaptureStream) {
+                    preview.srcObject = elem.oCaptureStream();
+                }
+                
                 preview.currentTime = elem.currentTime;
             } else if (src.includes('image') && preview){
                 preview.src = elem.src;
@@ -83,16 +92,16 @@ export default {
                 (() => addSrcObject(_$elem))();
                 break;
             case 'video input from url':
-                (() => {})();
+                (() => addSrc(_$elem))();
                 break;
             case 'audio input from url':
-                (() => {})();
+                (() => addSrc(_$elem))();
                 break;
             case 'image file':
                 (() => _$elem.src = _$this.source.data)();
                 break;
             case 'image from url':
-                (() => {})();
+                (() => addSrc(_$elem))();
                 break;
             case 'live desktop capture (video)':
                 (() => _$elem.srcObject = _$this.source.data)();

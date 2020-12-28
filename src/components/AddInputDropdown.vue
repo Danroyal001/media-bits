@@ -21,7 +21,7 @@ export default defineComponent({
                             fileType: 'video/*',
                             isText: false
                         }).then((file: Blob) => {
-                        (window as any).$store.commit('setGlobalLoaderText', 'Importing Video(s)');
+                        (window as any).$store.commit('setGlobalLoaderText', 'Importing Video');
                         (document.querySelector('#global-loader-modal') as any).M_Modal.open();
                             const fr = new window.FileReader();
                             fr.onload = () => {
