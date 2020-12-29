@@ -130,7 +130,7 @@ export default defineComponent({
                     class: 'modal-trigger'
                 },
                 {
-                    label: 'Live Desktop Capture (Video)',
+                    label: 'Live Screen Capture (Video)',
                     onclick(){
                         const addSource = (stream: any) => {
                             (window as any).$store.commit('addInputSource', {

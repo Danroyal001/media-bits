@@ -63,13 +63,15 @@
   </div>
 
   <div class="container">
-    <h5 class="center">Next generation multimedia streaming, editing, switching, mixing, projection and <wbr />video-conferencing<wbr /> software</h5>
+    <h5 class="center">The complete Multimedia kit you need</h5>
     <br />
-    <p>{{ $store.state.appName }} is a live multimedia streaming, editing, switching, mixing, projection and <wbr />video-conferencing<wbr /> software that utilises the latest advances in computer software and hardware to provide advanced multimedia capabilities, a task previously only possible on expensive dedicated hardware.</p>
+
+    <p>{{ $store.state.appName }} is a realtime/after-time multimedia streaming, editing, switching, mixing, composting, projection and <wbr />video-conferencing<wbr /> software that utilises the latest advances in computer software and hardware to provide advanced multimedia capabilities, a task previously only possible on expensive dedicated hardware.</p>
     <p>{{ $store.state.appName }} also functions as live streaming software that allows you to publish your live productions directly to the Internet!.</p>
     <p>{{ $store.state.appName }} runs <strong>EVERYWHERE</strong> (Windows 7, Windows 8, Windows 10, Linux, Mac OSX, Android, IOS and even in the <router-link to="/editor">Browser</router-link>.)</p>
     <p>{{ $store.state.appName }} is a complete live video production software solution with features including <b>LIVE</b> mixing, switching, recording and streaming of SD, full HD and 4K video sources including cameras, video files, DVDs, images, verses Powerpoint and much much more.</p>
-    <p>Whether you are looking to produce big budget live concert productions, sporting events, Church services or small webcasts, then {{ $store.state.appName }} is for you.</p>
+    <p>Whether you are looking to produce big budget live concert productions, sporting events, Church services or small webcasts/podcasts, then {{ $store.state.appName }} is for you.</p>
+    <p>Regardless of weather you are a newbie or a seasoned video editing expert,{{ $store.state.appName }} will prove itself to be a very powerful tool in your hands</p>
     <p>For a full list of what is possible with {{ $store.state.appName }}, <a @click="viewFeatures" href="javascript:void(0)">click here</a> to view all features.</p>
     <p><b>Download a trial today and use a fully functional version of {{ $store.state.appName }} for 14 days free of charge.</b></p>
   </div>
@@ -123,8 +125,8 @@
 
       <div class="col s12 m6 l4 center">
         <div><img src="@/assets/img/logo.png" width="100"></div>
-        <h5>Video Projection</h5>
-        <p>{{ $store.state.appName }} can project video output to wired and wireless secondary monitors/display</p>
+        <h5>Multimedia Projection/resentation</h5>
+        <p>{{ $store.state.appName }} can project to wired and wireless secondary monitors/display for presentation</p>
       </div>
 
       <div class="col s12 m12 l4 center">
@@ -143,14 +145,34 @@
 
       <div class="col s12 m6 l4 center">
         <div><img src="@/assets/img/logo.png" width="100"></div>
-        <h5>Project Collaboration</h5>
-        <p>{{ $store.state.appName }} acknowledges the fact that we live in <br />the cloud computing era. For this reason, <br />{{ $store.state.appName }} makes it project collaboration possible</p>  
+        <h5>Realtime Project Collaboration</h5>
+        <p>{{ $store.state.appName }} acknowledges the fact that we live in <br />the cloud computing era. For this reason, <br />{{ $store.state.appName }} makes project collaboration possible in realtime</p>  
       </div>
 
       <div class="col s12 m12 l4 center">
         <div><img src="@/assets/img/logo.png" width="100"></div>
         <h5>Explainer Videos</h5>
-        <p>Creating explainer videos is highly simplified with {{ $store.state.appName }}</p>
+        <p>Creating explainer videos is highly simplified with several templates {{ $store.state.appName }} provides</p>
+      </div>
+    </div>
+    <br />
+    <div class="row white-text">
+      <div class="col s12 m6 l4 center">
+        <div><img src="@/assets/img/logo.png" width="100"></div>
+        <h5>Video compoting</h5>
+        <p>{{ $store.state.appName }}</p>
+      </div>
+
+      <div class="col s12 m6 l4 center">
+        <div><img src="@/assets/img/logo.png" width="100"></div>
+        <h5>Visual effects/AR/VR</h5>
+        <p>{{ $store.state.appName }}</p>  
+      </div>
+
+      <div class="col s12 m12 l4 center">
+        <div><img src="@/assets/img/logo.png" width="100"></div>
+        <h5>Animation</h5>
+        <p>{{ $store.state.appName }}</p>
       </div>
     </div>
     <br />
@@ -231,7 +253,7 @@ export default {
   },
   mounted(){
 
-    const fn = () => {
+    const fn = async () => {
       var elems = document.querySelectorAll('.carousel');
      this.carouselInstance = window.M.Carousel.init(elems, {
        fullWidth:true,

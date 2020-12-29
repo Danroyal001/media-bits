@@ -133,20 +133,20 @@
       </select>
     </div>
 
-    <div class="white">
+    <div id="switch-preview-and-output-slider" class="white teal-text input-field">
+      <small>Preview</small>
       <input
       type="range"
       value="0"
       min="0"
       max="100"
-      step="0.001"
+      step="0.01"
       />
+      <small>Output</small>
     </div>
 
     <div class="input-field">
       <a href="#view-recordings-modal" class="modal-trigger teal btn-small waves-effect waves-light waves-white">View Recordings</a>
-
-      <a href="#" class="modal-trigger teal btn-small waves-effect waves-light waves-white">More</a>
     </div>
 </div>
 <!-- End Middle section -->
@@ -196,9 +196,18 @@
 <div id="view-recordings-modal" class="modal">
     <div class="modal-content black-text">
       <h4>Recordings <i class="fa fa-video"></i></h4>
-      <ul>
+      
+      <ul v-if="!$store.state.length">
         <li>Oops! no recordings</li>
       </ul>
+
+      <ul v-else>
+        <li
+        v-for="(record, index) in $store.state.recordings"
+        :key="index + Math.random()"
+        >{{ record.name }}</li>
+      </ul>
+
     </div>
     <div class="modal-footer">
       <button class="btn-small red waves-effect waves-light modal-close">CLOSE</button>
@@ -468,15 +477,12 @@ export default {
             window[`outputDestination${count}`].__mediaRecorder.onstop = () => {
               const blobArray = window[`outputDestination${count}`].__recordedChunks;
               const blob = blobArray[0];
-              console.log(blob)
-              const dataURL = URL.createObjectURL(blob);
-              const a = document.createElement('a');
-              document.body.appendChild(a);
-              a.href = dataURL;
-              a.download = `Record-${((new Date()).toString()).split(':').join('-').split(" ").join("_")}.webm`
-              a.click();
-              URL.revokeObjectURL(a)
-              a.remove();
+              const name = `Record-${((new Date()).toString()).split(':').join('-').split(" ").join("_")}.webm`;
+              $this.$store.dispatch('addRecordingAsync', {
+                name,
+                blob,
+                id: $this.$store.state.recordings.length + 1
+              });
               window[`outputDestination${count}`].__recordedChunks = [];
             }
 
@@ -497,7 +503,6 @@ export default {
     stream(){},
     onDrop($event){
 
-      $event.bubbles = false;
       $event.preventDefault();
 
       let files = [];
@@ -518,7 +523,7 @@ export default {
 
       (Array.from(files)).forEach(file => {
         console.log(file.name);
-        console.log(file.size);
+        console.log(`${file.size/1000000}mb`);
       });
 
       return files;
@@ -641,6 +646,17 @@ export default {
 
 .output-destination video.output-video-visualizer{
     height: 100% !important;
+}
+.select-dropdown.dropdown-content{
+  z-index: 100000000000000 !important;
+  margin-top: 150px !important;
+  padding-top: 50px !important;
+}
+
+#switch-preview-and-output-slider{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 @media only screen and (min-width: 600px) and (max-width: 992px) {

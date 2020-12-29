@@ -271,6 +271,9 @@ const $store = createStore({
     removeInputSource(state, id){
       const ind = (state as any).inputSources.findIndex((source: { id: any; }) => source.id === id);
       (state as any).inputSources.splice(ind, 1);
+    },
+    addRecording(state, {id, name, blob}){
+      return (state as any).recordings.push({id, name, blob});
     }
   },
   actions: {
@@ -307,6 +310,9 @@ const $store = createStore({
       };
       fileInput.click();
       })
+    },
+    async addRecordingAsync(context, {id, name, blob}){
+      return context.commit('addRecording', {id, name, blob});
     }
   },
   modules: {

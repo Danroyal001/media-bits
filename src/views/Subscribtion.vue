@@ -7,6 +7,7 @@
         <caption class="bold">PRICING TABLE</caption>
         <thead>
           <tr>
+              <th>Tier</th>
               <th>Feature</th>
               <th>Daily Subscribtion (Per use)</th>
               <th>Monthly Subscribtion</th>
@@ -16,6 +17,7 @@
 
         <tbody>
           <tr>
+            <td>Media-Bits Elements</td>
             <td>vjyg</td>
             <td>tvhtjg</td>
             <td>jghjh</td>
