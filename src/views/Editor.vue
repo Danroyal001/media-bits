@@ -141,8 +141,9 @@
       min="0"
       max="100"
       step="0.01"
+      :disabled="true"
       />
-      <small>Output</small>
+      <small>Live</small>
     </div>
 
     <div class="input-field">
@@ -522,8 +523,9 @@ export default {
       }
 
       (Array.from(files)).forEach(file => {
-        console.log(file.name);
-        console.log(`${file.size/1000000}mb`);
+        console.log('File drop event');
+        console.log(`File Name: ${file.name}`);
+        console.log(`FIle size: ${file.size/1000000}mb`);
       });
 
       return files;
@@ -576,6 +578,13 @@ export default {
     display: block;
     width: 100%;
     overflow-y: hidden;
+}
+input[type=range]{
+  height: 25px !important;
+  line-height: 2px !important;
+  padding: 0px !important;
+  margin: 0px !important;
+  width: 200px !important;
 }
 .horizontal-scroll-child{
     display: inline-block;

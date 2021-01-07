@@ -206,23 +206,29 @@ const $store = createStore({
       async onclick(){}
     },
     {
-      title: "Share / Collaborate",
+      title: "Share / Collaborate (requires internet)",
       onclick(){}
     },
     {
-      title: "Submit as template",
+      title: "Submit Project as template",
       onclick(){}
     }
     ],
     globalLoaderText: "Loading...",
     editorBtns: [
       {
-          title: "ADD INPUT",
+          title: "EDIT",
           onclick(){},
           class: "dropdown-trigger",
-          dataTarget: 'add-input-dropdown-1',
+          dataTarget: 'edit-dropdown',
           iconClass: 'fas fa-caret-down'
-      },
+      },{
+        title: "ADD INPUT",
+        onclick(){},
+        class: "dropdown-trigger",
+        dataTarget: 'add-input-dropdown-1',
+        iconClass: 'fas fa-caret-down'
+    },
       {
         title: "TOOLS",
         onclick(){},

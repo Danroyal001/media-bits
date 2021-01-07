@@ -31,7 +31,7 @@
   <div class="row white-text">
     <div class="col s12 m6 l4 grid-after-carousel center centered teal">
       <br />
-      <span>Propriety Software - Daniel Effiong</span>
+      <span>Propritary Software - Daniel Effiong</span>
       <br />
       <br />
       <a href="https://daniel-effiong.web.app" class="btn waves-effect wave-light white teal-text bold">Find out more</a>
@@ -59,18 +59,19 @@
   </div>
 
   <div class="center">
-    <h2> <img src="@/assets/img/logo.png" height="50" alt="Media-Bits Logo"> {{ $store.state.appName }}</h2>
+    <h2> <img src="@/assets/img/logo.png" height="50" alt="Media-Bits Logo">{{ $store.state.appName }}<wbr /> features</h2>
   </div>
 
   <div class="container">
-    <h5 class="center">The complete Multimedia kit you need</h5>
+    <h5 class="center">The complete multimedia kit you need</h5>
     <br />
 
-    <p>{{ $store.state.appName }} is a realtime/after-time multimedia streaming, editing, switching, mixing, composting, projection and <wbr />video-conferencing<wbr /> software that utilises the latest advances in computer software and hardware to provide advanced multimedia capabilities, a task previously only possible on expensive dedicated hardware.</p>
+    <p>{{ $store.state.appName }} is a <strong>REALTIME/POST-PROCESSING</strong> timeline-based multimedia streaming, editing, switching, mixing, composting, projection and <wbr />video-conferencing<wbr /> software that utilizes the latest advances in computer software and hardware to provide advanced multimedia capabilities, a task previously only possible on expensive dedicated hardware.</p>
     <p>{{ $store.state.appName }} also functions as live streaming software that allows you to publish your live productions directly to the Internet!.</p>
     <p>{{ $store.state.appName }} runs <strong>EVERYWHERE</strong> (Windows 7, Windows 8, Windows 10, Linux, Mac OSX, Android, IOS and even in the <router-link to="/editor">Browser</router-link>.)</p>
     <p>{{ $store.state.appName }} is a complete live video production software solution with features including <b>LIVE</b> mixing, switching, recording and streaming of SD, full HD and 4K video sources including cameras, video files, DVDs, images, verses Powerpoint and much much more.</p>
     <p>Whether you are looking to produce big budget live concert productions, sporting events, Church services or small webcasts/podcasts, then {{ $store.state.appName }} is for you.</p>
+    <p>{{$store.state.appName  }} alseo comes with an imbuild 3d editor which can be used for creating 3d scenes and objects for AR/VR</p>
     <p>Regardless of weather you are a newbie or a seasoned video editing expert,{{ $store.state.appName }} will prove itself to be a very powerful tool in your hands</p>
     <p>For a full list of what is possible with {{ $store.state.appName }}, <a @click="viewFeatures" href="javascript:void(0)">click here</a> to view all features.</p>
     <p><b>Download a trial today and use a fully functional version of {{ $store.state.appName }} for 14 days free of charge.</b></p>

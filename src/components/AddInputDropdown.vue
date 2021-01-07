@@ -1,12 +1,11 @@
 <template>
 <ul id='add-input-dropdown-1' class='dropdown-content'>
-    <li v-for="(btn, index) in btns" :key="index"><a :class="btn.class" class="bold" :href="btn.href" @click="btn.onclick">{{ btn.label }}</a></li>
+    <li v-for="(btn, index) in btns" :key="index + 'abb'"><a :href="btn.href" @click="btn.onclick">{{ btn.label }}</a></li>
 </ul>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-//import * as M from "@/assets/js/materialize.min.js";
 
 
 export default defineComponent({
@@ -38,7 +37,7 @@ export default defineComponent({
                             }
                             fr.readAsDataURL(file);
                         }).catch((e: any) => {
-                            (window.M as any).toast({
+                            (window as any).M.toast({
               html: e,
               classes: 'bold red rounded'
             });
@@ -66,7 +65,7 @@ export default defineComponent({
                             })
                             }
                             fr.readAsDataURL(file);
-                        }).catch((e: any) => (window.M as any).toast({
+                        }).catch((e: any) => (window as any).M.toast({
               html: e,
               classes: 'bold red rounded'
             }))
@@ -92,7 +91,7 @@ export default defineComponent({
                             })
                             }
                             fr.readAsDataURL(file);
-                        }).catch((e: any) => (window.M as any).toast({
+                        }).catch((e: any) => (window as any).M.toast({
               html: e,
               classes: 'bold red rounded'
             }))
@@ -101,6 +100,7 @@ export default defineComponent({
                 {
                     label: 'Live Video Input',
                     onclick(){
+                        return (window as any).document.querySelector('#select-camera-modal').M_Modal.open();
                     },
                     href: '#select-camera-modal',
                     class: 'modal-trigger'
@@ -149,7 +149,7 @@ export default defineComponent({
                                     cursor: 'motion'
                                 },
                                 audio: false
-                            }).then((stream: any) => addSource(stream)).catch(() => (window.M as any).toast({
+                            }).then((stream: any) => addSource(stream)).catch(() => (window as any).M.toast({
                                     html: `Unable to get desktop capture on your device`,
                                     classes: 'bold red rounded'
                                 }))

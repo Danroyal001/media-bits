@@ -17,7 +17,7 @@ import AddInputDropdown from '@/components/AddInputDropdown.vue';
 import { defineComponent } from 'vue';
 
 const doTheNeedful = () => {
-    window.M.AutoInit();
+    (window as any).M.AutoInit();
 }
 
 export default defineComponent({

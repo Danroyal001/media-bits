@@ -203,7 +203,7 @@ router.beforeEach((_to, from, next) => {
     if((window as any).$store.state.currentProjectIsSaved === true){
       return next();
     } else {
-      (window as any).alert("If you leave without saving your work, all changes will be lost")
+      (window as any).alert("If you leave without saving your work, all changes might be lost\nMedia-Bits willl try to recover your project, but may not always succeed")
       return next(false);
     }
   } else return next();

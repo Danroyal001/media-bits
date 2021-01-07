@@ -83,10 +83,21 @@
   pointer-events: none !important;
 }
 
+.btn, .btn-small{
+  padding-left: 5px !important;
+  padding-right: 5px !important;
+  margin-left: 5px !important;
+  margin-right: 5px !important;
+}
+
 /* Facilitate dragging behavior in eleectron */
 .brand-logo{
   -webkit-user-select: none;
   -webkit-app-region: drag;
+}
+.disabled, [disabled]{
+  opacity: 0.5;
+  pointer-events: none;
 }
 .dropdown-content{
   width: 200px !important;
@@ -101,13 +112,44 @@
 }
 
 ::-webkit-scrollbar-thumb{
-  border-radius: 100px !important;
-  background: #008688 !important;
+  border-radius: 100px;
+  background: #008688;
+  box-sizing: border-box;
+  border: 2px solid #ffffff;
+  animation-name: scrollbarThumbAnimation !important;
+  animation-duration: 1s;
+  animation-delay: 1s;
+}
+
+@keyframes scrollbarThumbAnimation{
+  0%{
+    background: #009688 !important
+    }
+  50%{
+    background: #033131  !important;
+  }
+  100%{
+    background: #009688 !important;
+  }
+}
+
+@-webkit-keyframes scrollbarThumbAnimation{
+  0%{
+    background: #009688 !important
+    }
+  50%{
+    background: #033131  !important;
+  }
+  100%{
+    background: #009688 !important;
+  }
 }
 
 ::-webkit-scrollbar-track{
-  background: #000000;
-  border: thin solid #ffffff;
+  background: transparent;
+  border: none;
+  /*background: #000000;
+  border: thin solid #ffffff;*/
 }
 hr{
   border-top: thin solid #fff;
