@@ -27,169 +27,169 @@ const routes = [
     name: 'editor',
     component: defineAsyncComponent({
       loader: () => import('@/views/Editor.vue'),
-      loadingComponent: PreLoader,
-      errorComponent: NetworkError,
+      loadingComponent: PreLoader as any,
+      errorComponent: NetworkError as any,
       delay,
       timeout,
       suspensible,
       onError,
-    })
+    }) as any
   },
   {
     path: '/contact',
     name: 'contact',
     component: defineAsyncComponent({
       loader: () => import('@/views/ContactPage.vue'),
-      loadingComponent: PreLoader,
-      errorComponent: NetworkError,
+      loadingComponent: PreLoader as any,
+      errorComponent: NetworkError as any,
       delay,
       timeout,
       suspensible,
       onError,
-    })
+    }) as any
   },
   {
     path: '/download',
     name: 'download',
     component: defineAsyncComponent({
       loader: () => import('@/views/DownloadPage.vue'),
-      loadingComponent: PreLoader,
-      errorComponent: NetworkError,
+      loadingComponent: PreLoader as any,
+      errorComponent: NetworkError as any,
       delay,
       timeout,
       suspensible,
       onError,
-    })
+    }) as any
   },
   {
     path: '/documentation',
     name: 'documentation',
     component: defineAsyncComponent({
       loader: () => import('@/views/Documentation.vue'),
-      loadingComponent: PreLoader,
-      errorComponent: NetworkError,
+      loadingComponent: PreLoader as any,
+      errorComponent: NetworkError as any,
       delay,
       timeout,
       suspensible,
       onError,
-    })
+    }) as any
   },
   {
     path: '/blog',
     name: 'blog',
     component: defineAsyncComponent({
       loader: () => import('@/views/Blog.vue'),
-      loadingComponent: PreLoader,
-      errorComponent: NetworkError,
+      loadingComponent: PreLoader as any,
+      errorComponent: NetworkError as any,
       delay,
       timeout,
       suspensible,
       onError,
-    })
+    }) as any
   },
   {
     path: '/forum',
     name: 'forum',
     component: defineAsyncComponent({
       loader: () => import('@/views/Forum.vue'),
-      loadingComponent: PreLoader,
-      errorComponent: NetworkError,
+      loadingComponent: PreLoader as any,
+      errorComponent: NetworkError as any,
       delay,
       timeout,
       suspensible,
       onError,
-    })
+    }) as any
   },
   {
     path: '/premium-support',
     name: 'premium-support',
     component: defineAsyncComponent({
       loader: () => import('@/views/PremiumSupport.vue'),
-      loadingComponent: PreLoader,
-      errorComponent: NetworkError,
+      loadingComponent: PreLoader as any,
+      errorComponent: NetworkError as any,
       delay,
       timeout,
       suspensible,
       onError,
-    })
+    }) as any
   },
   {
     path: '/email-support',
     name: 'email-support',
     component: defineAsyncComponent({
       loader: () => import('@/views/EmailSupport.vue'),
-      loadingComponent: PreLoader,
-      errorComponent: NetworkError,
+      loadingComponent: PreLoader as any,
+      errorComponent: NetworkError as any,
       delay,
       timeout,
       suspensible,
       onError,
-    })
+    }) as any
   },
   {
     path: '/terms-and-conditions',
     name: 'terms-and-conditions',
     component: defineAsyncComponent({
       loader: () => import('@/views/TermsAndConditions.vue'),
-      loadingComponent: PreLoader,
-      errorComponent: NetworkError,
+      loadingComponent: PreLoader as any,
+      errorComponent: NetworkError as any,
       delay,
       timeout,
       suspensible,
       onError,
-    })
+    }) as any
   },
   {
     path: '/email-action-handler',
     name: 'email-action-handler',
     component: defineAsyncComponent({
       loader: () => import('@/views/EmailActionHandler.vue'),
-      loadingComponent: PreLoader,
-      errorComponent: NetworkError,
+      loadingComponent: PreLoader as any,
+      errorComponent: NetworkError as any,
       delay,
       timeout,
       suspensible,
       onError,
-    })
+    }) as any
   },
   {
     path: '/privacy-policy',
     name: 'privacy-policy',
     component: defineAsyncComponent({
       loader: () => import('@/views/PrivacyPolicy.vue'),
-      loadingComponent: PreLoader,
-      errorComponent: NetworkError,
+      loadingComponent: PreLoader as any,
+      errorComponent: NetworkError as any,
       delay,
       timeout,
       suspensible,
       onError,
-    })
+    }) as any
   },
   {
     path: '/subscribtion',
     name: 'subscribtion',
     component: defineAsyncComponent({
       loader: () => import('@/views/Subscribtion.vue'),
-      loadingComponent: PreLoader,
-      errorComponent: NetworkError,
+      loadingComponent: PreLoader as any,
+      errorComponent: NetworkError as any,
       delay,
       timeout,
       suspensible,
       onError,
-    })
+    }) as any
   },
   {
     path: '/tutorial-videos',
     name: 'tutorial-videos',
     component: defineAsyncComponent({
       loader: () => import('@/views/TutorialVideos.vue'),
-      loadingComponent: PreLoader,
-      errorComponent: NetworkError,
+      loadingComponent: PreLoader as any,
+      errorComponent: NetworkError as any,
       delay,
       timeout,
       suspensible,
       onError,
-    })
+    }) as any
   }
 ]
 
