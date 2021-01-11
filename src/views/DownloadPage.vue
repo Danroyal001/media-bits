@@ -98,6 +98,6 @@ export default {
     align-items: center;
     justify-content: space-around;
     padding: 4px;
-    border: thin solid #009688;
+    border: thin solid #434a5f;
 }
 </style>

@@ -161,7 +161,7 @@ export default {
 .footer{
     height: 35%  !important;
     border-bottom: thick solid #000000;
-    /* border-top: thin solid #009688; */
+    /* border-top: thin solid #434a5f; */
     display: flex;
     flex-direction: column;
     align-items: stretch;

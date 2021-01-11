@@ -61,7 +61,7 @@ export default defineComponent({
   height: calc(100% - 60px) !important;
   margin-top: 60px !important;
   z-index: 1;
-  border-right: thin solid #009688 !important;
+  border-right: thin solid #434a5f !important;
 }
 
 .sidenav > li{

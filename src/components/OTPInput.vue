@@ -64,7 +64,7 @@ export default {
 
 <style scoped>
 .otp-button-wrapper{
-    background-color: teal;
+    background-color#434a5f;
     width: max-content;
     border: thin solid teal;
     border-radius: 5px;
@@ -88,11 +88,11 @@ export default {
     height: 40px;
     border-radius: 5px;
     border: thin solid teal;
-    caret-color: teal !important;
+    caret-color#434a5f !important;
 }
 .otp-input-row > button{
     color: white;
-    background: teal;
+    background#434a5f;
     font-weight: bold;
     /* border: thin solid teal; */
     height: 40px;
@@ -101,10 +101,10 @@ export default {
     cursor: pointer;
 }
 .teal{
-    background-color: teal !important;
+    background-color#434a5f !important;
 }
 .teal-text{
-    color: teal !important;
+    color#434a5f !important;
 }
 .white{
     background-color: white;

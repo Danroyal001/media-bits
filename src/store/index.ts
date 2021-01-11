@@ -283,6 +283,12 @@ const $store = createStore({
     }
   },
   actions: {
+    open(){
+      return (window.document.querySelector("#open-project-modal") as any).M_Modal.open();
+    },
+    new(){
+      return (window.document.querySelector("#new-project-modal") as any).M_Modal.open();
+    },
     loadFile(context, {fileType, allowMultiple, callback, isText}){
       return new Promise((resolve) => {
         const fileInput = document.createElement('input');

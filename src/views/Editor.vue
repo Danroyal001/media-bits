@@ -583,8 +583,8 @@ export default {
     height: 100% !important;
     padding: 0px !important;
     margin: 0px !important;
-    border-bottom: thin solid #009688;
-    border-top: thin solid #009688;
+    border-bottom: thin solid #434a5f;
+    border-top: thin solid #434a5f;
     margin: 0px !important;
     padding: 0px !important;
 }
@@ -606,7 +606,7 @@ input[type=range]{
     display: inline-block;
     height: 100% !important;
     width: 50%;
-    border: thin solid #009688;
+    border: thin solid #434a5f;
     overflow-y: auto !important;
 }
 .fill{

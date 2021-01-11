@@ -285,8 +285,8 @@ export default {
   font-weight: 900;
 }
 .before-footer input[type=email]{
-  caret-color: #009688;
-  color: #009688;
+  caret-color: #434a5f;
+  color: #434a5f;
 }
 #features .row .col{
   margin-top: 16px;

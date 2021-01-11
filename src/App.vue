@@ -24,9 +24,7 @@
             <li><a class="dropdown-trigger" href="#more-hyperlinks-dropdown" data-target="more-hyperlinks-dropdown">MORE &nbsp; <small><sub><i class="fas fa-caret-down"></i></sub></small></a></li>
           </ul>
           <EditorMenu v-else-if="($route.name === 'editor') && ($store.state.editorIsReady === true)" />
-          <ul id="more-hyperlinks-dropdown" class="dropdown-content bold">
-            <li v-for="link in $store.state.secondaryHyperlinks" :key="link"><router-link :to="link.href">{{ link.name }}</router-link></li>
-          </ul>
+          <more-hyperlinks-dropdown-on-homepage v-if="$route.name !== 'editor'" />
           <UserViewOnDesktop />
           <MinMax v-if="window.isElectron" /> 
         </div>
@@ -123,25 +121,25 @@
 
 @keyframes scrollbarThumbAnimation{
   0%{
-    background: #009688 !important
+    background: #434a5f !important
     }
   50%{
     background: #033131  !important;
   }
   100%{
-    background: #009688 !important;
+    background: #434a5f !important;
   }
 }
 
 @-webkit-keyframes scrollbarThumbAnimation{
   0%{
-    background: #009688 !important
+    background: #434a5f !important
     }
   50%{
     background: #033131  !important;
   }
   100%{
-    background: #009688 !important;
+    background: #434a5f !important;
   }
 }
 
@@ -153,7 +151,7 @@
 }
 hr{
   border-top: thin solid #fff;
-  border-bottom: thin solid #009688;
+  border-bottom: thin solid #434a5f;
 }
 .position-absolute{
   position: absolute !important;
@@ -226,6 +224,9 @@ import PreLoader from "@/components/PreLoader.vue";
 import MinMax from "@/components/MinMax.vue";
 import UserViewOnDesktop from "@/components/UserViewOnDesktop.vue";
 import AuthenticationModal from "@/components/AuthenticationModal.vue";
+import MoreHyperlinksDropdownOnHomepage from "@/components/MoreHyperlinksDropdownOnHomepage.vue";
+
+import { defineComponent } from "vue";
 
 
 // stylesheets
@@ -405,7 +406,7 @@ Object.defineProperty(window, '__VideoContext', {
 };
 // end window.__workerFromString
 
-export default {
+export default defineComponent({
   name: "App",
   mounted() {
     window.addEventListener('keyup', e => {
@@ -421,13 +422,14 @@ export default {
     PreLoader,
     MinMax,
     UserViewOnDesktop,
-    AuthenticationModal
+    AuthenticationModal,
+    MoreHyperlinksDropdownOnHomepage
   },
   data() {
     return {
       window
     };
   }
-};
+});
 
 </script>
