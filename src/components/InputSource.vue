@@ -1,6 +1,6 @@
 <template>
 <div :id="'input-source-' + count" class="horizontal-scroll-child input-source">
-    <div @click="setFocusedInputSource" :class="['header', $store.state.focusedInputSource === count - 1 ? 'orange black-text' : 'teal white-text']">
+    <div @click="setFocusedInputSource" :class="['header', $store.state.focusedInputSource === count - 1 ? 'orange black-text' : 'primary white-text']">
         <span>Input Source {{ count }} &nbsp; <i @click="removeSource" class="btn-small red white-text waves-effect waves-light close-btn">&times;</i></span>
     </div>
     <div @click="setFocusedInputSource" class="body black">
@@ -11,11 +11,11 @@
         <img v-else-if="source.type.toLowerCase().includes('image')" :id="'inputVisual' + count" :title="source.title" class="fill-parent" />
     </div>
     <div class="footer black">
-        <marquee @click="setFocusedInputSource" scrollamount="4" :class="['btn-small', $store.state.focusedInputSource === count - 1 ? 'orange black-text' : 'teal', 'truncate']">NAME: {{ source.name || '----|----' }}</marquee>
+        <marquee @click="setFocusedInputSource" scrollamount="4" :class="['btn-small', $store.state.focusedInputSource === count - 1 ? 'orange black-text' : 'primary', 'truncate']">NAME: {{ source.name || '----|----' }}</marquee>
 
-        <div @click="setFocusedInputSource" :class="['btn-small', $store.state.focusedInputSource === count - 1 ? 'orange black-text' : 'teal']">TYPE: {{ source.type || '----|----' }}</div>
+        <div @click="setFocusedInputSource" :class="['btn-small', $store.state.focusedInputSource === count - 1 ? 'orange black-text' : 'primary']">TYPE: {{ source.type || '----|----' }}</div>
 
-        <div :class="['btn-small', $store.state.focusedInputSource === count - 1 ? 'orange black-text' : 'teal', 'waves-effect', 'waves-light']">CONFIGURATION <i class="fas fa-wrench"></i></div>
+        <div :class="['btn-small', $store.state.focusedInputSource === count - 1 ? 'orange black-text' : 'primary', 'waves-effect', 'waves-light']">CONFIGURATION <i class="fas fa-wrench"></i></div>
     </div>
 </div>
 </template>
@@ -143,8 +143,8 @@ export default {
 .input-source{
     width: 250px;
     height: 100%;
-    border-right: thin solid teal;
-    border-left: thin solid teal;
+    border-right: thin solid primary;
+    border-left: thin solid primary;
 }
 .header{
     font-size: 14px;

@@ -165,7 +165,7 @@ const $store = createStore({
           } else if (((window as any).$store.state.inputSources.length > 0) && ((window as any).$store.state.currentProjectIsSaved === true)) {
             (window as any).M.toast({
               html: 'Project is already saved!',
-              classes: 'bold teal rounded'
+              classes: 'bold primary rounded'
             });
           } else {
             let file = {
@@ -187,7 +187,7 @@ const $store = createStore({
               const successString = `file saved with name: ${fileName}`;
               (window as any).M.toast({
                 html: successString,
-                classes: 'bold teal z-depth-4 rounded'
+                classes: 'bold primary z-depth-4 rounded'
              });
              return (window as any).$store.commit('setCurrentProjectIsSaved', true);
 

@@ -6,7 +6,7 @@
   <div class="carousel carousel-slider center black-text">
 
     <div class="carousel-fixed-item center">
-      <router-link to="/editor" class="btn waves-effect waves-light teal white-text pulse">GET STARTED</router-link>
+      <router-link to="/editor" class="btn waves-effect waves-light primary white-text pulse">GET STARTED</router-link>
     </div>
 
     <div v-for="x in 4" :key="x" :id="'homepage-carousel-item-' + x" class="carousel-item">
@@ -17,42 +17,42 @@
   <!-- End Carousel -->
   
   <!-- after carousel -->
-  <div class="teal">
+  <div class="primary">
     <br />
     <div class="container center">
-      <router-link to="/subscribtion" class="m-y-4px btn white black-text bold waves-effect waves-teal">Pricing</router-link> &nbsp;
-      <a href="#features" class="m-y-4px btn white black-text bold waves-effect waves-teal">View Features</a> &nbsp;
-      <router-link to="/tutorial-videos/#/demo-video" class="m-y-4px btn white black-text bold waves-effect waves-teal">Watch demo video</router-link> &nbsp;    
+      <router-link to="/subscribtion" class="m-y-4px btn white black-text bold waves-effect waves-primary">Pricing</router-link> &nbsp;
+      <a href="#features" class="m-y-4px btn white black-text bold waves-effect waves-primary">View Features</a> &nbsp;
+      <router-link to="/tutorial-videos/#/demo-video" class="m-y-4px btn white black-text bold waves-effect waves-primary">Watch demo video</router-link> &nbsp;    
     </div>
     <br />
   </div>
   <!-- end after carousel -->
 
   <div class="row white-text">
-    <div class="col s12 m6 l4 grid-after-carousel center centered teal">
+    <div class="col s12 m6 l4 grid-after-carousel center centered primary">
       <br />
       <span>Propritary Software - Daniel Effiong</span>
       <br />
       <br />
-      <a href="https://daniel-effiong.web.app" class="btn waves-effect wave-light white teal-text bold">Find out more</a>
+      <a href="https://daniel-effiong.web.app" class="btn waves-effect wave-light white primary-text bold">Find out more</a>
       <br />
       <br />
     </div>
-    <div class="col s12 m6 l4 grid-after-carousel center centered teal">
+    <div class="col s12 m6 l4 grid-after-carousel center centered primary">
       <br />
       <span>Version 1.0 is out</span>
       <br />
       <br />
-      <router-link to="/download" class="btn waves-effect wave-light white teal-text bold">Download / view version history</router-link>
+      <router-link to="/download" class="btn waves-effect wave-light white primary-text bold">Download / view version history</router-link>
       <br />
       <br />
     </div>
-    <div class="col s12 m12 l4 grid-after-carousel center centered teal">
+    <div class="col s12 m12 l4 grid-after-carousel center centered primary">
       <br />
       <span>Watch tutorial videos</span>
       <br />
       <br />
-      <a href="https://daniel-effiong.web.app" class="btn waves-effect wave-light white teal-text bold">Watch now</a>
+      <a href="https://daniel-effiong.web.app" class="btn waves-effect wave-light white primary-text bold">Watch now</a>
       <br />
       <br />
     </div>
@@ -78,23 +78,23 @@
   </div>
   <br />
   <div class="center">
-    <router-link to="/download" class="btn teal waves-effect waves-light">DOWNLOAD</router-link>
+    <router-link to="/download" class="btn primary waves-effect waves-light">DOWNLOAD</router-link>
     <br />
     OR
     <br />
-    <router-link  to="/editor" class="btn teal waves-effect waves-light">Get started directly in your browser</router-link>
+    <router-link  to="/editor" class="btn primary waves-effect waves-light">Get started directly in your browser</router-link>
   </div>
 
   <br />
   <br />
   <br />
 
-  <div id="features" class="teal white-text">
+  <div id="features" class="primary white-text">
     <br />
     <br />
     <h3 class="center">Welcome to a world of possibilities!</h3>
     <br />
-    <div class="center"><span style="font-size: 30px; padding: 10px; maring-top: 16px;" class="center white teal-text bold">{{ $store.state.appName }} Features</span></div>
+    <div class="center"><span style="font-size: 30px; padding: 10px; maring-top: 16px;" class="center white primary-text bold">{{ $store.state.appName }} Features</span></div>
     <br />
     <br />
     <div class="row white-text">
@@ -183,7 +183,7 @@
   <br />
   <br />
   <div class="center">
-    <a :target="window.isElectron ? false : '_blank'" :href="window.isElectron ? 'javascript:window.electron.shell.openExternal(\'https://daniel-effiong.web.app/#/projects\')' : 'https://daniel-effiong.web.app/#/projects'" class="btn teal waves-efect waves-light center">SEE MORE SOFTWARES FROM  DANIEL EFFIONG</a>
+    <a :target="window.isElectron ? false : '_blank'" :href="window.isElectron ? 'javascript:window.electron.shell.openExternal(\'https://daniel-effiong.web.app/#/projects\')' : 'https://daniel-effiong.web.app/#/projects'" class="btn primary waves-efect waves-light center">SEE MORE SOFTWARES FROM  DANIEL EFFIONG</a>
   </div>
   <br />
   <br />
@@ -196,7 +196,7 @@
     <h3 class="center">Latest News</h3>
     <!-- Begin Latest News carousel -->
     <div class="carousel carousel-slider center black-text">
-      <div v-for="x in 4" :key="x" :id="'latest-news-carousel-item-' + x" class="carousel-item teal">
+      <div v-for="x in 4" :key="x" :id="'latest-news-carousel-item-' + x" class="carousel-item primary">
         <img src="@/assets/img/1.png">
       </div>
     </div>
@@ -217,7 +217,7 @@
     <div class="col s12 m6 l6">
       <span>{{ $store.state.appName }} Blog</span>
       <br />
-      <router-link to="/blog" class="btn teal waves-effect waves-light">Visit our blog for more news</router-link>
+      <router-link to="/blog" class="btn primary waves-effect waves-light">Visit our blog for more news</router-link>
     </div>
   </div>
 

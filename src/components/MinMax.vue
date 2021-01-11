@@ -1,7 +1,7 @@
 <template>
     <div class="minmax-group">
-        <a title="minimize" onclick="window.minimize()" class="teal minmax waves-effect waves-light"><i class="fa fa-window-minimize"></i></a>
-        <a title="maximize/restore" onclick="window.maximize()" class="teal minmax waves-effect waves-light"><i class="fa fa-window-maximize"></i></a>
+        <a title="minimize" onclick="window.minimize()" class="primary minmax waves-effect waves-light"><i class="fa fa-window-minimize"></i></a>
+        <a title="maximize/restore" onclick="window.maximize()" class="primary minmax waves-effect waves-light"><i class="fa fa-window-maximize"></i></a>
         <a title="quit/exit" onclick="window.close()" class="minmax waves-effect waves-light red"><i class="fa fa-window-close"></i></a>
     </div>
 </template>
@@ -31,5 +31,9 @@ export default {
     height: 50% !important;
     border-left: .1px solid white;
     top: 0;
+    -webkit-app-region: no-drag;
+}
+.minmax:hover{
+    background: linear-gradient(to right bottom, #5b53ff 65%, #ffffff);
 }
 </style>

@@ -26,7 +26,7 @@ const routes = [
     path: '/editor',
     name: 'editor',
     component: defineAsyncComponent({
-      loader: () => import('@/views/Editor.vue'),
+      loader: () => import(/* webpackChunkName: 'editor', webpackPrefetch: true */'@/views/Editor.vue'),
       loadingComponent: PreLoader as any,
       errorComponent: NetworkError as any,
       delay,
@@ -39,7 +39,7 @@ const routes = [
     path: '/contact',
     name: 'contact',
     component: defineAsyncComponent({
-      loader: () => import('@/views/ContactPage.vue'),
+      loader: () => import(/* webpackChunkName: 'contact' */'@/views/ContactPage.vue'),
       loadingComponent: PreLoader as any,
       errorComponent: NetworkError as any,
       delay,
@@ -52,7 +52,7 @@ const routes = [
     path: '/download',
     name: 'download',
     component: defineAsyncComponent({
-      loader: () => import('@/views/DownloadPage.vue'),
+      loader: () => import(/* webpackPrefetch: true, webpackChunkName: 'download' */'@/views/DownloadPage.vue'),
       loadingComponent: PreLoader as any,
       errorComponent: NetworkError as any,
       delay,
@@ -65,7 +65,7 @@ const routes = [
     path: '/documentation',
     name: 'documentation',
     component: defineAsyncComponent({
-      loader: () => import('@/views/Documentation.vue'),
+      loader: () => import(/* webpackChunkName: 'documentation-and-videos' */'@/views/Documentation.vue'),
       loadingComponent: PreLoader as any,
       errorComponent: NetworkError as any,
       delay,
@@ -78,7 +78,7 @@ const routes = [
     path: '/blog',
     name: 'blog',
     component: defineAsyncComponent({
-      loader: () => import('@/views/Blog.vue'),
+      loader: () => import(/* webpackChunkName: 'blog' */'@/views/Blog.vue'),
       loadingComponent: PreLoader as any,
       errorComponent: NetworkError as any,
       delay,
@@ -91,7 +91,7 @@ const routes = [
     path: '/forum',
     name: 'forum',
     component: defineAsyncComponent({
-      loader: () => import('@/views/Forum.vue'),
+      loader: () => import(/* webpackChunkName: 'forum' */'@/views/Forum.vue'),
       loadingComponent: PreLoader as any,
       errorComponent: NetworkError as any,
       delay,
@@ -104,7 +104,7 @@ const routes = [
     path: '/premium-support',
     name: 'premium-support',
     component: defineAsyncComponent({
-      loader: () => import('@/views/PremiumSupport.vue'),
+      loader: () => import(/* webpackChunkName: 'premium-support' */'@/views/PremiumSupport.vue'),
       loadingComponent: PreLoader as any,
       errorComponent: NetworkError as any,
       delay,
@@ -117,7 +117,7 @@ const routes = [
     path: '/email-support',
     name: 'email-support',
     component: defineAsyncComponent({
-      loader: () => import('@/views/EmailSupport.vue'),
+      loader: () => import(/* webpackChunkName: 'email-support' */'@/views/EmailSupport.vue'),
       loadingComponent: PreLoader as any,
       errorComponent: NetworkError as any,
       delay,
@@ -130,7 +130,7 @@ const routes = [
     path: '/terms-and-conditions',
     name: 'terms-and-conditions',
     component: defineAsyncComponent({
-      loader: () => import('@/views/TermsAndConditions.vue'),
+      loader: () => import(/* webpackChunkName: 'terms-and-conditions' */'@/views/TermsAndConditions.vue'),
       loadingComponent: PreLoader as any,
       errorComponent: NetworkError as any,
       delay,
@@ -143,7 +143,7 @@ const routes = [
     path: '/email-action-handler',
     name: 'email-action-handler',
     component: defineAsyncComponent({
-      loader: () => import('@/views/EmailActionHandler.vue'),
+      loader: () => import(/* webpackChunkName: 'email-action-handler' */'@/views/EmailActionHandler.vue'),
       loadingComponent: PreLoader as any,
       errorComponent: NetworkError as any,
       delay,
@@ -156,7 +156,7 @@ const routes = [
     path: '/privacy-policy',
     name: 'privacy-policy',
     component: defineAsyncComponent({
-      loader: () => import('@/views/PrivacyPolicy.vue'),
+      loader: () => import(/* webpackChunkName: 'privacy-policy' */'@/views/PrivacyPolicy.vue'),
       loadingComponent: PreLoader as any,
       errorComponent: NetworkError as any,
       delay,
@@ -169,7 +169,7 @@ const routes = [
     path: '/subscribtion',
     name: 'subscribtion',
     component: defineAsyncComponent({
-      loader: () => import('@/views/Subscribtion.vue'),
+      loader: () => import(/* webpackChunkName: 'subscribtion' */'@/views/Subscribtion.vue'),
       loadingComponent: PreLoader as any,
       errorComponent: NetworkError as any,
       delay,
@@ -182,7 +182,7 @@ const routes = [
     path: '/tutorial-videos',
     name: 'tutorial-videos',
     component: defineAsyncComponent({
-      loader: () => import('@/views/TutorialVideos.vue'),
+      loader: () => import(/* webpackPrefetch: true, webpackChunkName: 'documentation-and-videos' */'@/views/TutorialVideos.vue'),
       loadingComponent: PreLoader as any,
       errorComponent: NetworkError as any,
       delay,

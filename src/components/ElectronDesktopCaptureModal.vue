@@ -17,7 +17,7 @@
     </div>
     <div class="modal-footer">
         <button class="btn-small red waves-effect waves-light modal-close">CLOSE</button>
-        <button @click="resolve" class="btn-small teal modal-close waves-effect waves-light">DONE</button>
+        <button @click="resolve" class="btn-small primary modal-close waves-effect waves-light">DONE</button>
     </div>
 </div>
 <!-- End Electron desktop Capture modal -->

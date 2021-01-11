@@ -4,8 +4,8 @@
     &nbsp;
     <i class="fa fa-caret-down dropdown-trigger" data-target="user-view-on-desktop"></i>
     <ul class="dropdown-content white" id="user-view-on-desktop">
-        <li><a class="bold teal-text disabled" style="display: flex; align-items: center; justify-content: flex-start; flex-direction: row;" disabled><img width="40" height="40" src="@/assets/img/user-circle.svg"> &nbsp; {{ $store.state.currentUser !== null ? $store.state.currentUser.displayName : 'Guest' }}</a></li>
-        <li><a @click="sign" class="white-text teal waves-effect waves-light">{{ $store.state.currentUser === true ? 'Sign out' : 'Sign in / Sign up' }}</a></li>
+        <li><a class="bold primary-text disabled" style="display: flex; align-items: center; justify-content: flex-start; flex-direction: row;" disabled><img width="40" height="40" src="@/assets/img/user-circle.svg"> &nbsp; {{ $store.state.currentUser !== null ? $store.state.currentUser.displayName : 'Guest' }}</a></li>
+        <li><a @click="sign" class="white-text primary waves-effect waves-light">{{ $store.state.currentUser === true ? 'Sign out' : 'Sign in / Sign up' }}</a></li>
     </ul>
 </div> 
 </template>
@@ -20,7 +20,7 @@ export default {
         sign(){
             const catchError = error => window.M.toast({classes: "red bold rounded", html: `Error: ${error.message}`})
 
-            const catchSuccess = mode => window.M.toast({html: `Signed ${mode} successfully`, classes: "teal rounded bold"})
+            const catchSuccess = mode => window.M.toast({html: `Signed ${mode} successfully`, classes: "primary rounded bold"})
 
             if(this.$store.state.currentUser) {
                 return window.__firebase.auth().signOut().then(() => catchSuccess('in')).catch(catchError);

@@ -33,7 +33,7 @@ export default defineComponent({
   },
   mounted(){
       if (this.role === 'documentation'){
-        import('@/assets/js/documentation.ts').then(({ getOnlyDocumentation }) => {
+        import(/* webpackPrefetch: true, webpackChunkName: 'documentation-and-videos' */'@/assets/js/documentation.ts').then(({ getOnlyDocumentation }) => {
         this.documentation = getOnlyDocumentation();
         });
       } else if (this.role === 'videos'){

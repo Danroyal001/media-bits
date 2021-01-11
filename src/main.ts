@@ -29,4 +29,4 @@ firebase.initializeApp(firebaseConfig);
 
 (window as any).__firebase = firebase;
 
-(window as any).vm = createApp(App as any).use(store).use(router).mount('#app')
+(window as any).vm = createApp(App as any).use(store).use(router).mount('#app');

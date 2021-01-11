@@ -4,7 +4,7 @@
     <div class="modal-content">
       <!-- firebase auth ui -->
     </div>
-    <div class="modal-footer teal">
+    <div class="modal-footer primary">
       <a class="modal-close waves-effect waves-light btn red white-text">CANCEL</a>
     </div>
   </div>

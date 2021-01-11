@@ -3,7 +3,7 @@
 <!-- Begin OTP -->
     <span class="otp-label">{{ title }}</span>
     <div class="otp-input-row">
-        <input type="number" title="required" data-otp-input pattern="\d{1}" v-for="x in parseInt(length)" @input="switchActiveInput($event)" :id="'otp-input-field' + x" :key="x" class="white center teal-text otp-input" maxlength="1" min="0" max="9" required>
+        <input type="number" title="required" data-otp-input pattern="\d{1}" v-for="x in parseInt(length)" @input="switchActiveInput($event)" :id="'otp-input-field' + x" :key="x" class="white center primary-text otp-input" maxlength="1" min="0" max="9" required>
 
         <button data-otp-cancel-button @click="clear($event)" title="cancel" class="otp-cancel-button" type="button">&times;</button>
     </div>
@@ -66,7 +66,7 @@ export default {
 .otp-button-wrapper{
     background-color#434a5f;
     width: max-content;
-    border: thin solid teal;
+    border: thin solid primary;
     border-radius: 5px;
     padding: 5px;
     display: flex;
@@ -87,23 +87,23 @@ export default {
     width: 40px;
     height: 40px;
     border-radius: 5px;
-    border: thin solid teal;
+    border: thin solid primary;
     caret-color#434a5f !important;
 }
 .otp-input-row > button{
     color: white;
     background#434a5f;
     font-weight: bold;
-    /* border: thin solid teal; */
+    /* border: thin solid primary; */
     height: 40px;
     width: 40px;
     border-radius: 5px;
     cursor: pointer;
 }
-.teal{
+.primary{
     background-color#434a5f !important;
 }
-.teal-text{
+.primary-text{
     color#434a5f !important;
 }
 .white{

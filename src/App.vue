@@ -1,7 +1,7 @@
 <template>
   <div oncontextmenu="return false" ondrag="return false" ondragstart="return false" ondragover="return false" class="white" style="width: 100% !important; height:100% !important; margin: 0; padding: 0; overflow-x: hidden;">
   <div class="navbar-fixed">
-    <nav class="teal">
+    <nav class="primary">
       <div class="container">
         <div class="nav-wrapper">
           <a :href="window.isElectron === true ? 'javascript:void(0)' : `javascript:(() => window.$router.push('/'))()`" class="brand-logo">

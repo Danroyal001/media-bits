@@ -7,7 +7,7 @@
     
     <div class="horizontal-scroll-child horizontal-scroll-child-1 white-text">
         <div v-if="$store.state.inputSources[$store.state.focusedInputSource]" class="black white-text fill" style="display: block !important; overflow: hidden;">
-            <div style="width: 100%; height: 20px; font-size: 15px;" class="center bold white-text teal">Preview</div>
+            <div style="width: 100%; height: 20px; font-size: 15px;" class="center bold white-text primary">Preview</div>
 
             <video id="preview" muted nocontrols loop autoplay v-if="($store.state.inputSources[$store.state.focusedInputSource]) && ($store.state.inputSources[$store.state.focusedInputSource].type.toLowerCase().includes('video'))" style="width: 100%; height: calc(100% - 20px);"></video>
 
@@ -16,19 +16,19 @@
             <img id="preview" v-else-if="($store.state.inputSources[$store.state.focusedInputSource]) && ($store.state.inputSources[$store.state.focusedInputSource].type.toLowerCase().includes('image'))" style="width: 100%; height: calc(100% - 20px);" />
         </div>
         <div v-else class="black white-text fill" style="display: block !important; overflow: hidden;">
-            <div style="width: 100%; height: 20px; font-size: 15px;" class="center bold white-text teal">Preview</div>
+            <div style="width: 100%; height: 20px; font-size: 15px;" class="center bold white-text primary">Preview</div>
         </div>
     </div>
-    <div class="horizontal-scroll-child horizontal-scroll-child-2 teal">
-        <div style="width: 100%; height: 20px; font-size: 15px;" class="center bold white-text teal">Output</div>
+    <div class="horizontal-scroll-child horizontal-scroll-child-2 primary">
+        <div style="width: 100%; height: 20px; font-size: 15px;" class="center bold white-text primary">Output</div>
         <div v-for="(x, _index) in 1" :key="'output-destination-' + _index" :id="'output-destination-' + (_index + 1)" class="black white-text output-destination row" style="display: block; margin: 0px; padding: 0px; width: 100%; height: calc(100% - 20px);">
             <div class="col s12 row output-destination-top-block">
                 <div class="col s1 orange output-audio-channel-visualizer row">
                     <div class="col s2">&nbsp;</div>
 
-                    <div class="col s3 teal">
+                    <div class="col s3 primary">
                         <div>
-                            <div style="height: 50%;" class="output-audio-channel-progress-bar left-channel teal" />
+                            <div style="height: 50%;" class="output-audio-channel-progress-bar left-channel primary" />
                         </div>
                         <span>L</span>
                     </div>
@@ -37,9 +37,9 @@
                         &nbsp;
                     </div>
 
-                    <div class="col s3 teal">
+                    <div class="col s3 primary">
                         <div>
-                            <div style="htight: 59%;" class="output-audio-channel-progress-bar right-channel teal" />
+                            <div style="htight: 59%;" class="output-audio-channel-progress-bar right-channel primary" />
                         </div>
                         <span>R</span>
                     </div>
@@ -49,13 +49,13 @@
                 <video class="col s11 output-video-visualizer" autoplay="true" nocontrols loop></video>
             </div>
             <div class="col s12 orange output-destination-bottom-block">
-                <button @click="project($event, (_index + 1))" :class="['btn-small', $store.state.isProjecting ? 'red' : 'teal', 'white-text', 'waves-effect', 'waves-light', 'bold']"> {{ $store.state.isProjecting ? 'PROJECTING' : 'PROJECT' }} <i class="fa fa-desktop"></i></button>
+                <button @click="project($event, (_index + 1))" :class="['btn-small', $store.state.isProjecting ? 'red' : 'primary', 'white-text', 'waves-effect', 'waves-light', 'bold']"> {{ $store.state.isProjecting ? 'PROJECTING' : 'PROJECT' }} <i class="fa fa-desktop"></i></button>
 
-                <button class="btn-small teal white-text waves-effect waves-light bold">STREAM <i class="fa fa-wifi"></i></button>
+                <button class="btn-small primary white-text waves-effect waves-light bold">STREAM <i class="fa fa-wifi"></i></button>
 
-                <button @click="toggleRecord($event, (_index + 1))" :class="['btn-small', $store.state.isRecording ? 'red' : 'teal', 'white-text', 'waves-effect', 'waves-light', 'bold']"> {{ $store.state.isRecording ? 'RECORDING' : 'RECORD' }} <i class="fa fa-video"></i></button>
+                <button @click="toggleRecord($event, (_index + 1))" :class="['btn-small', $store.state.isRecording ? 'red' : 'primary', 'white-text', 'waves-effect', 'waves-light', 'bold']"> {{ $store.state.isRecording ? 'RECORDING' : 'RECORD' }} <i class="fa fa-video"></i></button>
   
-                <button class="btn-small teal white-text waves-effect waves-light bold">CONFIG <i class="fa fa-wrench"></i></button>
+                <button class="btn-small primary white-text waves-effect waves-light bold">CONFIG <i class="fa fa-wrench"></i></button>
             </div>
         </div>
     </div>
@@ -63,7 +63,7 @@
 <!-- End Top Section -->
 
 <!-- Begin Middle Section -->
-<div class="teal middle-section white-text">
+<div class="primary middle-section white-text">
     <div class="input-field">
       <select class="white-text">
         <option
@@ -133,7 +133,7 @@
       </select>
     </div>
 
-    <div id="switch-preview-and-output-slider" class="white teal-text input-field">
+    <div id="switch-preview-and-output-slider" class="white primary-text input-field">
       <small>Preview</small>
       <input
       type="range"
@@ -147,7 +147,7 @@
     </div>
 
     <div class="input-field">
-      <a href="#view-recordings-modal" class="modal-trigger teal btn-small waves-effect waves-light waves-white">View Recordings</a>
+      <a href="#view-recordings-modal" class="modal-trigger primary btn-small waves-effect waves-light waves-white">View Recordings</a>
     </div>
 </div>
 <!-- End Middle section -->
@@ -178,7 +178,7 @@
           <p v-for="mic in microphones" :key="mic.label">
             <label>
               <input v-model="selectedMic" :value="mic.deviceId + '--' + mic.label" class="with-gap" name="camera" type="radio" />
-              <span class="teal-text">{{ mic.label }}</span>
+              <span class="primary-text">{{ mic.label }}</span>
             </label>
           </p>
       </form>
@@ -288,7 +288,7 @@
           <p v-for="camera in cameras" :key="camera.label">
             <label>
               <input v-model="selectedCamera" :value="camera.deviceId + '--' + camera.label" class="with-gap" name="camera" type="radio" />
-              <span class="teal-text">{{ camera.label }}</span>
+              <span class="primary-text">{{ camera.label }}</span>
             </label>
           </p>
       </form>
