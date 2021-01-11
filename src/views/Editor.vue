@@ -248,6 +248,22 @@
 </div>
 <!-- End video from url modal -->
 
+<!-- Begin url modal -->
+<div id="url-modal" class="modal">
+    <div class="modal-content">
+      <h4>Type the URL below <i class="fa fa-globe"></i></h4>
+      <form>
+          <input placeholder="type url here" type="url" />
+      </form>
+      <br />
+    </div>
+    <div class="modal-footer">
+      <button class="btn-small red waves-effect waves-light modal-close">CLOSE</button>
+      <a class="modal-close waves-effect waves-green btn">Add</a>
+    </div>
+</div>
+<!-- Endurl modal -->
+
 <!-- Begin audio from url modal -->
 <div id="audio-from-url-modal" class="modal">
     <div class="modal-content">

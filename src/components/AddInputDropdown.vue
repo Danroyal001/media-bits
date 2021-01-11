@@ -102,31 +102,38 @@ export default defineComponent({
                     onclick(){
                         return (window as any).document.querySelector('#select-camera-modal').M_Modal.open();
                     },
-                    href: '#select-camera-modal',
                     class: 'modal-trigger'
                 },
                 {
                     label: 'Live Audio Input',
-                    onclick(){},
-                    href: '#select-microphone-modal',
+                    onclick(){
+                        return (window as any).document.querySelector('#select-microphone-modal').M_Modal.open();
+                    },
                     class: 'modal-trigger'
                 },
                 {
                     label: 'Video Input from URL',
-                    onclick(){},
-                    href: '#audio-from-url-modal',
-                    class: 'modal-trigger'
+                    onclick(){
+                        return (window as any).document.querySelector('#url-modal').M_Modal.open();
+                    },
+                    href: '#url-modal'//,
+                    //class: 'modal-trigger'
                 },
                 {
                     label: 'Audio Input from URL',
-                    onclick(){},
-                    href: '#audio-from-url-modal',
+                    onclick(){
+                        (window as any).document.querySelector('#url-modal').M_Modal.open();
+                        return 0;
+                    },
+                    href: '#url-modal',
                     class: 'modal-trigger'
                 },
                 {
                     label: 'Image from URL',
-                    onclick(){},
-                    href: '#image-from-url-modal',
+                    onclick(){
+                        return (window as any).document.querySelector('#url-modal').M_Modal.open();
+                    },
+                    href: '#url-modal',
                     class: 'modal-trigger'
                 },
                 {
@@ -158,7 +165,7 @@ export default defineComponent({
                     }
                 },
                 {
-                    label: 'Title / Epic Scene',
+                    label: 'Title / Subtitle',
                     onclick(){}
                 },
                 {

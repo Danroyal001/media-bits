@@ -23,7 +23,7 @@ const doTheNeedful = () => {
 export default defineComponent({
     name: 'editor-bottom-no-input',
     components: {
-        AddInputDropdown
+        AddInputDropdown: AddInputDropdown as any
     },
     mounted: doTheNeedful,
     created: doTheNeedful

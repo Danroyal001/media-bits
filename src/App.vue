@@ -408,6 +408,12 @@ Object.defineProperty(window, '__VideoContext', {
 export default {
   name: "App",
   mounted() {
+    window.addEventListener('keyup', e => {
+      if (((e.key === 'q') || (e.key === 'Q')) && e.ctrlKey){
+        if ((window as any).isElectron) (window as any).electron.app.quit();
+      }
+    });
+
     return window.M.AutoInit();
   },
   components: {

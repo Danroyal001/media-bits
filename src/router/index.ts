@@ -11,7 +11,7 @@ const onError = (error: { message: string; }, retry: () => void, fail: () => voi
     fail()
   }
 }
-const timeout = 120000;
+const timeout = 60000*5;//5 mins
 const delay = 1;
 const suspensible = false;
 
