@@ -4,7 +4,7 @@
     <br />
     <h3 class="primary white-text center p-8px">Download <wbr />{{ $store.state.appName }} App</h3>
     <br />
-    <p class="center bold">Download free trial and upgrade later by signing in</p>
+    <p class="center bold">Download free trial first, then upgrade later</p>
     <br />
 
     <div class="row center">

@@ -133,7 +133,7 @@
       </select>
     </div>
 
-    <div id="switch-preview-and-output-slider" class="white primary-text input-field">
+    <div id="switch-preview-and-output-slider" class="white rounded primary-text input-field bold">
       <small>Preview</small>
       <input
       type="range"
@@ -141,7 +141,7 @@
       min="0"
       max="100"
       step="0.01"
-      :disabled="true"
+      :disabled="false"
       />
       <small>Live</small>
     </div>

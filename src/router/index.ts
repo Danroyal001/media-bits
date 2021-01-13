@@ -167,9 +167,10 @@ const routes = [
   },
   {
     path: '/subscribtion',
+    alias: '/pricing',
     name: 'subscribtion',
     component: defineAsyncComponent({
-      loader: () => import(/* webpackChunkName: 'subscribtion' */'@/views/Subscribtion.vue'),
+      loader: () => import(/* webpackChunkName: 'subscribtion-pricing' */'@/views/Subscribtion.vue'),
       loadingComponent: PreLoader as any,
       errorComponent: NetworkError as any,
       delay,

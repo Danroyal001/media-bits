@@ -23,6 +23,10 @@ export default defineComponent({
                     onclick(){}
                 },
                 {
+                    label: "Cut",
+                    onclick(){}
+                },
+                {
                     label: "Copy",
                     onclick(){}
                 },

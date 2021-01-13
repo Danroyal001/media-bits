@@ -1,6 +1,13 @@
 import { createStore } from 'vuex'
 // const vuexLocal = require('./vuexLocal.js');
 
+
+// (window as any).indexedDB = (window as any).indexedDB || (window as any).mozIndexedDB || (window as any).webkitIndexedDB || (window as any).msIndexedDB;
+// window.IDBTransaction = window.IDBTransaction || (window as any).webkitIDBTransaction || (window as any).msIDBTransaction || {READ_WRITE: "readwrite"};
+// window.IDBKeyRange = window.IDBKeyRange || (window as any).webkitIDBKeyRange || (window as any).msIDBKeyRange;
+// (window as any).IDB = (window as any).IDB || (window as any).webkitIDBKeyRange || (window as any).msIDBKeyRange;
+
+
 (window as any).loadFromOpenedFile = (file: any) => {
   // document
   return new Promise((resolve) => {
@@ -8,7 +15,7 @@ import { createStore } from 'vuex'
     return jszip.loadAsync(file).then((file2: any) => {
         file = file2;
         // console.log(file)
-        (Object?.values((file as any).files)[0] as any).async('string').then((str: any) => {
+        (Object?.values((file as any)?.files!)[0] as any).async('string').then((str: any) => {
         file = str;
         //try {
           //file = JSON.parse(`[${file}]`);
@@ -73,7 +80,7 @@ const $store = createStore({
         href: '/download'
       },
       {
-        name: 'SUBSRIBTION',
+        name: 'PRICING / SUBSRIBTION',
         href: '/subscribtion'
       }
     ],
@@ -101,19 +108,21 @@ const $store = createStore({
     ],
     year: `${(new Date()).getFullYear()}`,
     fileSubmenuDropdown: [
-      {
-        title: "New",
+    {
+        title: "New Project",
         onclick(){
           const child = window.open();
           (child as any).parent = null;
           (child as any).opener = null;
           (child as any).location = window.location;
         }
-      },
-      {
-        title: "Open",
+    },
+    {
+        title: "Open existing project",
         async onclick(){
-          const loader = document.querySelector('#global-loader-modal');
+          // use setTimeout to spawn a new process
+          setTimeout(() => {
+            const loader = document.querySelector('#global-loader-modal');
           (window as any).$store.dispatch('loadFile', {
             fileType: 'application/zip',
             multiple: false,
@@ -141,6 +150,7 @@ const $store = createStore({
           });
             
           }).catch(() => {
+            
               (document.querySelector('#global-loader-modal') as any).M_Modal.close();
               
               (window as any).M.toast({
@@ -148,14 +158,11 @@ const $store = createStore({
               classes: 'bold red rounded'
             });
           });
+          }, 1);//end setTimeout
         }
     },
     {
-      title: "Import from Cloud",
-      async onclick(){}
-    },
-    {
-        title: "Save to PC",
+        title: "Save to PC / Cloud",
         async onclick(){
           if ((window as any).$store.state.inputSources.length < 1){
             (window as any).M.toast({
@@ -202,26 +209,26 @@ const $store = createStore({
         }
     },
     {
-      title: "Save to Cloud",
+      title: "Share / Collaborate (requires internet)",
       async onclick(){}
     },
     {
-      title: "Share / Collaborate (requires internet)",
-      onclick(){}
+      title: "Submit Project as template",
+      async onclick(){}
     },
     {
-      title: "Submit Project as template",
-      onclick(){}
+      title: "Project Settings / Preferences",
+      async onclick(){}
     }
     ],
     globalLoaderText: "Loading...",
     editorBtns: [
       {
-          title: "EDIT",
-          onclick(){},
-          class: "dropdown-trigger",
-          dataTarget: 'edit-dropdown',
-          iconClass: 'fas fa-caret-down'
+        title: "EDIT",
+        onclick(){},
+        class: "dropdown-trigger",
+        dataTarget: 'edit-dropdown',
+        iconClass: 'fas fa-caret-down'
       },{
         title: "ADD INPUT",
         onclick(){},
@@ -338,9 +345,15 @@ export default $store;
 
 //
 
+const myWorkerFn = () => {
+  return [...[1, 2], 3, {...{name: 2 ** 3}}];
+}
+
 (window as any).myString = `
 self.onmessage = e => {
-  self.postMessage(e.data)
+  self.postMessage(e.data);
+  self.postMessage(\`${myWorkerFn}\`);
+  self.postMessage(\`${(window as any).__VideoContext}\`);
 }
 `;
 

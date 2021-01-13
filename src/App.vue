@@ -105,13 +105,13 @@
 }
 
 ::-webkit-scrollbar-button{
-  background-color: #008688 !important;
+  background-color: #434a5f !important;
   content: initial;
 }
 
 ::-webkit-scrollbar-thumb{
   border-radius: 100px;
-  background: #008688;
+  background: #434a5f;
   box-sizing: border-box;
   border: 2px solid #ffffff;
   animation-name: scrollbarThumbAnimation !important;
@@ -257,7 +257,7 @@ class __VideoContext {
 
     this.sampleRate = 60;
 
-    this.id = Math.random()
+    this.id = Math.random() / 2;
 
     // this.state = "suspended";
     this.state = "running";
@@ -409,9 +409,24 @@ Object.defineProperty(window, '__VideoContext', {
 export default defineComponent({
   name: "App",
   mounted() {
+
+  navigator.permissions.query({name: "clipboard-write" as any}).then(result => {
+  if (result.state == "granted" || result.state == "prompt") {
+    /* write to the clipboard now */
+    }
+  }).catch(console.error.bind(console));
+
     window.addEventListener('keyup', e => {
       if (((e.key === 'q') || (e.key === 'Q')) && e.ctrlKey){
-        if ((window as any).isElectron) (window as any).electron.app.quit();
+        if ((window as any).isElectron) {
+            (window as any).electron.app.quit();
+           } else window.close()
+      }
+    });
+
+    window.addEventListener('keyup', e => {
+      if (((e.key === 'w') || (e.key === 'W')) && e.ctrlKey){
+        window.close();
       }
     });
 

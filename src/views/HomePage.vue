@@ -68,13 +68,13 @@
 
     <p>{{ $store.state.appName }} is a <strong>REALTIME/POST-PROCESSING</strong> timeline-based multimedia streaming, editing, switching, mixing, composting, projection and <wbr />video-conferencing<wbr /> software that utilizes the latest advances in computer software and hardware to provide advanced multimedia capabilities, a task previously only possible on expensive dedicated hardware.</p>
     <p>{{ $store.state.appName }} also functions as live streaming software that allows you to publish your live productions directly to the Internet!.</p>
-    <p>{{ $store.state.appName }} runs <strong>EVERYWHERE</strong> (Windows 7, Windows 8, Windows 10, Linux, Mac OSX, Android, IOS and even in the <router-link to="/editor">Browser</router-link>.)</p>
-    <p>{{ $store.state.appName }} is a complete live video production software solution with features including <b>LIVE</b> mixing, switching, recording and streaming of SD, full HD and 4K video sources including cameras, video files, DVDs, images, verses Powerpoint and much much more.</p>
-    <p>Whether you are looking to produce big budget live concert productions, sporting events, Church services or small webcasts/podcasts, then {{ $store.state.appName }} is for you.</p>
-    <p>{{$store.state.appName  }} alseo comes with an imbuild 3d editor which can be used for creating 3d scenes and objects for AR/VR</p>
+    <p>{{ $store.state.appName }} runs <strong>EVERYWHERE</strong> (Windows 7, Windows 8, Windows 10, Linux, Chrome Book, Mac OSX, Android, IOS and even in the <router-link to="/editor">Browser</router-link>.)</p>
+    <p>{{ $store.state.appName }} is a complete editing, composting, animation and live video production software solution with features including <b>LIVE</b> mixing, switching, recording and streaming of SD, full HD and 4K video sources including cameras, video files, DVDs, images, verses Powerpoint and much much more.</p>
+    <p>Whether you are looking to produce big budget Movie, live concert productions, sporting events, Religious services or small webcasts/podcasts, then {{ $store.state.appName }} is for you.</p>
+    <p>{{$store.state.appName  }} alseo comes with an inbuilt 3d editor which can be used for creating and animating 3d scenes and objects for AR/VR</p>
     <p>Regardless of weather you are a newbie or a seasoned video editing expert,{{ $store.state.appName }} will prove itself to be a very powerful tool in your hands</p>
-    <p>For a full list of what is possible with {{ $store.state.appName }}, <a @click="viewFeatures" href="javascript:void(0)">click here</a> to view all features.</p>
-    <p><b>Download a trial today and use a fully functional version of {{ $store.state.appName }} for 14 days free of charge.</b></p>
+    <p>For a full list of what is possible with {{ $store.state.appName }}, <a @click="viewFeatures" href="#features">click here</a> to view all features.</p>
+    <p><b>Download a trial today and use a fully functional version of {{ $store.state.appName }} for 7 days free of charge.</b></p>
   </div>
   <br />
   <div class="center">
