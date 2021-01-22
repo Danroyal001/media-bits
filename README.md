@@ -1,4 +1,4 @@
-# public
+# media-bits
 
 ## Project setup
 ```
